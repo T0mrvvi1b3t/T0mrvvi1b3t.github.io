@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ctfshow_misc入门  WP（未完） | T0mrvvi1b3t‘s blog</title><meta name="author" content="T0mrvvi1b3t"><meta name="copyright" content="T0mrvvi1b3t"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="图片篇(基础操作)misc1没啥好说的，打开图片就是flag misc2附件是txt文本，用010editor打开，发现16进制对应的是png的文件头，修改后缀名misc2.txt–&gt;misc.png，打开图片就可以看到flag了 misc3解压后是一个bpg文件，在网站下载bpg文件查看器，解压后，用bpgview.exe打开misc3.bpg即可看见flag misc4给了6个t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ctfshow_misc入门  WP（未完）">
+<meta property="og:url" content="http://t0mrvvi1b3t.top/2021/05/11/ctfshow_misc_ru/index.html">
+<meta property="og:site_name" content="T0mrvvi1b3t‘s blog">
+<meta property="og:description" content="图片篇(基础操作)misc1没啥好说的，打开图片就是flag misc2附件是txt文本，用010editor打开，发现16进制对应的是png的文件头，修改后缀名misc2.txt–&gt;misc.png，打开图片就可以看到flag了 misc3解压后是一个bpg文件，在网站下载bpg文件查看器，解压后，用bpgview.exe打开misc3.bpg即可看见flag misc4给了6个t">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.vim-cn.com/5c/ba5491c7fa8fe74abf249eb057e8195716c684.jpg">
+<meta property="article:published_time" content="2021-05-10T16:06:10.423Z">
+<meta property="article:modified_time" content="2021-05-11T11:03:11.962Z">
+<meta property="article:author" content="T0mrvvi1b3t">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.vim-cn.com/5c/ba5491c7fa8fe74abf249eb057e8195716c684.jpg"><link rel="shortcut icon" href="https://img.vim-cn.com/86/fc3fd860a6269f1834928642dd8462bc5b93be.jpg"><link rel="canonical" href="http://t0mrvvi1b3t.top/2021/05/11/ctfshow_misc_ru/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-05-11 19:03:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://ss2.baidu.com/6ON1bjeh1BF3odCf/it/u=2706720867,592915881&amp;fm=27&amp;gp=0.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.vim-cn.com/5c/ba5491c7fa8fe74abf249eb057e8195716c684.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">T0mrvvi1b3t‘s blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ctfshow_misc入门  WP（未完）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-10T16:06:10.423Z" title="发表于 2021-05-11 00:06:10">2021-05-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-11T11:03:11.962Z" title="更新于 2021-05-11 19:03:11">2021-05-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Misc/">Misc</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ctfshow_misc入门  WP（未完）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+
+
+<h2 id="图片篇-基础操作"><a href="#图片篇-基础操作" class="headerlink" title="图片篇(基础操作)"></a>图片篇(基础操作)</h2><h3 id="misc1"><a href="#misc1" class="headerlink" title="misc1"></a>misc1</h3><p>没啥好说的，打开图片就是flag</p>
+<h3 id="misc2"><a href="#misc2" class="headerlink" title="misc2"></a>misc2</h3><p>附件是txt文本，用010editor打开，发现16进制对应的是png的文件头，修改后缀名misc2.txt–&gt;misc.png，打开图片就可以看到flag了</p>
+<h3 id="misc3"><a href="#misc3" class="headerlink" title="misc3"></a>misc3</h3><p>解压后是一个bpg文件，在<a target="_blank" rel="noopener" href="https://bellard.org/bpg/">网站</a>下载bpg文件查看器，解压后，用bpgview.exe打开misc3.bpg即可看见flag</p>
+<h3 id="misc4"><a href="#misc4" class="headerlink" title="misc4"></a>misc4</h3><p>给了6个txt文件，分别用010editor打开，看开头的16进制，找对应图片格式的文件头，依次改为png、jpg、bmp、gif、tif、webp之后将图片中的字符串拼接一下就可以得到flag了</p>
+<p>成品：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1Iz-HL2t5me3EfiZ2auGOFg">T0MR</a></p>
+<h2 id="图片篇-信息附加"><a href="#图片篇-信息附加" class="headerlink" title="图片篇(信息附加)"></a>图片篇(信息附加)</h2><h3 id="misc5"><a href="#misc5" class="headerlink" title="misc5"></a>misc5</h3><p>打开附件，图片上写着<code>there_is_no_flag_here</code><del>而且图片为900x150像素，很明显图片的高度被缩小了</del>（当我修改完高度之后发现，我错了）用010editor打开之后滑到最下边即可看到flag</p>
+<h3 id="misc6"><a href="#misc6" class="headerlink" title="misc6"></a>misc6</h3><p>用010editor打开搜索文本ctfshow，即可发现flag（这题是藏到中间了</p>
+<h3 id="misc7"><a href="#misc7" class="headerlink" title="misc7"></a>misc7</h3><p>题目上给了提示<code>**flag在图片文件信息中。**</code> <del>好嘛</del>，还是在010editor中搜索文本就完事。。</p>
+<h3 id="misc8"><a href="#misc8" class="headerlink" title="misc8"></a>misc8</h3><p>题目给提示<code>**flag在图片文件中图片文件中**</code> 那就是个套娃呗，用010editor打开可以发现有两个png文件的文件头，把后边的png文件分离出来就可以了</p>
+<p>方法：找到第二个png文件头<code>89 50 4E 47</code> 将从这儿开始一直到结尾的16进制文本复制到一个新建文本文档里边，之后在010中点左上角  文件–&gt;导入16进制文本–&gt;选中刚才导出的文本–&gt;保存为png文件–&gt;即可看到flag（复制16进制文本方法：选中之后找左上角的编辑–&gt;复制–&gt;复制为16进制文本）</p>
+<h3 id="misc9"><a href="#misc9" class="headerlink" title="misc9"></a>misc9</h3><p>题目给的hint<code>**flag在图片块里**</code> 直接010打开，搜索一下ctfshow就行。</p>
+<p>预期解应该是👇</p>
+<p><img src="https://img.vim-cn.com/a1/c461bd18824075954430e81821aa105703e7fd.png" alt="misc9"></p>
+<h3 id="misc10"><a href="#misc10" class="headerlink" title="misc10"></a>misc10</h3><p>题目hint<code>**flag在图片数据里**</code> 用kali的binwalk分离出数据👇</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">binwalk -e misc10.png</span><br></pre></td></tr></table></figure>
+
+<p>生成一个文件夹👇</p>
+<p><img src="https://img.vim-cn.com/32/0bb40622510cc79d4473bc01cc97ac033e36d5.png" alt="misc10"></p>
+<p>第一个文件打开就看到了flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">对于这题八神师傅说过：</span><br><span class="line">zlib是PNG IDAT块数据可选的压缩格式</span><br><span class="line">本题是师傅自己生成了一段zlib压缩数据，然后加上长度位、标识位和CRC校验位</span><br><span class="line">伪装成一个IDAT块，然后插入到图片文件里</span><br><span class="line">binwalk会找到zlib块的标记然后提取出来，同时因为这是个压缩数据，-e参数会自动把提取到的压缩包尝试进行解压，所以最后的提取结果里就有了原始的文本--&gt;flag</span><br></pre></td></tr></table></figure>
+
+<p>也可以解压最后一个idat块得到flag</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s=<span class="built_in">bytes</span>.fromhex(<span class="string">&#x27;789C4B2E492BCEC82FAF363635363235323132494C36B34C4E3233493333313637B3B030354C4C36B734A8050009960BD1&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(zlib.decompress(s))</span><br><span class="line"></span><br><span class="line"><span class="comment">#--------------------------------------</span></span><br><span class="line"><span class="string">b&#x27;ctfshow&#123;353252424ac69cb64f643768851ac790&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="misc11"><a href="#misc11" class="headerlink" title="misc11"></a>misc11</h3><p>hint<code>**flag在另一张图里**</code> </p>
+<p>讲真，这个hint没看懂，后来问了一下八神👴👴</p>
+<p><img src="https://img.vim-cn.com/be/0560324992ad5c0a89854edd473ba53de933ea.png" alt="misc11.1"></p>
+<p>用010打开👇</p>
+<p><img src="https://img.vim-cn.com/8b/c96dec54ddad4bcf6d656f5aae09205d16234e.png" alt="misc11.2"></p>
+<p>把第一个IDAT对应的部分删除之后保存为另一张图片即可看到flag</p>
+<p>或者用tweakpng打开选中第二个idat块，右键点击delete删除，然后另存为一张图片即可</p>
+<p><img src="https://img.vim-cn.com/af/4b6d14360e50ee54755174587a61af4a51a314.png" alt="misc11.3"></p>
+<h3 id="misc12"><a href="#misc12" class="headerlink" title="misc12"></a>misc12</h3></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">T0mrvvi1b3t</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://t0mrvvi1b3t.top/2021/05/11/ctfshow_misc_ru/">http://t0mrvvi1b3t.top/2021/05/11/ctfshow_misc_ru/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://t0mrvvi1b3t.top" target="_blank">T0mrvvi1b3t‘s blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://img.vim-cn.com/5c/ba5491c7fa8fe74abf249eb057e8195716c684.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/05/10/%E7%BA%A2%E5%B8%BD_misc1/"><img class="next-cover" src="https://img.vim-cn.com/04/d171174a34318ca0b135ec1c6d8946024f38c2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MISC-红帽复现</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://ss2.baidu.com/6ON1bjeh1BF3odCf/it/u=2706720867,592915881&amp;fm=27&amp;gp=0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">T0mrvvi1b3t</div><div class="author-info__description">i have a big dream.</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_50597969"><i class="fab fa-csdn"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:t0mrvvi1b3t@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">博客中所有含csdn水印的图片均来源于个人在csdn的博客，对应链接请点击Follow Me</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%AF%87-%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">图片篇(基础操作)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#misc1"><span class="toc-number">1.1.</span> <span class="toc-text">misc1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#misc2"><span class="toc-number">1.2.</span> <span class="toc-text">misc2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#misc3"><span class="toc-number">1.3.</span> <span class="toc-text">misc3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#misc4"><span class="toc-number">1.4.</span> <span class="toc-text">misc4</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%AF%87-%E4%BF%A1%E6%81%AF%E9%99%84%E5%8A%A0"><span class="toc-number">2.</span> <span class="toc-text">图片篇(信息附加)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#misc5"><span class="toc-number">2.1.</span> <span class="toc-text">misc5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#misc6"><span class="toc-number">2.2.</span> <span class="toc-text">misc6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#misc7"><span class="toc-number">2.3.</span> <span class="toc-text">misc7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#misc8"><span class="toc-number">2.4.</span> <span class="toc-text">misc8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#misc9"><span class="toc-number">2.5.</span> <span class="toc-text">misc9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#misc10"><span class="toc-number">2.6.</span> <span class="toc-text">misc10</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#misc11"><span class="toc-number">2.7.</span> <span class="toc-text">misc11</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#misc12"><span class="toc-number">2.8.</span> <span class="toc-text">misc12</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/05/11/ctfshow_misc_ru/" title="ctfshow_misc入门  WP（未完）"><img src="https://img.vim-cn.com/5c/ba5491c7fa8fe74abf249eb057e8195716c684.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ctfshow_misc入门  WP（未完）"/></a><div class="content"><a class="title" href="/2021/05/11/ctfshow_misc_ru/" title="ctfshow_misc入门  WP（未完）">ctfshow_misc入门  WP（未完）</a><time datetime="2021-05-10T16:06:10.423Z" title="发表于 2021-05-11 00:06:10">2021-05-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/10/%E7%BA%A2%E5%B8%BD_misc1/" title="MISC-红帽复现"><img src="https://img.vim-cn.com/04/d171174a34318ca0b135ec1c6d8946024f38c2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MISC-红帽复现"/></a><div class="content"><a class="title" href="/2021/05/10/%E7%BA%A2%E5%B8%BD_misc1/" title="MISC-红帽复现">MISC-红帽复现</a><time datetime="2021-05-10T03:46:35.571Z" title="发表于 2021-05-10 11:46:35">2021-05-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/07/python/" title="sublime text 调整python脚本的编码格式"><img src="https://img.vim-cn.com/d6/edf94a1f3c10b3a085bea482c94d0c82b80bb6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="sublime text 调整python脚本的编码格式"/></a><div class="content"><a class="title" href="/2021/05/07/python/" title="sublime text 调整python脚本的编码格式">sublime text 调整python脚本的编码格式</a><time datetime="2021-05-07T04:37:28.252Z" title="发表于 2021-05-07 12:37:28">2021-05-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/04/erge/" title="erge()截断漏洞 （未开始）"><img src="https://img.vim-cn.com/3d/48adec9d1e7b25a568746c7170364bb4fcd896.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="erge()截断漏洞 （未开始）"/></a><div class="content"><a class="title" href="/2021/05/04/erge/" title="erge()截断漏洞 （未开始）">erge()截断漏洞 （未开始）</a><time datetime="2021-05-04T02:45:38.838Z" title="发表于 2021-05-04 10:45:38">2021-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/03/%E5%B7%A5%E5%85%B7/" title="工具下载"><img src="https://img.vim-cn.com/72/30684e3af8aaa3c2cb4b776ab401f8b2eeb082.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="工具下载"/></a><div class="content"><a class="title" href="/2021/05/03/%E5%B7%A5%E5%85%B7/" title="工具下载">工具下载</a><time datetime="2021-05-03T04:01:50.615Z" title="发表于 2021-05-03 12:01:50">2021-05-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By T0mrvvi1b3t</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
