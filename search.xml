@@ -67,105 +67,6 @@
       </categories>
   </entry>
   <entry>
-    <title>ctfshow_misc入门  WP（未完）</title>
-    <url>/2021/05/11/ctfshow_misc_ru/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-
-
-<h2 id="图片篇-基础操作"><a href="#图片篇-基础操作" class="headerlink" title="图片篇(基础操作)"></a>图片篇(基础操作)</h2><h3 id="misc1"><a href="#misc1" class="headerlink" title="misc1"></a>misc1</h3><p>没啥好说的，打开图片就是flag</p>
-<h3 id="misc2"><a href="#misc2" class="headerlink" title="misc2"></a>misc2</h3><p>附件是txt文本，用010editor打开，发现16进制对应的是png的文件头，修改后缀名misc2.txt–&gt;misc.png，打开图片就可以看到flag了</p>
-<h3 id="misc3"><a href="#misc3" class="headerlink" title="misc3"></a>misc3</h3><p>解压后是一个bpg文件，在<a href="https://bellard.org/bpg/">网站</a>下载bpg文件查看器，解压后，用bpgview.exe打开misc3.bpg即可看见flag</p>
-<h3 id="misc4"><a href="#misc4" class="headerlink" title="misc4"></a>misc4</h3><p>给了6个txt文件，分别用010editor打开，看开头的16进制，找对应图片格式的文件头，依次改为png、jpg、bmp、gif、tif、webp之后将图片中的字符串拼接一下就可以得到flag了</p>
-<p>成品：<a href="https://pan.baidu.com/s/1Iz-HL2t5me3EfiZ2auGOFg">T0MR</a></p>
-<h2 id="图片篇-信息附加"><a href="#图片篇-信息附加" class="headerlink" title="图片篇(信息附加)"></a>图片篇(信息附加)</h2><h3 id="misc5"><a href="#misc5" class="headerlink" title="misc5"></a>misc5</h3><p>打开附件，图片上写着<code>there_is_no_flag_here</code><del>而且图片为900x150像素，很明显图片的高度被缩小了</del>（当我修改完高度之后发现，我错了）用010editor打开之后滑到最下边即可看到flag</p>
-<h3 id="misc6"><a href="#misc6" class="headerlink" title="misc6"></a>misc6</h3><p>用010editor打开搜索文本ctfshow，即可发现flag（这题是藏到中间了</p>
-<h3 id="misc7"><a href="#misc7" class="headerlink" title="misc7"></a>misc7</h3><p>题目上给了提示<code>flag在图片文件信息中</code> <del>好嘛</del>，还是在010editor中搜索文本就完事。。</p>
-<h3 id="misc8"><a href="#misc8" class="headerlink" title="misc8"></a>misc8</h3><p>题目给提示<code>flag在图片文件中图片文件中</code> 那就是个套娃呗，用010editor打开可以发现有两个png文件的文件头，把后边的png文件分离出来就可以了</p>
-<p>方法：找到第二个png文件头<code>89 50 4E 47</code> 将从这儿开始一直到结尾的16进制文本复制到一个新建文本文档里边，之后在010中点左上角  文件–&gt;导入16进制文本–&gt;选中刚才导出的文本–&gt;保存为png文件–&gt;即可看到flag（复制16进制文本方法：选中之后找左上角的编辑–&gt;复制–&gt;复制为16进制文本）</p>
-<h3 id="misc9"><a href="#misc9" class="headerlink" title="misc9"></a>misc9</h3><p>题目给的hint<code>flag在图片块里</code> 直接010打开，搜索一下ctfshow就行。</p>
-<p>预期解应该是👇</p>
-<p><img src="https://img.vim-cn.com/a1/c461bd18824075954430e81821aa105703e7fd.png" alt="misc9"></p>
-<h3 id="misc10"><a href="#misc10" class="headerlink" title="misc10"></a>misc10</h3><p>题目hint<code>flag在图片数据里</code> 用kali的binwalk分离出数据👇</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">binwalk -e misc10.png</span><br></pre></td></tr></table></figure>
-
-<p>生成一个文件夹👇</p>
-<p><img src="https://img.vim-cn.com/32/0bb40622510cc79d4473bc01cc97ac033e36d5.png" alt="misc10"></p>
-<p>第一个文件打开就看到了flag</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">对于这题八神师傅说过：</span><br><span class="line">zlib是PNG IDAT块数据可选的压缩格式</span><br><span class="line">本题是师傅自己生成了一段zlib压缩数据，然后加上长度位、标识位和CRC校验位</span><br><span class="line">伪装成一个IDAT块，然后插入到图片文件里</span><br><span class="line">binwalk会找到zlib块的标记然后提取出来，同时因为这是个压缩数据，-e参数会自动把提取到的压缩包尝试进行解压，所以最后的提取结果里就有了原始的文本--&gt;flag</span><br></pre></td></tr></table></figure>
-
-<p>也可以解压最后一个idat块得到flag</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s=<span class="built_in">bytes</span>.fromhex(<span class="string">&#x27;789C4B2E492BCEC82FAF363635363235323132494C36B34C4E3233493333313637B3B030354C4C36B734A8050009960BD1&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(zlib.decompress(s))</span><br><span class="line"></span><br><span class="line"><span class="comment">#--------------------------------------</span></span><br><span class="line"><span class="string">b&#x27;ctfshow&#123;353252424ac69cb64f643768851ac790&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="misc11"><a href="#misc11" class="headerlink" title="misc11"></a>misc11</h3><p>hint<code>flag在另一张图里</code> </p>
-<p>讲真，这个hint没看懂，后来问了一下八神👴👴</p>
-<p><img src="https://img.vim-cn.com/be/0560324992ad5c0a89854edd473ba53de933ea.png" alt="misc11.1"></p>
-<p>用010打开👇</p>
-<p><img src="https://img.vim-cn.com/8b/c96dec54ddad4bcf6d656f5aae09205d16234e.png" alt="misc11.2"></p>
-<p>把第一个IDAT对应的部分删除之后保存为另一张图片即可看到flag</p>
-<p>或者用tweakpng打开选中第二个idat块，右键点击delete删除，然后另存为一张图片即可</p>
-<p><img src="https://img.vim-cn.com/af/4b6d14360e50ee54755174587a61af4a51a314.png" alt="misc11.3"></p>
-<h3 id="misc12"><a href="#misc12" class="headerlink" title="misc12"></a>misc12</h3>]]></content>
-      <categories>
-        <category>Misc</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>escapeshellarg逃逸与参数注入</title>
-    <url>/2021/08/07/escapeshellarg/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-<h3 id="escapeshellarg"><a href="#escapeshellarg" class="headerlink" title="escapeshellarg()"></a>escapeshellarg()</h3><blockquote>
-<p>(PHP 4 &gt;= 4.0.3, PHP 5, PHP 7, PHP 8)</p>
-<p>escapeshellarg — 把字符串转码为可以在 shell 命令里使用的参数</p>
-<p>定义：escapeshellarg(string <code>$arg</code>): string</p>
-<p>作用：escapeshellarg() 将给字符串增加一个单引号并且能引用或者转码任何已经存在的单引号，这样以确保能够直接将一个字符串传入 shell 函数，并且还是确保安全的。对于用户输入的部分参数就应该使用这个函数。shell 函数包含 exec(), system() 执行运算符 。</p>
-</blockquote>
-<p>简单来说，如果输入的内容如果不包含单引号，就直接对输入的字符串添加一对单引号括起来；如果输入内容包含单引号，就先对单引号进行转义再对剩余的字符串添加相应对数的单引号括起来.</p>
-<p>test：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$a</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line">var_dump(escapeshellarg(<span class="variable">$a</span>));</span><br><span class="line"><span class="meta">?&gt;</span> <span class="keyword">string</span>(<span class="number">6</span>) <span class="string">&quot;&quot;</span>a<span class="string">b&#x27;c&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>结果表明：经过<code>escapeshellarg</code>函数处理过的参数被拼接成shell命令，并且被双引号包裹，这样就会造成漏洞</p>
-<blockquote>
-<p>原因：在bash中单双引号解析变量是有区别的。</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">例如：</span></span><br><span class="line">└─# echo `date`</span><br><span class="line">Sat 07 Aug 2021 05:10:12 AM EDT</span><br><span class="line">└─# echo &#x27;`date`&#x27;</span><br><span class="line">`date`</span><br><span class="line">└─# echo &quot;&#x27;`date`&#x27;&quot;</span><br><span class="line">&#x27;Sat 07 Aug 2021 05:10:25 AM EDT&#x27;</span><br><span class="line">└─# echo &#x27;&quot;`date`&quot;&#x27; </span><br><span class="line">&quot;`date`&quot;</span><br></pre></td></tr></table></figure>
-
-<p>不难发现，在解析单引号时，被单引号包裹的内容中如果存在变量的话，这个变量名是不会被解析成值的，而双引号不一样，bash会将双引号包裹的变量名解析成变量的值再使用。</p>
-<p>由以上例子可知，即使参数使用了<code>escapeshellarg</code>函数过滤了单引号，但参数在拼接命令的时候使用了双引号的话还是会导致命令执行漏洞。</p>
-<h3 id="escapeshellcmd"><a href="#escapeshellcmd" class="headerlink" title="escapeshellcmd()"></a>escapeshellcmd()</h3><blockquote>
-<p><strong>escapeshellcmd</strong> — shell 元字符转义</p>
-<p>功能：<strong>escapeshellcmd()</strong> 对字符串中可能会欺骗 shell 命令执行任意命令的字符进行转义。 此函数保证用户输入的数据在传送到 <a href="http://php.net/manual/zh/function.exec.php">exec()</a> 或 <a href="http://php.net/manual/zh/function.system.php">system()</a> 函数，或者 <a href="http://php.net/manual/zh/language.operators.execution.php">执行操作符</a> 之前进行转义。</p>
-<p>反斜线（\）会在以下字符之前插入： <em>&amp;#;`|*?~&lt;&gt;^()[]{}$</em>, <em>\x0A</em> 和 <em>\xFF*。 *’</em> 和 <em>“</em> 仅在不配对儿的时候被转义。 在 Windows 平台上，所有这些字符以及 <em>%</em> 和 <em>!</em> 字符都会被空格代替。</p>
-<p><strong>定义</strong> ：<code>string escapeshellcmd ( string $command)</code></p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">例子：</span></span><br><span class="line">└─# cat test.php                </span><br><span class="line">&lt;?php</span><br><span class="line"><span class="meta">$</span><span class="bash">a = <span class="string">&quot;`whoami`&quot;</span>;</span></span><br><span class="line">echo escapeshellcmd($a);</span><br><span class="line">?&gt;%</span><br><span class="line"></span><br><span class="line">└─# php test.php</span><br><span class="line">\`whoami\`%</span><br></pre></td></tr></table></figure>
-
-<p>同时使用<code>escapeshellarg</code>和<code>escapeshellcmd</code>会试试</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">例子：</span></span><br><span class="line">└─# cat test.php</span><br><span class="line">&lt;?php</span><br><span class="line">echo escapeshellarg(&quot;who&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">echo escapeshellcmd(&quot;who&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">echo escapeshellarg(&quot;who&#x27;&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">echo escapeshellcmd(&quot;who&#x27;&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">└─# php test.php</span><br><span class="line">&#x27;who&#x27;\&#x27;&#x27;ami&#x27;</span><br><span class="line">who\&#x27;ami</span><br><span class="line">&#x27;who&#x27;\&#x27;&#x27;&#x27;\&#x27;&#x27;ami&#x27;</span><br><span class="line">who&#x27;&#x27;ami</span><br></pre></td></tr></table></figure>
-
-<p>可以发现这两个函数对于单引号的处理是有区别的，<code>escapeshellarg</code>函数转义后还会用单引号包裹，但<code>escapeshellcmd</code>函数是直接加一个转义符，对于成对的单引号，<code>escapeshellcmd</code>函数默认不转义，但<code>escapeshellarg</code>函数转义。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# cat test1.php</span><br><span class="line">&lt;?php</span><br><span class="line"><span class="meta">$</span><span class="bash">param=<span class="string">&quot;127.0.0.1&#x27; -v -d a=1&quot;</span>;</span></span><br><span class="line"><span class="meta">$</span><span class="bash">a=escapeshellarg(<span class="variable">$param</span>);</span></span><br><span class="line"><span class="meta">$</span><span class="bash">b=escapeshellcmd(<span class="variable">$a</span>);</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cmd=<span class="string">&quot;curl &quot;</span>.<span class="variable">$b</span>;</span></span><br><span class="line"><span class="meta">var_dump($</span><span class="bash">a).<span class="string">&quot;\n&quot;</span>;</span></span><br><span class="line"><span class="meta">var_dump($</span><span class="bash">b).<span class="string">&quot;\n&quot;</span>;</span></span><br><span class="line"><span class="meta">var_dump($</span><span class="bash">cmd).<span class="string">&quot;\n&quot;</span>;</span></span><br><span class="line"><span class="meta">system($</span><span class="bash">cmd);</span></span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">└─# php test1.php </span><br><span class="line">string(25) &quot;&#x27;127.0.0.1&#x27;\&#x27;&#x27; -v -d a=1&#x27;&quot;</span><br><span class="line">string(27) &quot;&#x27;127.0.0.1&#x27;\\&#x27;&#x27; -v -d a=1\&#x27;&quot;</span><br><span class="line">string(32) &quot;curl &#x27;127.0.0.1&#x27;\\&#x27;&#x27; -v -d a=1\&#x27;&quot;</span><br><span class="line"><span class="meta">  %</span><span class="bash"> Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span></span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Could not resolve host: 127.0.0.1\</span><br><span class="line">* Closing connection 0</span><br><span class="line">curl: (6) Could not resolve host: 127.0.0.1\</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>过程分析：</p>
-<ol>
-<li><p>传入的参数是</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">127.0.0.1&#39; -v -d a&#x3D;1</span><br></pre></td></tr></table></figure></li>
-<li><p><code>escapeshellarg</code>函数先对单引号转义，再用单引号将左右两部分括起来起连接作用。所以处理之后效果如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#39;127.0.0.1&#39;\&#39;&#39; -v -d a&#x3D;1&#39;</span><br></pre></td></tr></table></figure></li>
-<li><p>经过<code>escapeshellcmd</code>针对第二步处理之后的参数中的<code>\</code>以及<code>a=1&#39;</code>中的单引号进行处理转义之后的效果如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#39;127.0.0.1&#39;\\&#39;&#39; -v -d a&#x3D;1\&#39;</span><br></pre></td></tr></table></figure></li>
-<li><p>由于第三步处理之后的payload中的<code>\\</code>被解释成了<code>\</code>而不再是转义字符，所以单引号配对连接之后将payload分割为三个部分，具体如下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# curl &#x27;127.0.0.1&#x27;\\&#x27;&#x27; -v -d a=1\&#x27;</span><br><span class="line">* Could not resolve host: 127.0.0.1\</span><br><span class="line">* Closing connection 0</span><br><span class="line">curl: (6) Could not resolve host: 127.0.0.1\</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>web学习</category>
-      </categories>
-  </entry>
-  <entry>
     <title>ctfshow_web入门  WP（未完）</title>
     <url>/2021/05/12/ctfshow_web_ru/</url>
     <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
@@ -422,6 +323,105 @@
       </categories>
   </entry>
   <entry>
+    <title>ctfshow_misc入门  WP（未完）</title>
+    <url>/2021/05/11/ctfshow_misc_ru/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+
+
+<h2 id="图片篇-基础操作"><a href="#图片篇-基础操作" class="headerlink" title="图片篇(基础操作)"></a>图片篇(基础操作)</h2><h3 id="misc1"><a href="#misc1" class="headerlink" title="misc1"></a>misc1</h3><p>没啥好说的，打开图片就是flag</p>
+<h3 id="misc2"><a href="#misc2" class="headerlink" title="misc2"></a>misc2</h3><p>附件是txt文本，用010editor打开，发现16进制对应的是png的文件头，修改后缀名misc2.txt–&gt;misc.png，打开图片就可以看到flag了</p>
+<h3 id="misc3"><a href="#misc3" class="headerlink" title="misc3"></a>misc3</h3><p>解压后是一个bpg文件，在<a href="https://bellard.org/bpg/">网站</a>下载bpg文件查看器，解压后，用bpgview.exe打开misc3.bpg即可看见flag</p>
+<h3 id="misc4"><a href="#misc4" class="headerlink" title="misc4"></a>misc4</h3><p>给了6个txt文件，分别用010editor打开，看开头的16进制，找对应图片格式的文件头，依次改为png、jpg、bmp、gif、tif、webp之后将图片中的字符串拼接一下就可以得到flag了</p>
+<p>成品：<a href="https://pan.baidu.com/s/1Iz-HL2t5me3EfiZ2auGOFg">T0MR</a></p>
+<h2 id="图片篇-信息附加"><a href="#图片篇-信息附加" class="headerlink" title="图片篇(信息附加)"></a>图片篇(信息附加)</h2><h3 id="misc5"><a href="#misc5" class="headerlink" title="misc5"></a>misc5</h3><p>打开附件，图片上写着<code>there_is_no_flag_here</code><del>而且图片为900x150像素，很明显图片的高度被缩小了</del>（当我修改完高度之后发现，我错了）用010editor打开之后滑到最下边即可看到flag</p>
+<h3 id="misc6"><a href="#misc6" class="headerlink" title="misc6"></a>misc6</h3><p>用010editor打开搜索文本ctfshow，即可发现flag（这题是藏到中间了</p>
+<h3 id="misc7"><a href="#misc7" class="headerlink" title="misc7"></a>misc7</h3><p>题目上给了提示<code>flag在图片文件信息中</code> <del>好嘛</del>，还是在010editor中搜索文本就完事。。</p>
+<h3 id="misc8"><a href="#misc8" class="headerlink" title="misc8"></a>misc8</h3><p>题目给提示<code>flag在图片文件中图片文件中</code> 那就是个套娃呗，用010editor打开可以发现有两个png文件的文件头，把后边的png文件分离出来就可以了</p>
+<p>方法：找到第二个png文件头<code>89 50 4E 47</code> 将从这儿开始一直到结尾的16进制文本复制到一个新建文本文档里边，之后在010中点左上角  文件–&gt;导入16进制文本–&gt;选中刚才导出的文本–&gt;保存为png文件–&gt;即可看到flag（复制16进制文本方法：选中之后找左上角的编辑–&gt;复制–&gt;复制为16进制文本）</p>
+<h3 id="misc9"><a href="#misc9" class="headerlink" title="misc9"></a>misc9</h3><p>题目给的hint<code>flag在图片块里</code> 直接010打开，搜索一下ctfshow就行。</p>
+<p>预期解应该是👇</p>
+<p><img src="https://img.vim-cn.com/a1/c461bd18824075954430e81821aa105703e7fd.png" alt="misc9"></p>
+<h3 id="misc10"><a href="#misc10" class="headerlink" title="misc10"></a>misc10</h3><p>题目hint<code>flag在图片数据里</code> 用kali的binwalk分离出数据👇</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">binwalk -e misc10.png</span><br></pre></td></tr></table></figure>
+
+<p>生成一个文件夹👇</p>
+<p><img src="https://img.vim-cn.com/32/0bb40622510cc79d4473bc01cc97ac033e36d5.png" alt="misc10"></p>
+<p>第一个文件打开就看到了flag</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">对于这题八神师傅说过：</span><br><span class="line">zlib是PNG IDAT块数据可选的压缩格式</span><br><span class="line">本题是师傅自己生成了一段zlib压缩数据，然后加上长度位、标识位和CRC校验位</span><br><span class="line">伪装成一个IDAT块，然后插入到图片文件里</span><br><span class="line">binwalk会找到zlib块的标记然后提取出来，同时因为这是个压缩数据，-e参数会自动把提取到的压缩包尝试进行解压，所以最后的提取结果里就有了原始的文本--&gt;flag</span><br></pre></td></tr></table></figure>
+
+<p>也可以解压最后一个idat块得到flag</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s=<span class="built_in">bytes</span>.fromhex(<span class="string">&#x27;789C4B2E492BCEC82FAF363635363235323132494C36B34C4E3233493333313637B3B030354C4C36B734A8050009960BD1&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(zlib.decompress(s))</span><br><span class="line"></span><br><span class="line"><span class="comment">#--------------------------------------</span></span><br><span class="line"><span class="string">b&#x27;ctfshow&#123;353252424ac69cb64f643768851ac790&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="misc11"><a href="#misc11" class="headerlink" title="misc11"></a>misc11</h3><p>hint<code>flag在另一张图里</code> </p>
+<p>讲真，这个hint没看懂，后来问了一下八神👴👴</p>
+<p><img src="https://img.vim-cn.com/be/0560324992ad5c0a89854edd473ba53de933ea.png" alt="misc11.1"></p>
+<p>用010打开👇</p>
+<p><img src="https://img.vim-cn.com/8b/c96dec54ddad4bcf6d656f5aae09205d16234e.png" alt="misc11.2"></p>
+<p>把第一个IDAT对应的部分删除之后保存为另一张图片即可看到flag</p>
+<p>或者用tweakpng打开选中第二个idat块，右键点击delete删除，然后另存为一张图片即可</p>
+<p><img src="https://img.vim-cn.com/af/4b6d14360e50ee54755174587a61af4a51a314.png" alt="misc11.3"></p>
+<h3 id="misc12"><a href="#misc12" class="headerlink" title="misc12"></a>misc12</h3>]]></content>
+      <categories>
+        <category>Misc</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>escapeshellarg逃逸与参数注入</title>
+    <url>/2021/08/07/escapeshellarg/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+<h3 id="escapeshellarg"><a href="#escapeshellarg" class="headerlink" title="escapeshellarg()"></a>escapeshellarg()</h3><blockquote>
+<p>(PHP 4 &gt;= 4.0.3, PHP 5, PHP 7, PHP 8)</p>
+<p>escapeshellarg — 把字符串转码为可以在 shell 命令里使用的参数</p>
+<p>定义：escapeshellarg(string <code>$arg</code>): string</p>
+<p>作用：escapeshellarg() 将给字符串增加一个单引号并且能引用或者转码任何已经存在的单引号，这样以确保能够直接将一个字符串传入 shell 函数，并且还是确保安全的。对于用户输入的部分参数就应该使用这个函数。shell 函数包含 exec(), system() 执行运算符 。</p>
+</blockquote>
+<p>简单来说，如果输入的内容如果不包含单引号，就直接对输入的字符串添加一对单引号括起来；如果输入内容包含单引号，就先对单引号进行转义再对剩余的字符串添加相应对数的单引号括起来.</p>
+<p>test：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$a</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line">var_dump(escapeshellarg(<span class="variable">$a</span>));</span><br><span class="line"><span class="meta">?&gt;</span> <span class="keyword">string</span>(<span class="number">6</span>) <span class="string">&quot;&quot;</span>a<span class="string">b&#x27;c&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>结果表明：经过<code>escapeshellarg</code>函数处理过的参数被拼接成shell命令，并且被双引号包裹，这样就会造成漏洞</p>
+<blockquote>
+<p>原因：在bash中单双引号解析变量是有区别的。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">例如：</span></span><br><span class="line">└─# echo `date`</span><br><span class="line">Sat 07 Aug 2021 05:10:12 AM EDT</span><br><span class="line">└─# echo &#x27;`date`&#x27;</span><br><span class="line">`date`</span><br><span class="line">└─# echo &quot;&#x27;`date`&#x27;&quot;</span><br><span class="line">&#x27;Sat 07 Aug 2021 05:10:25 AM EDT&#x27;</span><br><span class="line">└─# echo &#x27;&quot;`date`&quot;&#x27; </span><br><span class="line">&quot;`date`&quot;</span><br></pre></td></tr></table></figure>
+
+<p>不难发现，在解析单引号时，被单引号包裹的内容中如果存在变量的话，这个变量名是不会被解析成值的，而双引号不一样，bash会将双引号包裹的变量名解析成变量的值再使用。</p>
+<p>由以上例子可知，即使参数使用了<code>escapeshellarg</code>函数过滤了单引号，但参数在拼接命令的时候使用了双引号的话还是会导致命令执行漏洞。</p>
+<h3 id="escapeshellcmd"><a href="#escapeshellcmd" class="headerlink" title="escapeshellcmd()"></a>escapeshellcmd()</h3><blockquote>
+<p><strong>escapeshellcmd</strong> — shell 元字符转义</p>
+<p>功能：<strong>escapeshellcmd()</strong> 对字符串中可能会欺骗 shell 命令执行任意命令的字符进行转义。 此函数保证用户输入的数据在传送到 <a href="http://php.net/manual/zh/function.exec.php">exec()</a> 或 <a href="http://php.net/manual/zh/function.system.php">system()</a> 函数，或者 <a href="http://php.net/manual/zh/language.operators.execution.php">执行操作符</a> 之前进行转义。</p>
+<p>反斜线（\）会在以下字符之前插入： <em>&amp;#;`|*?~&lt;&gt;^()[]{}$</em>, <em>\x0A</em> 和 <em>\xFF*。 *’</em> 和 <em>“</em> 仅在不配对儿的时候被转义。 在 Windows 平台上，所有这些字符以及 <em>%</em> 和 <em>!</em> 字符都会被空格代替。</p>
+<p><strong>定义</strong> ：<code>string escapeshellcmd ( string $command)</code></p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">例子：</span></span><br><span class="line">└─# cat test.php                </span><br><span class="line">&lt;?php</span><br><span class="line"><span class="meta">$</span><span class="bash">a = <span class="string">&quot;`whoami`&quot;</span>;</span></span><br><span class="line">echo escapeshellcmd($a);</span><br><span class="line">?&gt;%</span><br><span class="line"></span><br><span class="line">└─# php test.php</span><br><span class="line">\`whoami\`%</span><br></pre></td></tr></table></figure>
+
+<p>同时使用<code>escapeshellarg</code>和<code>escapeshellcmd</code>会试试</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">例子：</span></span><br><span class="line">└─# cat test.php</span><br><span class="line">&lt;?php</span><br><span class="line">echo escapeshellarg(&quot;who&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">echo escapeshellcmd(&quot;who&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">echo escapeshellarg(&quot;who&#x27;&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">echo escapeshellcmd(&quot;who&#x27;&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">└─# php test.php</span><br><span class="line">&#x27;who&#x27;\&#x27;&#x27;ami&#x27;</span><br><span class="line">who\&#x27;ami</span><br><span class="line">&#x27;who&#x27;\&#x27;&#x27;&#x27;\&#x27;&#x27;ami&#x27;</span><br><span class="line">who&#x27;&#x27;ami</span><br></pre></td></tr></table></figure>
+
+<p>可以发现这两个函数对于单引号的处理是有区别的，<code>escapeshellarg</code>函数转义后还会用单引号包裹，但<code>escapeshellcmd</code>函数是直接加一个转义符，对于成对的单引号，<code>escapeshellcmd</code>函数默认不转义，但<code>escapeshellarg</code>函数转义。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# cat test1.php</span><br><span class="line">&lt;?php</span><br><span class="line"><span class="meta">$</span><span class="bash">param=<span class="string">&quot;127.0.0.1&#x27; -v -d a=1&quot;</span>;</span></span><br><span class="line"><span class="meta">$</span><span class="bash">a=escapeshellarg(<span class="variable">$param</span>);</span></span><br><span class="line"><span class="meta">$</span><span class="bash">b=escapeshellcmd(<span class="variable">$a</span>);</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cmd=<span class="string">&quot;curl &quot;</span>.<span class="variable">$b</span>;</span></span><br><span class="line"><span class="meta">var_dump($</span><span class="bash">a).<span class="string">&quot;\n&quot;</span>;</span></span><br><span class="line"><span class="meta">var_dump($</span><span class="bash">b).<span class="string">&quot;\n&quot;</span>;</span></span><br><span class="line"><span class="meta">var_dump($</span><span class="bash">cmd).<span class="string">&quot;\n&quot;</span>;</span></span><br><span class="line"><span class="meta">system($</span><span class="bash">cmd);</span></span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">└─# php test1.php </span><br><span class="line">string(25) &quot;&#x27;127.0.0.1&#x27;\&#x27;&#x27; -v -d a=1&#x27;&quot;</span><br><span class="line">string(27) &quot;&#x27;127.0.0.1&#x27;\\&#x27;&#x27; -v -d a=1\&#x27;&quot;</span><br><span class="line">string(32) &quot;curl &#x27;127.0.0.1&#x27;\\&#x27;&#x27; -v -d a=1\&#x27;&quot;</span><br><span class="line"><span class="meta">  %</span><span class="bash"> Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span></span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Could not resolve host: 127.0.0.1\</span><br><span class="line">* Closing connection 0</span><br><span class="line">curl: (6) Could not resolve host: 127.0.0.1\</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>过程分析：</p>
+<ol>
+<li><p>传入的参数是</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">127.0.0.1&#39; -v -d a&#x3D;1</span><br></pre></td></tr></table></figure></li>
+<li><p><code>escapeshellarg</code>函数先对单引号转义，再用单引号将左右两部分括起来起连接作用。所以处理之后效果如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#39;127.0.0.1&#39;\&#39;&#39; -v -d a&#x3D;1&#39;</span><br></pre></td></tr></table></figure></li>
+<li><p>经过<code>escapeshellcmd</code>针对第二步处理之后的参数中的<code>\</code>以及<code>a=1&#39;</code>中的单引号进行处理转义之后的效果如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#39;127.0.0.1&#39;\\&#39;&#39; -v -d a&#x3D;1\&#39;</span><br></pre></td></tr></table></figure></li>
+<li><p>由于第三步处理之后的payload中的<code>\\</code>被解释成了<code>\</code>而不再是转义字符，所以单引号配对连接之后将payload分割为三个部分，具体如下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# curl &#x27;127.0.0.1&#x27;\\&#x27;&#x27; -v -d a=1\&#x27;</span><br><span class="line">* Could not resolve host: 127.0.0.1\</span><br><span class="line">* Closing connection 0</span><br><span class="line">curl: (6) Could not resolve host: 127.0.0.1\</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>web学习</category>
+      </categories>
+  </entry>
+  <entry>
     <title>从0开始学web(一) http篇</title>
     <url>/2021/04/29/http/</url>
     <content><![CDATA[<p><font color=#999AAA >最近打算重新开始从头学web，简单记录一下</font></p>
@@ -524,6 +524,98 @@
 ]]></content>
       <categories>
         <category>web学习</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Linux命令 (未完)</title>
+    <url>/2021/04/29/linux%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+<p><font color=#999AAA >简单记录一些做题常用的Linux命令</font></p>
+<h3 id="cat-amp-tac"><a href="#cat-amp-tac" class="headerlink" title="cat &amp; tac"></a>cat &amp; tac</h3><p>cat (英文全拼：concatenate) 命令用于连接文件并打印到标准输出设备上。</p>
+<p>tac 从最后一行显示，作用类似cat。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210329175513222.png" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="more-amp-less"><a href="#more-amp-less" class="headerlink" title="more &amp; less"></a>more &amp; less</h3><p>more 命令类似于 cat ， 不过会以一页一页的形式显示，更方便使用者逐页阅读，按空格（space）键 显示下一页，按b键往回显示，并且还具有搜索字符串的功能。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210329175807115.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>less 操作和作用类似more。<br>具体操作方式 输入👇来查询</p>
+<pre><code>less --help
+</code></pre>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="head"><a href="#head" class="headerlink" title="head"></a>head</h3><p>head命令可用于查看文件的开头部分的内容，有一个常用的参数 -n 用于显示行数，默认为10，即显示10行。<br><img src="https://img-blog.csdnimg.cn/20210329180408810.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h3><p>tail命令可用于查看文件的内容，有个常用参数 -f 用来查阅正在改变的日志文件。<br>tail -f filename 会把filename 文件里的最尾部的内容显示在屏幕上，并且不断的刷新，只要filename 更新就可以看到最新的文件内容。<br>若是直接👇</p>
+<pre><code>tail filename
+</code></pre>
+<p>则只会显示最后10行内容<br><img src="https://img-blog.csdnimg.cn/20210329180834566.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="nl"><a href="#nl" class="headerlink" title="nl"></a>nl</h3><p>nl命令类似于cat，只不过nl会显示行号，是一个比较不常用的命令（cat被ban的话可以试试nl<br><img src="https://img-blog.csdnimg.cn/20210329180933924.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h3><p>sort命令可以用来将文本内容加以排序。sort可针对文本文件的内容，以行为单位来排序。<br><img src="https://img-blog.csdnimg.cn/20210329181057188.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="od"><a href="#od" class="headerlink" title="od"></a>od</h3><p>od 命令用于输出文件内容（以八进制形式</p>
+<p><img src="https://img-blog.csdnimg.cn/20210329181149574.png" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h3><p>awk 是一种处理文本文件的语言，是一个强大的文本分析工具。【详情请自行baidu，这里只举出简单例子】</p>
+<pre><code>awk -va=1 &#39;&#123;print $1,$1+a&#125;&#39; 123.txt
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210329181557589.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h3><p>cut命令用于显示每行从开头算起到n的文字</p>
+<pre><code>xxx | cut -b n
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210329182933895.png" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><p>grep 命令用于查找文件里复合条件的字符串</p>
+<pre><code>grep test *file
+</code></pre>
+<p>在当前目录中查找后缀有file的文件中的包含test字符串的文件并打印出该字符串所在的行数。</p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="uniq（未完）"><a href="#uniq（未完）" class="headerlink" title="uniq（未完）"></a>uniq（未完）</h3><p>uniq命令用于检查及删除文本文件中重复出现的行列，一般与sort结合使用。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">用法：uniq [选项]... [文件]</span><br><span class="line">Filter adjacent matching lines from INPUT (or standard input),</span><br><span class="line">writing to OUTPUT (or standard output).</span><br><span class="line"></span><br><span class="line">With no options, matching lines are merged to the first occurrence.</span><br><span class="line"></span><br><span class="line">必选参数对长短选项同时适用。</span><br><span class="line">  -c, --count           prefix lines by the number of occurrences</span><br><span class="line">  -d, --repeated        only print duplicate lines, one for each group</span><br><span class="line">  -D                    print all duplicate lines</span><br><span class="line">      --all-repeated[&#x3D;METHOD]  like -D, but allow separating groups</span><br><span class="line">                                 with an empty line;</span><br><span class="line">                                 METHOD&#x3D;&#123;none(default),prepend,separate&#125;</span><br><span class="line">  -f, --skip-fields&#x3D;N   avoid comparing the first N fields</span><br><span class="line">      --group[&#x3D;METHOD]  show all items, separating groups with an empty line;</span><br><span class="line">                          METHOD&#x3D;&#123;separate(default),prepend,append,both&#125;</span><br><span class="line">  -i, --ignore-case     ignore differences in case when comparing</span><br><span class="line">  -s, --skip-chars&#x3D;N    avoid comparing the first N characters</span><br><span class="line">  -u, --unique          only print unique lines</span><br><span class="line">  -z, --zero-terminated     line delimiter is NUL, not newline</span><br><span class="line">  -w, --check-chars&#x3D;N	对每行第N 个字符以后的内容不作对照</span><br><span class="line">      --help		显示此帮助信息并退出</span><br><span class="line">      --version		显示版本信息并退出</span><br><span class="line">若域中为先空字符(通常包括空格以及制表符)，然后非空字符，域中字符前的空字符将被跳过。</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://img-blog.csdnimg.cn/20210329223625475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="strings"><a href="#strings" class="headerlink" title="strings"></a>strings</h3><p>strings打印文件中可打印的字符，可以是文本文件(test.c)、可执行文件、动态链接库、静态链接库。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">用法：strings [选项] [文件]</span><br><span class="line"> 打印 [文件] (默认为标准输入) 中可打印的字符串</span><br><span class="line"> 选项为：</span><br><span class="line">  -a - --all                Scan the entire file, not just the data section [default]</span><br><span class="line">  -d --data                 Only scan the data sections in the file</span><br><span class="line">  -f --print-file-name      Print the name of the file before each string</span><br><span class="line">  -n --bytes&#x3D;[number]       Locate &amp; print any NUL-terminated sequence of at</span><br><span class="line">  -&lt;number&gt;                   least [number] characters (default 4).</span><br><span class="line">  -t --radix&#x3D;&#123;o,d,x&#125;        Print the location of the string in base 8, 10 or 16</span><br><span class="line">  -w --include-all-whitespace Include all whitespace as valid string characters</span><br><span class="line">  -o                        An alias for --radix&#x3D;o</span><br><span class="line">  -T --target&#x3D;&lt;BFDNAME&gt;     Specify the binary file format</span><br><span class="line">  -e --encoding&#x3D;&#123;s,S,b,l,B,L&#125; Select character size and endianness:</span><br><span class="line">                            s &#x3D; 7-bit, S &#x3D; 8-bit, &#123;b,l&#125; &#x3D; 16-bit, &#123;B,L&#125; &#x3D; 32-bit</span><br><span class="line">  -s --output-separator&#x3D;&lt;string&gt; String used to separate strings in output.</span><br><span class="line">  @&lt;file&gt;                   Read options from &lt;file&gt;</span><br><span class="line">  -h --help                 Display this information</span><br><span class="line">  -v -V --version           Print the program&#39;s version number</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">strings：支持的目标： elf64-x86-64 elf32-i386 elf32-iamcu elf32-x86-64 a.out-i386-linux pei-i386 pei-x86-64 elf64-l1om elf64-k1om elf64-little elf64-big elf32-little elf32-big pe-x86-64 pe-bigobj-x86-64 pe-i386 plugin srec symbolsrec verilog tekhex binary ihex</span><br></pre></td></tr></table></figure>
+
+
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="rev"><a href="#rev" class="headerlink" title="rev"></a>rev</h3><p>rev 命令将文件中的每行内容以字符为单位反序输出。<br><img src="https://img-blog.csdnimg.cn/20210329224438294.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<pre><code>用法：rev [选项] [文件 ...]
+
+对成行的内容逐字翻转。
+
+选项：
+-h, --help     display this help
+-V, --version  display version
+</code></pre>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h3><p>zip是个使用广泛的压缩程序，压缩后文件后缀为.zip<br><img src="https://img-blog.csdnimg.cn/20210329224829907.png" alt="在这里插入图片描述"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Copyright (c) 1990-2008 Info-ZIP - Type &#39;zip &quot;-L&quot;&#39; for software license.</span><br><span class="line">Zip 3.0 (July 5th 2008). Usage:</span><br><span class="line">zip [-options] [-b path] [-t mmddyyyy] [-n suffixes] [zipfile list] [-xi list]</span><br><span class="line">  The default action is to add or replace zipfile entries from list, which</span><br><span class="line">  can include the special name - to compress standard input.</span><br><span class="line">  If zipfile and list are omitted, zip compresses stdin to stdout.</span><br><span class="line">  -f   freshen: only changed files  -u   update: only changed or new files</span><br><span class="line">  -d   delete entries in zipfile    -m   move into zipfile (delete OS files)</span><br><span class="line">  -r   recurse into directories     -j   junk (don&#39;t record) directory names</span><br><span class="line">  -0   store only                   -l   convert LF to CR LF (-ll CR LF to LF)</span><br><span class="line">  -1   compress faster              -9   compress better</span><br><span class="line">  -q   quiet operation              -v   verbose operation&#x2F;print version info</span><br><span class="line">  -c   add one-line comments        -z   add zipfile comment</span><br><span class="line">  -@   read names from stdin        -o   make zipfile as old as latest entry</span><br><span class="line">  -x   exclude the following names  -i   include only the following names</span><br><span class="line">  -F   fix zipfile (-FF try harder) -D   do not add directory entries</span><br><span class="line">  -A   adjust self-extracting exe   -J   junk zipfile prefix (unzipsfx)</span><br><span class="line">  -T   test zipfile integrity       -X   eXclude eXtra file attributes</span><br><span class="line">  -y   store symbolic links as the link instead of the referenced file</span><br><span class="line">  -e   encrypt                      -n   don&#39;t compress these suffixes</span><br><span class="line">  -h2  show more help</span><br></pre></td></tr></table></figure>
+
+
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="ls-al"><a href="#ls-al" class="headerlink" title="ls -al"></a>ls -al</h3><p><img src="https://img-blog.csdnimg.cn/20210329224947182.png" alt="在这里插入图片描述"><br>Linux系统中分为三种用户：<br>用户组，其他组，root。root可以在任何地方访问任何数据。默认情况下，所有系统上的账号与一般身份用户，root的相关信息都记录在/etc/passwd这个文件中；个人密码则记录在/etc/shadow这个文件中，此外Linux所有组名都记录在/etc/group中。</p>
+<p>第一个字符表示的文件的种类：<br>1、d是目录<br>2、-是文件<br>3、|是链接文件<br>4、b设备文件里面可供储存的周边设备<br>5、c表示设备文件里边的串行端口设备<br>第一组rwx表示拥有者可具备的权限<br>第二组rwx表示用户组账号的权限<br>第三组rwx表示其他者的权限<br>//默认root用户都可以进行读写<br>第二栏 1表示有多少文件链接到此节点上<br>第三栏记录文件拥有者<br>第四栏记录文件拥有组<br>第五栏记录文件大小<br>第六栏记录时间<br>第七栏记录文件名，如果文件名之前多一个-，则表示这个文件是隐藏文件.</p>
+]]></content>
+      <categories>
+        <category>linux</category>
       </categories>
   </entry>
   <entry>
@@ -640,98 +732,6 @@
 ]]></content>
       <categories>
         <category>比赛复现</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Linux命令 (未完)</title>
-    <url>/2021/04/29/linux%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-<p><font color=#999AAA >简单记录一些做题常用的Linux命令</font></p>
-<h3 id="cat-amp-tac"><a href="#cat-amp-tac" class="headerlink" title="cat &amp; tac"></a>cat &amp; tac</h3><p>cat (英文全拼：concatenate) 命令用于连接文件并打印到标准输出设备上。</p>
-<p>tac 从最后一行显示，作用类似cat。</p>
-<p><img src="https://img-blog.csdnimg.cn/20210329175513222.png" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="more-amp-less"><a href="#more-amp-less" class="headerlink" title="more &amp; less"></a>more &amp; less</h3><p>more 命令类似于 cat ， 不过会以一页一页的形式显示，更方便使用者逐页阅读，按空格（space）键 显示下一页，按b键往回显示，并且还具有搜索字符串的功能。</p>
-<p><img src="https://img-blog.csdnimg.cn/20210329175807115.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>less 操作和作用类似more。<br>具体操作方式 输入👇来查询</p>
-<pre><code>less --help
-</code></pre>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="head"><a href="#head" class="headerlink" title="head"></a>head</h3><p>head命令可用于查看文件的开头部分的内容，有一个常用的参数 -n 用于显示行数，默认为10，即显示10行。<br><img src="https://img-blog.csdnimg.cn/20210329180408810.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h3><p>tail命令可用于查看文件的内容，有个常用参数 -f 用来查阅正在改变的日志文件。<br>tail -f filename 会把filename 文件里的最尾部的内容显示在屏幕上，并且不断的刷新，只要filename 更新就可以看到最新的文件内容。<br>若是直接👇</p>
-<pre><code>tail filename
-</code></pre>
-<p>则只会显示最后10行内容<br><img src="https://img-blog.csdnimg.cn/20210329180834566.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="nl"><a href="#nl" class="headerlink" title="nl"></a>nl</h3><p>nl命令类似于cat，只不过nl会显示行号，是一个比较不常用的命令（cat被ban的话可以试试nl<br><img src="https://img-blog.csdnimg.cn/20210329180933924.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h3><p>sort命令可以用来将文本内容加以排序。sort可针对文本文件的内容，以行为单位来排序。<br><img src="https://img-blog.csdnimg.cn/20210329181057188.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="od"><a href="#od" class="headerlink" title="od"></a>od</h3><p>od 命令用于输出文件内容（以八进制形式</p>
-<p><img src="https://img-blog.csdnimg.cn/20210329181149574.png" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h3><p>awk 是一种处理文本文件的语言，是一个强大的文本分析工具。【详情请自行baidu，这里只举出简单例子】</p>
-<pre><code>awk -va=1 &#39;&#123;print $1,$1+a&#125;&#39; 123.txt
-</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210329181557589.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h3><p>cut命令用于显示每行从开头算起到n的文字</p>
-<pre><code>xxx | cut -b n
-</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210329182933895.png" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><p>grep 命令用于查找文件里复合条件的字符串</p>
-<pre><code>grep test *file
-</code></pre>
-<p>在当前目录中查找后缀有file的文件中的包含test字符串的文件并打印出该字符串所在的行数。</p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="uniq（未完）"><a href="#uniq（未完）" class="headerlink" title="uniq（未完）"></a>uniq（未完）</h3><p>uniq命令用于检查及删除文本文件中重复出现的行列，一般与sort结合使用。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">用法：uniq [选项]... [文件]</span><br><span class="line">Filter adjacent matching lines from INPUT (or standard input),</span><br><span class="line">writing to OUTPUT (or standard output).</span><br><span class="line"></span><br><span class="line">With no options, matching lines are merged to the first occurrence.</span><br><span class="line"></span><br><span class="line">必选参数对长短选项同时适用。</span><br><span class="line">  -c, --count           prefix lines by the number of occurrences</span><br><span class="line">  -d, --repeated        only print duplicate lines, one for each group</span><br><span class="line">  -D                    print all duplicate lines</span><br><span class="line">      --all-repeated[&#x3D;METHOD]  like -D, but allow separating groups</span><br><span class="line">                                 with an empty line;</span><br><span class="line">                                 METHOD&#x3D;&#123;none(default),prepend,separate&#125;</span><br><span class="line">  -f, --skip-fields&#x3D;N   avoid comparing the first N fields</span><br><span class="line">      --group[&#x3D;METHOD]  show all items, separating groups with an empty line;</span><br><span class="line">                          METHOD&#x3D;&#123;separate(default),prepend,append,both&#125;</span><br><span class="line">  -i, --ignore-case     ignore differences in case when comparing</span><br><span class="line">  -s, --skip-chars&#x3D;N    avoid comparing the first N characters</span><br><span class="line">  -u, --unique          only print unique lines</span><br><span class="line">  -z, --zero-terminated     line delimiter is NUL, not newline</span><br><span class="line">  -w, --check-chars&#x3D;N	对每行第N 个字符以后的内容不作对照</span><br><span class="line">      --help		显示此帮助信息并退出</span><br><span class="line">      --version		显示版本信息并退出</span><br><span class="line">若域中为先空字符(通常包括空格以及制表符)，然后非空字符，域中字符前的空字符将被跳过。</span><br></pre></td></tr></table></figure>
-
-
-
-<p><img src="https://img-blog.csdnimg.cn/20210329223625475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="strings"><a href="#strings" class="headerlink" title="strings"></a>strings</h3><p>strings打印文件中可打印的字符，可以是文本文件(test.c)、可执行文件、动态链接库、静态链接库。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">用法：strings [选项] [文件]</span><br><span class="line"> 打印 [文件] (默认为标准输入) 中可打印的字符串</span><br><span class="line"> 选项为：</span><br><span class="line">  -a - --all                Scan the entire file, not just the data section [default]</span><br><span class="line">  -d --data                 Only scan the data sections in the file</span><br><span class="line">  -f --print-file-name      Print the name of the file before each string</span><br><span class="line">  -n --bytes&#x3D;[number]       Locate &amp; print any NUL-terminated sequence of at</span><br><span class="line">  -&lt;number&gt;                   least [number] characters (default 4).</span><br><span class="line">  -t --radix&#x3D;&#123;o,d,x&#125;        Print the location of the string in base 8, 10 or 16</span><br><span class="line">  -w --include-all-whitespace Include all whitespace as valid string characters</span><br><span class="line">  -o                        An alias for --radix&#x3D;o</span><br><span class="line">  -T --target&#x3D;&lt;BFDNAME&gt;     Specify the binary file format</span><br><span class="line">  -e --encoding&#x3D;&#123;s,S,b,l,B,L&#125; Select character size and endianness:</span><br><span class="line">                            s &#x3D; 7-bit, S &#x3D; 8-bit, &#123;b,l&#125; &#x3D; 16-bit, &#123;B,L&#125; &#x3D; 32-bit</span><br><span class="line">  -s --output-separator&#x3D;&lt;string&gt; String used to separate strings in output.</span><br><span class="line">  @&lt;file&gt;                   Read options from &lt;file&gt;</span><br><span class="line">  -h --help                 Display this information</span><br><span class="line">  -v -V --version           Print the program&#39;s version number</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">strings：支持的目标： elf64-x86-64 elf32-i386 elf32-iamcu elf32-x86-64 a.out-i386-linux pei-i386 pei-x86-64 elf64-l1om elf64-k1om elf64-little elf64-big elf32-little elf32-big pe-x86-64 pe-bigobj-x86-64 pe-i386 plugin srec symbolsrec verilog tekhex binary ihex</span><br></pre></td></tr></table></figure>
-
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="rev"><a href="#rev" class="headerlink" title="rev"></a>rev</h3><p>rev 命令将文件中的每行内容以字符为单位反序输出。<br><img src="https://img-blog.csdnimg.cn/20210329224438294.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<pre><code>用法：rev [选项] [文件 ...]
-
-对成行的内容逐字翻转。
-
-选项：
--h, --help     display this help
--V, --version  display version
-</code></pre>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h3><p>zip是个使用广泛的压缩程序，压缩后文件后缀为.zip<br><img src="https://img-blog.csdnimg.cn/20210329224829907.png" alt="在这里插入图片描述"></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Copyright (c) 1990-2008 Info-ZIP - Type &#39;zip &quot;-L&quot;&#39; for software license.</span><br><span class="line">Zip 3.0 (July 5th 2008). Usage:</span><br><span class="line">zip [-options] [-b path] [-t mmddyyyy] [-n suffixes] [zipfile list] [-xi list]</span><br><span class="line">  The default action is to add or replace zipfile entries from list, which</span><br><span class="line">  can include the special name - to compress standard input.</span><br><span class="line">  If zipfile and list are omitted, zip compresses stdin to stdout.</span><br><span class="line">  -f   freshen: only changed files  -u   update: only changed or new files</span><br><span class="line">  -d   delete entries in zipfile    -m   move into zipfile (delete OS files)</span><br><span class="line">  -r   recurse into directories     -j   junk (don&#39;t record) directory names</span><br><span class="line">  -0   store only                   -l   convert LF to CR LF (-ll CR LF to LF)</span><br><span class="line">  -1   compress faster              -9   compress better</span><br><span class="line">  -q   quiet operation              -v   verbose operation&#x2F;print version info</span><br><span class="line">  -c   add one-line comments        -z   add zipfile comment</span><br><span class="line">  -@   read names from stdin        -o   make zipfile as old as latest entry</span><br><span class="line">  -x   exclude the following names  -i   include only the following names</span><br><span class="line">  -F   fix zipfile (-FF try harder) -D   do not add directory entries</span><br><span class="line">  -A   adjust self-extracting exe   -J   junk zipfile prefix (unzipsfx)</span><br><span class="line">  -T   test zipfile integrity       -X   eXclude eXtra file attributes</span><br><span class="line">  -y   store symbolic links as the link instead of the referenced file</span><br><span class="line">  -e   encrypt                      -n   don&#39;t compress these suffixes</span><br><span class="line">  -h2  show more help</span><br></pre></td></tr></table></figure>
-
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="ls-al"><a href="#ls-al" class="headerlink" title="ls -al"></a>ls -al</h3><p><img src="https://img-blog.csdnimg.cn/20210329224947182.png" alt="在这里插入图片描述"><br>Linux系统中分为三种用户：<br>用户组，其他组，root。root可以在任何地方访问任何数据。默认情况下，所有系统上的账号与一般身份用户，root的相关信息都记录在/etc/passwd这个文件中；个人密码则记录在/etc/shadow这个文件中，此外Linux所有组名都记录在/etc/group中。</p>
-<p>第一个字符表示的文件的种类：<br>1、d是目录<br>2、-是文件<br>3、|是链接文件<br>4、b设备文件里面可供储存的周边设备<br>5、c表示设备文件里边的串行端口设备<br>第一组rwx表示拥有者可具备的权限<br>第二组rwx表示用户组账号的权限<br>第三组rwx表示其他者的权限<br>//默认root用户都可以进行读写<br>第二栏 1表示有多少文件链接到此节点上<br>第三栏记录文件拥有者<br>第四栏记录文件拥有组<br>第五栏记录文件大小<br>第六栏记录时间<br>第七栏记录文件名，如果文件名之前多一个-，则表示这个文件是隐藏文件.</p>
-]]></content>
-      <categories>
-        <category>linux</category>
       </categories>
   </entry>
   <entry>
@@ -873,6 +873,16 @@
       </tags>
   </entry>
   <entry>
+    <title>rsa</title>
+    <url>/2021/08/20/rsa/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+]]></content>
+      <categories>
+        <category>crypto</category>
+      </categories>
+  </entry>
+  <entry>
     <title>rarctf</title>
     <url>/2021/08/11/rarctf/</url>
     <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
@@ -905,16 +915,6 @@
 ]]></content>
       <categories>
         <category>比赛复现</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>rsa</title>
-    <url>/2021/08/20/rsa/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-]]></content>
-      <categories>
-        <category>crypto</category>
       </categories>
   </entry>
   <entry>
@@ -1425,6 +1425,53 @@
       </categories>
   </entry>
   <entry>
+    <title>命令执行漏洞学习笔记</title>
+    <url>/2021/04/29/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+
+<h1 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h1><h2 id="命令执行漏洞原理"><a href="#命令执行漏洞原理" class="headerlink" title="命令执行漏洞原理"></a>命令执行漏洞原理</h2><p>命令执行漏洞是指应用有时需要调用一些执行系统命令的函数，如：system()、exec()、shell_exec()、eval()、passthru()，代码未对用户可控参数做过滤，当用户能控制这些函数中的参数时，就可以将恶意系统命令拼接到正常命令中，从而造成命令执行攻击。</p>
+<p>在操作系统中，“&amp; 、&amp;&amp; 、| 、 ||”都可以作为命令连接符使用，用户通过浏览器提交执行命令，由于服务器端没有针对执行函数做过滤，导致在没有指定绝对路径的情况下就执行命令 .</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">command1;command2 : 先执行command1再执行command2</span><br><span class="line">command1 &amp; command2 ：不管command1执行成功与否，都会执行command2（将上一个命令的输出作为下一个命令的输入）</span><br><span class="line">command1 &amp;&amp; command2 ：先执行command1执行成功后才会执行command2</span><br><span class="line">command1 | command2 ：只执行command2</span><br><span class="line">command1 || command2 ：command1执行失败，再执行command2(若command1执行成功，就不再执行command2)</span><br></pre></td></tr></table></figure>
+
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+
+
+<h1 id="基于dvwa进行学习"><a href="#基于dvwa进行学习" class="headerlink" title="基于dvwa进行学习"></a>基于dvwa进行学习</h1><h2 id="low"><a href="#low" class="headerlink" title="low"></a>low</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( <span class="keyword">isset</span>( <span class="variable">$_POST</span>[ <span class="string">&#x27;Submit&#x27;</span> ]  ) ) &#123;</span><br><span class="line">    <span class="comment">// Get input</span></span><br><span class="line">    <span class="variable">$target</span> = <span class="variable">$_REQUEST</span>[ <span class="string">&#x27;ip&#x27;</span> ];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Determine OS and execute the ping command.</span></span><br><span class="line">    <span class="keyword">if</span>( stristr( php_uname( <span class="string">&#x27;s&#x27;</span> ), <span class="string">&#x27;Windows NT&#x27;</span> ) ) &#123;</span><br><span class="line">        <span class="comment">// Windows</span></span><br><span class="line">        <span class="variable">$cmd</span> = shell_exec( <span class="string">&#x27;ping  &#x27;</span> . <span class="variable">$target</span> );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// *nix</span></span><br><span class="line">        <span class="variable">$cmd</span> = shell_exec( <span class="string">&#x27;ping  -c 4 &#x27;</span> . <span class="variable">$target</span> );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Feedback for the end user</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;pre&gt;<span class="subst">&#123;$cmd&#125;</span>&lt;/pre&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>由源码可知，并没有对我们输入的东西进行过滤，仅仅是判断了一下是不是Windows NT<br>提交 “127.0.0.1 | ipconfig” 可以得到目标的所有IP信息.<br>提交 “127.0.0.1 | whoami” 可以得到目标的用户信息.</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">有关函数如下👇</span><br><span class="line">stristr(<span class="keyword">string</span>,search,before_search)</span><br><span class="line">搜索字符串在另一字符串中的第一次出现，返回字符串的剩余部分（从匹配点），如果未找到所搜索的字符串，则返回 <span class="literal">FALSE</span></span><br><span class="line"></span><br><span class="line">该函数是不区分大小写的，如需进行区分大小写的搜索，请使用 strstr() 函数。</span><br><span class="line"></span><br><span class="line">php_uname (<span class="variable">$mode</span>)</span><br><span class="line">返回运行 PHP 的系统的有关信息，也就是返回运行 PHP 的操作系统的描述</span><br><span class="line"><span class="variable">$mode</span> 是单个字符，用于定义要返回什么信息：</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;a&#x27;</span>：此为默认。包含序列 <span class="string">&quot;s n r v m&quot;</span> 里的所有模式。</span><br><span class="line"><span class="string">&#x27;s&#x27;</span>：操作系统名称。例如： FreeBSD。</span><br><span class="line"><span class="string">&#x27;n&#x27;</span>：主机名。例如： localhost.example.com。</span><br><span class="line"><span class="string">&#x27;r&#x27;</span>：版本名称，例如： <span class="number">5.1</span>.<span class="number">2</span>-RELEASE。</span><br><span class="line"><span class="string">&#x27;v&#x27;</span>：版本信息。操作系统之间有很大的不同。</span><br><span class="line"><span class="string">&#x27;m&#x27;</span>：机器类型。例如：i386。</span><br></pre></td></tr></table></figure>
+
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h2 id="medium"><a href="#medium" class="headerlink" title="medium"></a>medium</h2><p><font color=#999AAA >代码如下：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( <span class="keyword">isset</span>( <span class="variable">$_POST</span>[ <span class="string">&#x27;Submit&#x27;</span> ]  ) ) &#123;</span><br><span class="line">    <span class="comment">// Get input</span></span><br><span class="line">    <span class="variable">$target</span> = <span class="variable">$_REQUEST</span>[ <span class="string">&#x27;ip&#x27;</span> ];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Set blacklist</span></span><br><span class="line">    <span class="variable">$substitutions</span> = <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">&#x27;&amp;&amp;&#x27;</span> =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;;&#x27;</span>  =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Remove any of the charactars in the array (blacklist).</span></span><br><span class="line">    <span class="variable">$target</span> = str_replace( array_keys( <span class="variable">$substitutions</span> ), <span class="variable">$substitutions</span>, <span class="variable">$target</span> );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Determine OS and execute the ping command.</span></span><br><span class="line">    <span class="keyword">if</span>( stristr( php_uname( <span class="string">&#x27;s&#x27;</span> ), <span class="string">&#x27;Windows NT&#x27;</span> ) ) &#123;</span><br><span class="line">        <span class="comment">// Windows</span></span><br><span class="line">        <span class="variable">$cmd</span> = shell_exec( <span class="string">&#x27;ping  &#x27;</span> . <span class="variable">$target</span> );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// *nix</span></span><br><span class="line">        <span class="variable">$cmd</span> = shell_exec( <span class="string">&#x27;ping  -c 4 &#x27;</span> . <span class="variable">$target</span> );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Feedback for the end user</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;pre&gt;<span class="subst">&#123;$cmd&#125;</span>&lt;/pre&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>不难发现只过滤了&amp;&amp;和;<br>那我们不用这两个就可以了</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//相关函数</span></span><br><span class="line"></span><br><span class="line">str_replace(find,replace,<span class="keyword">string</span>,count)</span><br><span class="line">以其他字符替换字符串中的一些字符（区分大小写）</span><br><span class="line">find 必需。规定要查找的值</span><br><span class="line">replace 必需。规定替换 find 中的值的值</span><br><span class="line"><span class="keyword">string</span> 必需。规定被搜索的字符串</span><br><span class="line">count 可选。对替换数进行计数的变量</span><br><span class="line">该函数必须遵循下列规则：</span><br><span class="line">如果替换和替换目标都是数组，且需要替换的元素少于查找到的元素，那么多余元素将用空字符串进行替换</span><br><span class="line">如果替换的目标是数组，而替换的是字符串，那么替代字符串将对所有查找到的值起作用</span><br><span class="line">注释：该函数区分大小写。请使用 str_ireplace() 函数执行不区分大小写的搜索</span><br><span class="line">注释：该函数是二进制安全的</span><br><span class="line"></span><br><span class="line">array_keys(<span class="keyword">array</span>,value,strict)</span><br><span class="line">返回包含数组中所有键名的一个新数组</span><br><span class="line"><span class="keyword">array</span> 必需。规定数组</span><br><span class="line">value 可选。您可以指定键值，然后只有该键值对应的键名会被返回</span><br><span class="line">strict 可选。与 value 参数一起使用。可能的值：</span><br><span class="line"><span class="literal">true</span> - 返回带有指定键值的键名。依赖类型，数字 <span class="number">5</span> 与字符串 “<span class="number">5</span>” 是不同的</span><br><span class="line"><span class="literal">false</span> - 默认值。不依赖类型，数字 <span class="number">5</span> 与字符串 “<span class="number">5</span>” 是相同的</span><br><span class="line">如果提供了第二个参数，则只返回键值为该值的键名</span><br><span class="line">如果 strict 参数指定为 <span class="literal">true</span>，则 PHP 会使用全等比较 (===) 来严格检查键值的数据类型</span><br></pre></td></tr></table></figure>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h2 id="high"><a href="#high" class="headerlink" title="high"></a>high</h2><p><font color=#999AAA >代码如下：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( <span class="keyword">isset</span>( <span class="variable">$_POST</span>[ <span class="string">&#x27;Submit&#x27;</span> ]  ) ) &#123;</span><br><span class="line">    <span class="comment">// Get input</span></span><br><span class="line">    <span class="variable">$target</span> = trim(<span class="variable">$_REQUEST</span>[ <span class="string">&#x27;ip&#x27;</span> ]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Set blacklist</span></span><br><span class="line">    <span class="variable">$substitutions</span> = <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">&#x27;&amp;&#x27;</span>  =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;;&#x27;</span>  =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;| &#x27;</span> =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;-&#x27;</span>  =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;$&#x27;</span>  =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;(&#x27;</span>  =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;)&#x27;</span>  =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;`&#x27;</span>  =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;||&#x27;</span> =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Remove any of the charactars in the array (blacklist).</span></span><br><span class="line">    <span class="variable">$target</span> = str_replace( array_keys( <span class="variable">$substitutions</span> ), <span class="variable">$substitutions</span>, <span class="variable">$target</span> );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Determine OS and execute the ping command.</span></span><br><span class="line">    <span class="keyword">if</span>( stristr( php_uname( <span class="string">&#x27;s&#x27;</span> ), <span class="string">&#x27;Windows NT&#x27;</span> ) ) &#123;</span><br><span class="line">        <span class="comment">// Windows</span></span><br><span class="line">        <span class="variable">$cmd</span> = shell_exec( <span class="string">&#x27;ping  &#x27;</span> . <span class="variable">$target</span> );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// *nix</span></span><br><span class="line">        <span class="variable">$cmd</span> = shell_exec( <span class="string">&#x27;ping  -c 4 &#x27;</span> . <span class="variable">$target</span> );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Feedback for the end user</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;pre&gt;<span class="subst">&#123;$cmd&#125;</span>&lt;/pre&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>细心点可以发现过滤的’|’中多了一个空格（写成了’| ‘）那么用|就可以绕过<br>除此之外还有个好玩的就是可以利用过滤的顺序来绕过<br>也就是 127.0.0.1|| ipconfig<br>在||后多个空格，会先匹配到’| ‘，这样之后就等价于127.0.0.1|ipconfig</p>
+<p>high难度的过滤较为全面但是仍有漏洞</p>
+<h2 id="impossible"><a href="#impossible" class="headerlink" title="impossible"></a>impossible</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( <span class="keyword">isset</span>( <span class="variable">$_POST</span>[ <span class="string">&#x27;Submit&#x27;</span> ]  ) ) &#123;</span><br><span class="line">    <span class="comment">// Check Anti-CSRF token</span></span><br><span class="line">    checkToken( <span class="variable">$_REQUEST</span>[ <span class="string">&#x27;user_token&#x27;</span> ], <span class="variable">$_SESSION</span>[ <span class="string">&#x27;session_token&#x27;</span> ], <span class="string">&#x27;index.php&#x27;</span> );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Get input</span></span><br><span class="line">    <span class="variable">$target</span> = <span class="variable">$_REQUEST</span>[ <span class="string">&#x27;ip&#x27;</span> ];</span><br><span class="line">    <span class="variable">$target</span> = stripslashes( <span class="variable">$target</span> );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Split the IP into 4 octects</span></span><br><span class="line">    <span class="variable">$octet</span> = explode( <span class="string">&quot;.&quot;</span>, <span class="variable">$target</span> );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Check IF each octet is an integer</span></span><br><span class="line">    <span class="keyword">if</span>( ( is_numeric( <span class="variable">$octet</span>[<span class="number">0</span>] ) ) &amp;&amp; ( is_numeric( <span class="variable">$octet</span>[<span class="number">1</span>] ) ) &amp;&amp; ( is_numeric( <span class="variable">$octet</span>[<span class="number">2</span>] ) ) &amp;&amp; ( is_numeric( <span class="variable">$octet</span>[<span class="number">3</span>] ) ) &amp;&amp; ( sizeof( <span class="variable">$octet</span> ) == <span class="number">4</span> ) ) &#123;</span><br><span class="line">        <span class="comment">// If all 4 octets are int&#x27;s put the IP back together.</span></span><br><span class="line">        <span class="variable">$target</span> = <span class="variable">$octet</span>[<span class="number">0</span>] . <span class="string">&#x27;.&#x27;</span> . <span class="variable">$octet</span>[<span class="number">1</span>] . <span class="string">&#x27;.&#x27;</span> . <span class="variable">$octet</span>[<span class="number">2</span>] . <span class="string">&#x27;.&#x27;</span> . <span class="variable">$octet</span>[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Determine OS and execute the ping command.</span></span><br><span class="line">        <span class="keyword">if</span>( stristr( php_uname( <span class="string">&#x27;s&#x27;</span> ), <span class="string">&#x27;Windows NT&#x27;</span> ) ) &#123;</span><br><span class="line">            <span class="comment">// Windows</span></span><br><span class="line">            <span class="variable">$cmd</span> = shell_exec( <span class="string">&#x27;ping  &#x27;</span> . <span class="variable">$target</span> );</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// *nix</span></span><br><span class="line">            <span class="variable">$cmd</span> = shell_exec( <span class="string">&#x27;ping  -c 4 &#x27;</span> . <span class="variable">$target</span> );</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Feedback for the end user</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;pre&gt;<span class="subst">&#123;$cmd&#125;</span>&lt;/pre&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// Ops. Let the user name theres a mistake</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;&lt;pre&gt;ERROR: You have entered an invalid IP.&lt;/pre&gt;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Generate Anti-CSRF token</span></span><br><span class="line">generateSessionToken();</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>相关函数介绍<br>stripslashes(string)<br>stripslashes函数会删除字符串string中的反斜杠，返回已剥离反斜杠的字符串。</p>
+<p>explode(separator,string,limit)<br>把字符串打散为数组，返回字符串的数组。参数separator规定在哪里分割字符串，参数string是要分割的字符串，可选参数limit规定所返回的数组元素的数目。</p>
+<p>is_numeric(string)<br>检测string是否为数字或数字字符串，如果是返回TRUE，否则返回FALSE。</p>
+<p>Impossible级别的代码对参数ip进行了严格的限制，只有像“数字.数字.数字.数字”的输入才会被接收执行，因此不存在命令注入漏洞。</p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><font color=#999AAA >简单的通过dvwa来学习一下基本的命令执行漏洞，有关绕过的方法以后再学。</p>
+]]></content>
+      <categories>
+        <category>web漏洞</category>
+      </categories>
+      <tags>
+        <tag>RCE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>结合ctfshow学习php反序列化</title>
     <url>/2021/05/30/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</url>
     <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
@@ -1574,53 +1621,6 @@
       <categories>
         <category>工具</category>
       </categories>
-  </entry>
-  <entry>
-    <title>命令执行漏洞学习笔记</title>
-    <url>/2021/04/29/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-
-<h1 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h1><h2 id="命令执行漏洞原理"><a href="#命令执行漏洞原理" class="headerlink" title="命令执行漏洞原理"></a>命令执行漏洞原理</h2><p>命令执行漏洞是指应用有时需要调用一些执行系统命令的函数，如：system()、exec()、shell_exec()、eval()、passthru()，代码未对用户可控参数做过滤，当用户能控制这些函数中的参数时，就可以将恶意系统命令拼接到正常命令中，从而造成命令执行攻击。</p>
-<p>在操作系统中，“&amp; 、&amp;&amp; 、| 、 ||”都可以作为命令连接符使用，用户通过浏览器提交执行命令，由于服务器端没有针对执行函数做过滤，导致在没有指定绝对路径的情况下就执行命令 .</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">command1;command2 : 先执行command1再执行command2</span><br><span class="line">command1 &amp; command2 ：不管command1执行成功与否，都会执行command2（将上一个命令的输出作为下一个命令的输入）</span><br><span class="line">command1 &amp;&amp; command2 ：先执行command1执行成功后才会执行command2</span><br><span class="line">command1 | command2 ：只执行command2</span><br><span class="line">command1 || command2 ：command1执行失败，再执行command2(若command1执行成功，就不再执行command2)</span><br></pre></td></tr></table></figure>
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-
-
-<h1 id="基于dvwa进行学习"><a href="#基于dvwa进行学习" class="headerlink" title="基于dvwa进行学习"></a>基于dvwa进行学习</h1><h2 id="low"><a href="#low" class="headerlink" title="low"></a>low</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( <span class="keyword">isset</span>( <span class="variable">$_POST</span>[ <span class="string">&#x27;Submit&#x27;</span> ]  ) ) &#123;</span><br><span class="line">    <span class="comment">// Get input</span></span><br><span class="line">    <span class="variable">$target</span> = <span class="variable">$_REQUEST</span>[ <span class="string">&#x27;ip&#x27;</span> ];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Determine OS and execute the ping command.</span></span><br><span class="line">    <span class="keyword">if</span>( stristr( php_uname( <span class="string">&#x27;s&#x27;</span> ), <span class="string">&#x27;Windows NT&#x27;</span> ) ) &#123;</span><br><span class="line">        <span class="comment">// Windows</span></span><br><span class="line">        <span class="variable">$cmd</span> = shell_exec( <span class="string">&#x27;ping  &#x27;</span> . <span class="variable">$target</span> );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// *nix</span></span><br><span class="line">        <span class="variable">$cmd</span> = shell_exec( <span class="string">&#x27;ping  -c 4 &#x27;</span> . <span class="variable">$target</span> );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Feedback for the end user</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;pre&gt;<span class="subst">&#123;$cmd&#125;</span>&lt;/pre&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p>由源码可知，并没有对我们输入的东西进行过滤，仅仅是判断了一下是不是Windows NT<br>提交 “127.0.0.1 | ipconfig” 可以得到目标的所有IP信息.<br>提交 “127.0.0.1 | whoami” 可以得到目标的用户信息.</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">有关函数如下👇</span><br><span class="line">stristr(<span class="keyword">string</span>,search,before_search)</span><br><span class="line">搜索字符串在另一字符串中的第一次出现，返回字符串的剩余部分（从匹配点），如果未找到所搜索的字符串，则返回 <span class="literal">FALSE</span></span><br><span class="line"></span><br><span class="line">该函数是不区分大小写的，如需进行区分大小写的搜索，请使用 strstr() 函数。</span><br><span class="line"></span><br><span class="line">php_uname (<span class="variable">$mode</span>)</span><br><span class="line">返回运行 PHP 的系统的有关信息，也就是返回运行 PHP 的操作系统的描述</span><br><span class="line"><span class="variable">$mode</span> 是单个字符，用于定义要返回什么信息：</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;a&#x27;</span>：此为默认。包含序列 <span class="string">&quot;s n r v m&quot;</span> 里的所有模式。</span><br><span class="line"><span class="string">&#x27;s&#x27;</span>：操作系统名称。例如： FreeBSD。</span><br><span class="line"><span class="string">&#x27;n&#x27;</span>：主机名。例如： localhost.example.com。</span><br><span class="line"><span class="string">&#x27;r&#x27;</span>：版本名称，例如： <span class="number">5.1</span>.<span class="number">2</span>-RELEASE。</span><br><span class="line"><span class="string">&#x27;v&#x27;</span>：版本信息。操作系统之间有很大的不同。</span><br><span class="line"><span class="string">&#x27;m&#x27;</span>：机器类型。例如：i386。</span><br></pre></td></tr></table></figure>
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h2 id="medium"><a href="#medium" class="headerlink" title="medium"></a>medium</h2><p><font color=#999AAA >代码如下：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( <span class="keyword">isset</span>( <span class="variable">$_POST</span>[ <span class="string">&#x27;Submit&#x27;</span> ]  ) ) &#123;</span><br><span class="line">    <span class="comment">// Get input</span></span><br><span class="line">    <span class="variable">$target</span> = <span class="variable">$_REQUEST</span>[ <span class="string">&#x27;ip&#x27;</span> ];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Set blacklist</span></span><br><span class="line">    <span class="variable">$substitutions</span> = <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">&#x27;&amp;&amp;&#x27;</span> =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;;&#x27;</span>  =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Remove any of the charactars in the array (blacklist).</span></span><br><span class="line">    <span class="variable">$target</span> = str_replace( array_keys( <span class="variable">$substitutions</span> ), <span class="variable">$substitutions</span>, <span class="variable">$target</span> );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Determine OS and execute the ping command.</span></span><br><span class="line">    <span class="keyword">if</span>( stristr( php_uname( <span class="string">&#x27;s&#x27;</span> ), <span class="string">&#x27;Windows NT&#x27;</span> ) ) &#123;</span><br><span class="line">        <span class="comment">// Windows</span></span><br><span class="line">        <span class="variable">$cmd</span> = shell_exec( <span class="string">&#x27;ping  &#x27;</span> . <span class="variable">$target</span> );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// *nix</span></span><br><span class="line">        <span class="variable">$cmd</span> = shell_exec( <span class="string">&#x27;ping  -c 4 &#x27;</span> . <span class="variable">$target</span> );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Feedback for the end user</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;pre&gt;<span class="subst">&#123;$cmd&#125;</span>&lt;/pre&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>不难发现只过滤了&amp;&amp;和;<br>那我们不用这两个就可以了</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//相关函数</span></span><br><span class="line"></span><br><span class="line">str_replace(find,replace,<span class="keyword">string</span>,count)</span><br><span class="line">以其他字符替换字符串中的一些字符（区分大小写）</span><br><span class="line">find 必需。规定要查找的值</span><br><span class="line">replace 必需。规定替换 find 中的值的值</span><br><span class="line"><span class="keyword">string</span> 必需。规定被搜索的字符串</span><br><span class="line">count 可选。对替换数进行计数的变量</span><br><span class="line">该函数必须遵循下列规则：</span><br><span class="line">如果替换和替换目标都是数组，且需要替换的元素少于查找到的元素，那么多余元素将用空字符串进行替换</span><br><span class="line">如果替换的目标是数组，而替换的是字符串，那么替代字符串将对所有查找到的值起作用</span><br><span class="line">注释：该函数区分大小写。请使用 str_ireplace() 函数执行不区分大小写的搜索</span><br><span class="line">注释：该函数是二进制安全的</span><br><span class="line"></span><br><span class="line">array_keys(<span class="keyword">array</span>,value,strict)</span><br><span class="line">返回包含数组中所有键名的一个新数组</span><br><span class="line"><span class="keyword">array</span> 必需。规定数组</span><br><span class="line">value 可选。您可以指定键值，然后只有该键值对应的键名会被返回</span><br><span class="line">strict 可选。与 value 参数一起使用。可能的值：</span><br><span class="line"><span class="literal">true</span> - 返回带有指定键值的键名。依赖类型，数字 <span class="number">5</span> 与字符串 “<span class="number">5</span>” 是不同的</span><br><span class="line"><span class="literal">false</span> - 默认值。不依赖类型，数字 <span class="number">5</span> 与字符串 “<span class="number">5</span>” 是相同的</span><br><span class="line">如果提供了第二个参数，则只返回键值为该值的键名</span><br><span class="line">如果 strict 参数指定为 <span class="literal">true</span>，则 PHP 会使用全等比较 (===) 来严格检查键值的数据类型</span><br></pre></td></tr></table></figure>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h2 id="high"><a href="#high" class="headerlink" title="high"></a>high</h2><p><font color=#999AAA >代码如下：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( <span class="keyword">isset</span>( <span class="variable">$_POST</span>[ <span class="string">&#x27;Submit&#x27;</span> ]  ) ) &#123;</span><br><span class="line">    <span class="comment">// Get input</span></span><br><span class="line">    <span class="variable">$target</span> = trim(<span class="variable">$_REQUEST</span>[ <span class="string">&#x27;ip&#x27;</span> ]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Set blacklist</span></span><br><span class="line">    <span class="variable">$substitutions</span> = <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">&#x27;&amp;&#x27;</span>  =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;;&#x27;</span>  =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;| &#x27;</span> =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;-&#x27;</span>  =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;$&#x27;</span>  =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;(&#x27;</span>  =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;)&#x27;</span>  =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;`&#x27;</span>  =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;||&#x27;</span> =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Remove any of the charactars in the array (blacklist).</span></span><br><span class="line">    <span class="variable">$target</span> = str_replace( array_keys( <span class="variable">$substitutions</span> ), <span class="variable">$substitutions</span>, <span class="variable">$target</span> );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Determine OS and execute the ping command.</span></span><br><span class="line">    <span class="keyword">if</span>( stristr( php_uname( <span class="string">&#x27;s&#x27;</span> ), <span class="string">&#x27;Windows NT&#x27;</span> ) ) &#123;</span><br><span class="line">        <span class="comment">// Windows</span></span><br><span class="line">        <span class="variable">$cmd</span> = shell_exec( <span class="string">&#x27;ping  &#x27;</span> . <span class="variable">$target</span> );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// *nix</span></span><br><span class="line">        <span class="variable">$cmd</span> = shell_exec( <span class="string">&#x27;ping  -c 4 &#x27;</span> . <span class="variable">$target</span> );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Feedback for the end user</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;pre&gt;<span class="subst">&#123;$cmd&#125;</span>&lt;/pre&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p>细心点可以发现过滤的’|’中多了一个空格（写成了’| ‘）那么用|就可以绕过<br>除此之外还有个好玩的就是可以利用过滤的顺序来绕过<br>也就是 127.0.0.1|| ipconfig<br>在||后多个空格，会先匹配到’| ‘，这样之后就等价于127.0.0.1|ipconfig</p>
-<p>high难度的过滤较为全面但是仍有漏洞</p>
-<h2 id="impossible"><a href="#impossible" class="headerlink" title="impossible"></a>impossible</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( <span class="keyword">isset</span>( <span class="variable">$_POST</span>[ <span class="string">&#x27;Submit&#x27;</span> ]  ) ) &#123;</span><br><span class="line">    <span class="comment">// Check Anti-CSRF token</span></span><br><span class="line">    checkToken( <span class="variable">$_REQUEST</span>[ <span class="string">&#x27;user_token&#x27;</span> ], <span class="variable">$_SESSION</span>[ <span class="string">&#x27;session_token&#x27;</span> ], <span class="string">&#x27;index.php&#x27;</span> );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Get input</span></span><br><span class="line">    <span class="variable">$target</span> = <span class="variable">$_REQUEST</span>[ <span class="string">&#x27;ip&#x27;</span> ];</span><br><span class="line">    <span class="variable">$target</span> = stripslashes( <span class="variable">$target</span> );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Split the IP into 4 octects</span></span><br><span class="line">    <span class="variable">$octet</span> = explode( <span class="string">&quot;.&quot;</span>, <span class="variable">$target</span> );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Check IF each octet is an integer</span></span><br><span class="line">    <span class="keyword">if</span>( ( is_numeric( <span class="variable">$octet</span>[<span class="number">0</span>] ) ) &amp;&amp; ( is_numeric( <span class="variable">$octet</span>[<span class="number">1</span>] ) ) &amp;&amp; ( is_numeric( <span class="variable">$octet</span>[<span class="number">2</span>] ) ) &amp;&amp; ( is_numeric( <span class="variable">$octet</span>[<span class="number">3</span>] ) ) &amp;&amp; ( sizeof( <span class="variable">$octet</span> ) == <span class="number">4</span> ) ) &#123;</span><br><span class="line">        <span class="comment">// If all 4 octets are int&#x27;s put the IP back together.</span></span><br><span class="line">        <span class="variable">$target</span> = <span class="variable">$octet</span>[<span class="number">0</span>] . <span class="string">&#x27;.&#x27;</span> . <span class="variable">$octet</span>[<span class="number">1</span>] . <span class="string">&#x27;.&#x27;</span> . <span class="variable">$octet</span>[<span class="number">2</span>] . <span class="string">&#x27;.&#x27;</span> . <span class="variable">$octet</span>[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Determine OS and execute the ping command.</span></span><br><span class="line">        <span class="keyword">if</span>( stristr( php_uname( <span class="string">&#x27;s&#x27;</span> ), <span class="string">&#x27;Windows NT&#x27;</span> ) ) &#123;</span><br><span class="line">            <span class="comment">// Windows</span></span><br><span class="line">            <span class="variable">$cmd</span> = shell_exec( <span class="string">&#x27;ping  &#x27;</span> . <span class="variable">$target</span> );</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// *nix</span></span><br><span class="line">            <span class="variable">$cmd</span> = shell_exec( <span class="string">&#x27;ping  -c 4 &#x27;</span> . <span class="variable">$target</span> );</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Feedback for the end user</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;pre&gt;<span class="subst">&#123;$cmd&#125;</span>&lt;/pre&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// Ops. Let the user name theres a mistake</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;&lt;pre&gt;ERROR: You have entered an invalid IP.&lt;/pre&gt;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Generate Anti-CSRF token</span></span><br><span class="line">generateSessionToken();</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p>相关函数介绍<br>stripslashes(string)<br>stripslashes函数会删除字符串string中的反斜杠，返回已剥离反斜杠的字符串。</p>
-<p>explode(separator,string,limit)<br>把字符串打散为数组，返回字符串的数组。参数separator规定在哪里分割字符串，参数string是要分割的字符串，可选参数limit规定所返回的数组元素的数目。</p>
-<p>is_numeric(string)<br>检测string是否为数字或数字字符串，如果是返回TRUE，否则返回FALSE。</p>
-<p>Impossible级别的代码对参数ip进行了严格的限制，只有像“数字.数字.数字.数字”的输入才会被接收执行，因此不存在命令注入漏洞。</p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><font color=#999AAA >简单的通过dvwa来学习一下基本的命令执行漏洞，有关绕过的方法以后再学。</p>
-]]></content>
-      <categories>
-        <category>web漏洞</category>
-      </categories>
-      <tags>
-        <tag>RCE</tag>
-      </tags>
   </entry>
   <entry>
     <title>流量分析</title>
