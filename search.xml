@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title></title>
+    <url>/2021/11/02/2021-dhb-misc-wp/</url>
+    <content><![CDATA[<h1 id="Check-in"><a href="#Check-in" class="headerlink" title="Check in"></a>Check in</h1><p>简简单单的签到题，一个utf-7</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">+AGYAbABhAGcAewBkAGgAYgBfADcAdABoAH0-</span><br></pre></td></tr></table></figure>
+
+<p>解码得</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;dhb_7th&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="http://toolswebtop.com/text/process/decode/UTF-7">在线网站</a></p>
+<h1 id="project"><a href="#project" class="headerlink" title="project"></a>project</h1><p>一个假工控，运行test.exe释放出来一个压缩包，打开看到一个流量数据，有一个经过<code>base64</code>编码的数据</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">6KGo5oOF5YyF5paH5YyW77yM5piv6ZqP552A572R57uc56S+5Lqk5rKf6YCa55qE5aKe5aSa5Ye6</span><br><span class="line">546w55qE5LiA56eN5Li75rWB5paH5YyW44CC5LiA5Liq5Lq655qE6KGo5oOF5YyF5piv5YW26ZqQ</span><br><span class="line">6JeP6LW35p2l55qE55yf5oiR77yM5LiA5Liq5Zu95a6255qE6KGo5oOF5YyF6YeM6IO955yL5Yiw</span><br><span class="line">6L+Z5Liq5Zu95a6255qE6KGo5oOF44CC4oCM4oCM4oCM4oCM4oCN4oCs4oCs4oCM5pyJ5pe25YCZ</span><br><span class="line">77yM6KGo5oOF5YyF6KGo6L6+55qE5piv5LiN6IO96YGT56C055qE55yf5a6e5oOz5rOV5ZKM5oSf</span><br><span class="line">5Y+X77yM6K+t6KiA5ZKM5paH5a2X55qE5bC95aS077yM5bCx5piv6KGo5oOF5YyF5pa95bGV55qE</span><br><span class="line">56m66Ze044CCDQrooajmg4XljIXmmK&#x2F;nvZHnu5zor63oqIDnmoTkuIDnp43ov5vljJbvvIzlroPn</span><br><span class="line">moTkuqfnlJ&#x2F;lkozmtYHooYzkuI7lhbbnibnlrprnmoTigJzigIzigIzigIzigIzigI3vu7&#x2F;igI3i</span><br><span class="line">gI3nlJ&#x2F;lrZjnjq&#x2F;looPigJ3mnInlhbPjgILlhbbov73msYLphpLnm67jgIHmlrDlpYfjgIHosJDo</span><br><span class="line">sJHnrYnmlYjmnpznmoTnibnngrnvvIzigIzigIzigIzigIzigI3vu7&#x2F;igIzigKzkuI7lubTovbvk</span><br><span class="line">urrlvKDmiazkuKrmgKflkozmkJ7mgKrnmoTlv4PnkIbnm7jnrKbigIzigIzigIzigIzigI3vu7&#x2F;i</span><br><span class="line">gIzigKzjgIINCuihqOaDheWMheS5i+aJgOS7peiDveWkn+Wkp+iMg+WbtOWcsOS8oOaSre+8jOKA</span><br><span class="line">jOKAjOKAjOKAjOKAje+7v+KArOKAjeaYr+WboOS4uuWFtuW8peihpeS6huaWh+Wtl+S6pOa1geea</span><br><span class="line">hOaer+eHpeWSjOaAgeW6puihqOi+vuS4jeWHhuehrueahOW8seeCue+8jOacieaViOWcsOaPkOmr</span><br><span class="line">mOS6huayn+mAmuaViOeOh+OAgumDqOWIhuihqOaDheWMheWFt+acieabv+S7o+aWh+Wtl+eahOWK</span><br><span class="line">n+iDve+8jOKAjOKAjOKAjOKAjOKAje+7v+KAjeKAjei&#x2F;mOWPr+S7peiKguecgeaJk+Wtl+aXtumX</span><br><span class="line">tOKAjOKAjOKAjOKAjOKAje+7v+KAjOKAjOOAgumaj+edgOaZuuiDveaJi+acuueahOWFqOmdouaZ</span><br><span class="line">ruWPiuWSjOekvuS6pOW6lOeUqOi9r+S7tueahOWkp+mHj+S9v+eUqO+8jOihqOaDheWMheW3sue7</span><br><span class="line">j+mrmOmikeeOh+WcsOWHuueOsOWcqOS6uuS7rOeahOe9kee7nOiBiuWkqeWvueivneW9k+S4reOA</span><br><span class="line">gg0K</span><br></pre></td></tr></table></figure>
+
+<p>还有一个<code>quoted-printable</code>编码的数据</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x3D;E8&#x3D;A1&#x3D;A8&#x3D;E6&#x3D;83&#x3D;85&#x3D;</span><br><span class="line">&#x3D;E5&#x3D;8C&#x3D;85&#x3D;E6&#x3D;96&#x3D;87&#x3D;E5&#x3D;8C&#x3D;96&#x3D;EF&#x3D;BC&#x3D;8C&#x3D;E6&#x3D;98&#x3D;AF&#x3D;E9&#x3D;9A&#x3D;8F&#x3D;E7&#x3D;9D&#x3D;80&#x3D;E7&#x3D;BD&#x3D;91&#x3D;</span><br><span class="line">&#x3D;E7&#x3D;BB&#x3D;9C&#x3D;E7&#x3D;A4&#x3D;BE&#x3D;E4&#x3D;BA&#x3D;A4&#x3D;E6&#x3D;B2&#x3D;9F&#x3D;E9&#x3D;80&#x3D;9A&#x3D;E7&#x3D;9A&#x3D;84&#x3D;E5&#x3D;A2&#x3D;9E&#x3D;E5&#x3D;A4&#x3D;9A&#x3D;</span><br><span class="line">&#x3D;E5&#x3D;87&#x3D;BA&#x3D;E7&#x3D;8E&#x3D;B0&#x3D;E7&#x3D;9A&#x3D;84&#x3D;E4&#x3D;B8&#x3D;80&#x3D;E7&#x3D;A7&#x3D;8D&#x3D;E4&#x3D;B8&#x3D;BB&#x3D;E6&#x3D;B5&#x3D;81&#x3D;E6&#x3D;96&#x3D;87&#x3D;</span><br><span class="line">&#x3D;E5&#x3D;8C&#x3D;96&#x3D;E3&#x3D;80&#x3D;82&#x3D;E4&#x3D;B8&#x3D;80&#x3D;E4&#x3D;B8&#x3D;AA&#x3D;E4&#x3D;BA&#x3D;BA&#x3D;E7&#x3D;9A&#x3D;84&#x3D;E8&#x3D;A1&#x3D;A8&#x3D;E6&#x3D;83&#x3D;85&#x3D;</span><br><span class="line">&#x3D;E5&#x3D;8C&#x3D;85&#x3D;E6&#x3D;98&#x3D;AF&#x3D;E5&#x3D;85&#x3D;B6&#x3D;E9&#x3D;9A&#x3D;90&#x3D;E8&#x3D;97&#x3D;8F&#x3D;E8&#x3D;B5&#x3D;B7&#x3D;E6&#x3D;9D&#x3D;A5&#x3D;E7&#x3D;9A&#x3D;84&#x3D;</span><br><span class="line">&#x3D;E7&#x3D;9C&#x3D;9F&#x3D;E6&#x3D;88&#x3D;91&#x3D;EF&#x3D;BC&#x3D;8C&#x3D;E4&#x3D;B8&#x3D;80&#x3D;E4&#x3D;B8&#x3D;AA&#x3D;E5&#x3D;9B&#x3D;BD&#x3D;E5&#x3D;AE&#x3D;B6&#x3D;E7&#x3D;9A&#x3D;84&#x3D;</span><br><span class="line">&#x3D;E8&#x3D;A1&#x3D;A8&#x3D;E6&#x3D;83&#x3D;85&#x3D;E5&#x3D;8C&#x3D;85&#x3D;E9&#x3D;87&#x3D;8C&#x3D;E8&#x3D;83&#x3D;BD&#x3D;E7&#x3D;9C&#x3D;8B&#x3D;E5&#x3D;88&#x3D;B0&#x3D;E8&#x3D;BF&#x3D;99&#x3D;</span><br><span class="line">&#x3D;E4&#x3D;B8&#x3D;AA&#x3D;E5&#x3D;9B&#x3D;BD&#x3D;E5&#x3D;AE&#x3D;B6&#x3D;E7&#x3D;9A&#x3D;84&#x3D;E8&#x3D;A1&#x3D;A8&#x3D;E6&#x3D;83&#x3D;85&#x3D;E3&#x3D;80&#x3D;82&#x3D;E2&#x3D;80&#x3D;8C&#x3D;</span><br><span class="line">&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8D&#x3D;E2&#x3D;80&#x3D;AC&#x3D;E2&#x3D;80&#x3D;AC&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E6&#x3D;9C&#x3D;89&#x3D;</span><br><span class="line">&#x3D;E6&#x3D;97&#x3D;B6&#x3D;E5&#x3D;80&#x3D;99&#x3D;EF&#x3D;BC&#x3D;8C&#x3D;E8&#x3D;A1&#x3D;A8&#x3D;E6&#x3D;83&#x3D;85&#x3D;E5&#x3D;8C&#x3D;85&#x3D;E8&#x3D;A1&#x3D;A8&#x3D;E8&#x3D;BE&#x3D;BE&#x3D;</span><br><span class="line">&#x3D;E7&#x3D;9A&#x3D;84&#x3D;E6&#x3D;98&#x3D;AF&#x3D;E4&#x3D;B8&#x3D;8D&#x3D;E8&#x3D;83&#x3D;BD&#x3D;E9&#x3D;81&#x3D;93&#x3D;E7&#x3D;A0&#x3D;B4&#x3D;E7&#x3D;9A&#x3D;84&#x3D;E7&#x3D;9C&#x3D;9F&#x3D;</span><br><span class="line">&#x3D;E5&#x3D;AE&#x3D;9E&#x3D;E6&#x3D;83&#x3D;B3&#x3D;E6&#x3D;B3&#x3D;95&#x3D;E5&#x3D;92&#x3D;8C&#x3D;E6&#x3D;84&#x3D;9F&#x3D;E5&#x3D;8F&#x3D;97&#x3D;EF&#x3D;BC&#x3D;8C&#x3D;E8&#x3D;AF&#x3D;AD&#x3D;</span><br><span class="line">&#x3D;E8&#x3D;A8&#x3D;80&#x3D;E5&#x3D;92&#x3D;8C&#x3D;E6&#x3D;96&#x3D;87&#x3D;E5&#x3D;AD&#x3D;97&#x3D;E7&#x3D;9A&#x3D;84&#x3D;E5&#x3D;B0&#x3D;BD&#x3D;E5&#x3D;A4&#x3D;B4&#x3D;EF&#x3D;BC&#x3D;8C&#x3D;</span><br><span class="line">&#x3D;E5&#x3D;B0&#x3D;B1&#x3D;E6&#x3D;98&#x3D;AF&#x3D;E8&#x3D;A1&#x3D;A8&#x3D;E6&#x3D;83&#x3D;85&#x3D;E5&#x3D;8C&#x3D;85&#x3D;E6&#x3D;96&#x3D;BD&#x3D;E5&#x3D;B1&#x3D;95&#x3D;E7&#x3D;9A&#x3D;84&#x3D;</span><br><span class="line">&#x3D;E7&#x3D;A9&#x3D;BA&#x3D;E9&#x3D;97&#x3D;B4&#x3D;E3&#x3D;80&#x3D;82&lt;&#x2F;div&gt;&lt;div&gt;&#x3D;E8&#x3D;A1&#x3D;A8&#x3D;E6&#x3D;83&#x3D;85&#x3D;E5&#x3D;8C&#x3D;85&#x3D;E6&#x3D;98&#x3D;AF&#x3D;</span><br><span class="line">&#x3D;E7&#x3D;BD&#x3D;91&#x3D;E7&#x3D;BB&#x3D;9C&#x3D;E8&#x3D;AF&#x3D;AD&#x3D;E8&#x3D;A8&#x3D;80&#x3D;E7&#x3D;9A&#x3D;84&#x3D;E4&#x3D;B8&#x3D;80&#x3D;E7&#x3D;A7&#x3D;8D&#x3D;E8&#x3D;BF&#x3D;9B&#x3D;</span><br><span class="line">&#x3D;E5&#x3D;8C&#x3D;96&#x3D;EF&#x3D;BC&#x3D;8C&#x3D;E5&#x3D;AE&#x3D;83&#x3D;E7&#x3D;9A&#x3D;84&#x3D;E4&#x3D;BA&#x3D;A7&#x3D;E7&#x3D;94&#x3D;9F&#x3D;E5&#x3D;92&#x3D;8C&#x3D;E6&#x3D;B5&#x3D;81&#x3D;</span><br><span class="line">&#x3D;E8&#x3D;A1&#x3D;8C&#x3D;E4&#x3D;B8&#x3D;8E&#x3D;E5&#x3D;85&#x3D;B6&#x3D;E7&#x3D;89&#x3D;B9&#x3D;E5&#x3D;AE&#x3D;9A&#x3D;E7&#x3D;9A&#x3D;84&#x3D;E2&#x3D;80&#x3D;9C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;</span><br><span class="line">&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8D&#x3D;EF&#x3D;BB&#x3D;BF&#x3D;E2&#x3D;80&#x3D;8D&#x3D;E2&#x3D;80&#x3D;8D&#x3D;E7&#x3D;94&#x3D;9F&#x3D;</span><br><span class="line">&#x3D;E5&#x3D;AD&#x3D;98&#x3D;E7&#x3D;8E&#x3D;AF&#x3D;E5&#x3D;A2&#x3D;83&#x3D;E2&#x3D;80&#x3D;9D&#x3D;E6&#x3D;9C&#x3D;89&#x3D;E5&#x3D;85&#x3D;B3&#x3D;E3&#x3D;80&#x3D;82&#x3D;E5&#x3D;85&#x3D;B6&#x3D;</span><br><span class="line">&#x3D;E8&#x3D;BF&#x3D;BD&#x3D;E6&#x3D;B1&#x3D;82&#x3D;E9&#x3D;86&#x3D;92&#x3D;E7&#x3D;9B&#x3D;AE&#x3D;E3&#x3D;80&#x3D;81&#x3D;E6&#x3D;96&#x3D;B0&#x3D;E5&#x3D;A5&#x3D;87&#x3D;E3&#x3D;80&#x3D;81&#x3D;</span><br><span class="line">&#x3D;E8&#x3D;B0&#x3D;90&#x3D;E8&#x3D;B0&#x3D;91&#x3D;E7&#x3D;AD&#x3D;89&#x3D;E6&#x3D;95&#x3D;88&#x3D;E6&#x3D;9E&#x3D;9C&#x3D;E7&#x3D;9A&#x3D;84&#x3D;E7&#x3D;89&#x3D;B9&#x3D;E7&#x3D;82&#x3D;B9&#x3D;</span><br><span class="line">&#x3D;EF&#x3D;BC&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8D&#x3D;EF&#x3D;BB&#x3D;BF&#x3D;E2&#x3D;80&#x3D;8C&#x3D;</span><br><span class="line">&#x3D;E2&#x3D;80&#x3D;AC&#x3D;E4&#x3D;B8&#x3D;8E&#x3D;E5&#x3D;B9&#x3D;B4&#x3D;E8&#x3D;BD&#x3D;BB&#x3D;E4&#x3D;BA&#x3D;BA&#x3D;E5&#x3D;BC&#x3D;A0&#x3D;E6&#x3D;89&#x3D;AC&#x3D;E4&#x3D;B8&#x3D;AA&#x3D;</span><br><span class="line">&#x3D;E6&#x3D;80&#x3D;A7&#x3D;E5&#x3D;92&#x3D;8C&#x3D;E6&#x3D;90&#x3D;9E&#x3D;E6&#x3D;80&#x3D;AA&#x3D;E7&#x3D;9A&#x3D;84&#x3D;E5&#x3D;BF&#x3D;83&#x3D;E7&#x3D;90&#x3D;86&#x3D;E7&#x3D;9B&#x3D;B8&#x3D;</span><br><span class="line">&#x3D;E7&#x3D;AC&#x3D;A6&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8D&#x3D;EF&#x3D;BB&#x3D;BF&#x3D;E2&#x3D;80&#x3D;8C&#x3D;</span><br><span class="line">&#x3D;E2&#x3D;80&#x3D;AC&#x3D;E3&#x3D;80&#x3D;82&lt;&#x2F;div&gt;&lt;div&gt;&#x3D;E8&#x3D;A1&#x3D;A8&#x3D;E6&#x3D;83&#x3D;85&#x3D;E5&#x3D;8C&#x3D;85&#x3D;E4&#x3D;B9&#x3D;8B&#x3D;E6&#x3D;89&#x3D;80&#x3D;</span><br><span class="line">&#x3D;E4&#x3D;BB&#x3D;A5&#x3D;E8&#x3D;83&#x3D;BD&#x3D;E5&#x3D;A4&#x3D;9F&#x3D;E5&#x3D;A4&#x3D;A7&#x3D;E8&#x3D;8C&#x3D;83&#x3D;E5&#x3D;9B&#x3D;B4&#x3D;E5&#x3D;9C&#x3D;B0&#x3D;E4&#x3D;BC&#x3D;A0&#x3D;</span><br><span class="line">&#x3D;E6&#x3D;92&#x3D;AD&#x3D;EF&#x3D;BC&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8D&#x3D;EF&#x3D;BB&#x3D;BF&#x3D;</span><br><span class="line">&#x3D;E2&#x3D;80&#x3D;AC&#x3D;E2&#x3D;80&#x3D;8D&#x3D;E6&#x3D;98&#x3D;AF&#x3D;E5&#x3D;9B&#x3D;A0&#x3D;E4&#x3D;B8&#x3D;BA&#x3D;E5&#x3D;85&#x3D;B6&#x3D;E5&#x3D;BC&#x3D;A5&#x3D;E8&#x3D;A1&#x3D;A5&#x3D;</span><br><span class="line">&#x3D;E4&#x3D;BA&#x3D;86&#x3D;E6&#x3D;96&#x3D;87&#x3D;E5&#x3D;AD&#x3D;97&#x3D;E4&#x3D;BA&#x3D;A4&#x3D;E6&#x3D;B5&#x3D;81&#x3D;E7&#x3D;9A&#x3D;84&#x3D;E6&#x3D;9E&#x3D;AF&#x3D;E7&#x3D;87&#x3D;A5&#x3D;</span><br><span class="line">&#x3D;E5&#x3D;92&#x3D;8C&#x3D;E6&#x3D;80&#x3D;81&#x3D;E5&#x3D;BA&#x3D;A6&#x3D;E8&#x3D;A1&#x3D;A8&#x3D;E8&#x3D;BE&#x3D;BE&#x3D;E4&#x3D;B8&#x3D;8D&#x3D;E5&#x3D;87&#x3D;86&#x3D;E7&#x3D;A1&#x3D;AE&#x3D;</span><br><span class="line">&#x3D;E7&#x3D;9A&#x3D;84&#x3D;E5&#x3D;BC&#x3D;B1&#x3D;E7&#x3D;82&#x3D;B9&#x3D;EF&#x3D;BC&#x3D;8C&#x3D;E6&#x3D;9C&#x3D;89&#x3D;E6&#x3D;95&#x3D;88&#x3D;E5&#x3D;9C&#x3D;B0&#x3D;E6&#x3D;8F&#x3D;90&#x3D;</span><br><span class="line">&#x3D;E9&#x3D;AB&#x3D;98&#x3D;E4&#x3D;BA&#x3D;86&#x3D;E6&#x3D;B2&#x3D;9F&#x3D;E9&#x3D;80&#x3D;9A&#x3D;E6&#x3D;95&#x3D;88&#x3D;E7&#x3D;8E&#x3D;87&#x3D;E3&#x3D;80&#x3D;82&#x3D;E9&#x3D;83&#x3D;A8&#x3D;</span><br><span class="line">&#x3D;E5&#x3D;88&#x3D;86&#x3D;E8&#x3D;A1&#x3D;A8&#x3D;E6&#x3D;83&#x3D;85&#x3D;E5&#x3D;8C&#x3D;85&#x3D;E5&#x3D;85&#x3D;B7&#x3D;E6&#x3D;9C&#x3D;89&#x3D;E6&#x3D;9B&#x3D;BF&#x3D;E4&#x3D;BB&#x3D;A3&#x3D;</span><br><span class="line">&#x3D;E6&#x3D;96&#x3D;87&#x3D;E5&#x3D;AD&#x3D;97&#x3D;E7&#x3D;9A&#x3D;84&#x3D;E5&#x3D;8A&#x3D;9F&#x3D;E8&#x3D;83&#x3D;BD&#x3D;EF&#x3D;BC&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;</span><br><span class="line">&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8D&#x3D;EF&#x3D;BB&#x3D;BF&#x3D;E2&#x3D;80&#x3D;8D&#x3D;E2&#x3D;80&#x3D;8D&#x3D;E8&#x3D;BF&#x3D;98&#x3D;E5&#x3D;8F&#x3D;AF&#x3D;</span><br><span class="line">&#x3D;E4&#x3D;BB&#x3D;A5&#x3D;E8&#x3D;8A&#x3D;82&#x3D;E7&#x3D;9C&#x3D;81&#x3D;E6&#x3D;89&#x3D;93&#x3D;E5&#x3D;AD&#x3D;97&#x3D;E6&#x3D;97&#x3D;B6&#x3D;E9&#x3D;97&#x3D;B4&#x3D;E2&#x3D;80&#x3D;8C&#x3D;</span><br><span class="line">&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8D&#x3D;EF&#x3D;BB&#x3D;BF&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E2&#x3D;80&#x3D;8C&#x3D;E3&#x3D;80&#x3D;82&#x3D;</span><br><span class="line">&#x3D;E9&#x3D;9A&#x3D;8F&#x3D;E7&#x3D;9D&#x3D;80&#x3D;E6&#x3D;99&#x3D;BA&#x3D;E8&#x3D;83&#x3D;BD&#x3D;E6&#x3D;89&#x3D;8B&#x3D;E6&#x3D;9C&#x3D;BA&#x3D;E7&#x3D;9A&#x3D;84&#x3D;E5&#x3D;85&#x3D;A8&#x3D;</span><br><span class="line">&#x3D;E9&#x3D;9D&#x3D;A2&#x3D;E6&#x3D;99&#x3D;AE&#x3D;E5&#x3D;8F&#x3D;8A&#x3D;E5&#x3D;92&#x3D;8C&#x3D;E7&#x3D;A4&#x3D;BE&#x3D;E4&#x3D;BA&#x3D;A4&#x3D;E5&#x3D;BA&#x3D;94&#x3D;E7&#x3D;94&#x3D;A8&#x3D;</span><br><span class="line">&#x3D;E8&#x3D;BD&#x3D;AF&#x3D;E4&#x3D;BB&#x3D;B6&#x3D;E7&#x3D;9A&#x3D;84&#x3D;E5&#x3D;A4&#x3D;A7&#x3D;E9&#x3D;87&#x3D;8F&#x3D;E4&#x3D;BD&#x3D;BF&#x3D;E7&#x3D;94&#x3D;A8&#x3D;EF&#x3D;BC&#x3D;8C&#x3D;</span><br><span class="line">&#x3D;E8&#x3D;A1&#x3D;A8&#x3D;E6&#x3D;83&#x3D;85&#x3D;E5&#x3D;8C&#x3D;85&#x3D;E5&#x3D;B7&#x3D;B2&#x3D;E7&#x3D;BB&#x3D;8F&#x3D;E9&#x3D;AB&#x3D;98&#x3D;E9&#x3D;A2&#x3D;91&#x3D;E7&#x3D;8E&#x3D;87&#x3D;</span><br><span class="line">&#x3D;E5&#x3D;9C&#x3D;B0&#x3D;E5&#x3D;87&#x3D;BA&#x3D;E7&#x3D;8E&#x3D;B0&#x3D;E5&#x3D;9C&#x3D;A8&#x3D;E4&#x3D;BA&#x3D;BA&#x3D;E4&#x3D;BB&#x3D;AC&#x3D;E7&#x3D;9A&#x3D;84&#x3D;E7&#x3D;BD&#x3D;91&#x3D;</span><br><span class="line">&#x3D;E7&#x3D;BB&#x3D;9C&#x3D;E8&#x3D;81&#x3D;8A&#x3D;E5&#x3D;A4&#x3D;A9&#x3D;E5&#x3D;AF&#x3D;B9&#x3D;E8&#x3D;AF&#x3D;9D&#x3D;E5&#x3D;BD&#x3D;93&#x3D;E4&#x3D;B8&#x3D;AD&#x3D;E3&#x3D;80&#x3D;82</span><br></pre></td></tr></table></figure>
+
+<p>解码发现有隐藏数据，0宽隐写得到密钥<code>hurryup</code></p>
+<p>后边还有一个jpg图片的base64编码，用oursecret解密得到flag</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;f3a5dc36-ad43-d4fa-e75f-ef79e2e28ef3&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="JumpJumpTiger"><a href="#JumpJumpTiger" class="headerlink" title="JumpJumpTiger"></a>JumpJumpTiger</h1><p>用ida打开看到hint，猜测把数据分组处理了，strings提取出base64编码数据奇数位（第一位第三位…）为jpg文件的base64数据，偶数位（第二位第四位…）为png的base64数据，分别得到两张图片，python的盲水印，解一下就ok</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> base64 <span class="keyword">import</span> b64decode</span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&quot;1-1.txt&quot;</span>, <span class="string">&quot;r&quot;</span>)</span><br><span class="line">a = f.readlines()[<span class="number">0</span>]</span><br><span class="line">jpg = <span class="string">&quot;&quot;</span></span><br><span class="line">png = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(a), <span class="number">2</span>):</span><br><span class="line">    jpg += a[x]</span><br><span class="line">    png += a[x+<span class="number">1</span>]</span><br><span class="line">j = <span class="built_in">open</span>(<span class="string">&quot;jpg.jpg&quot;</span>, <span class="string">&quot;wb&quot;</span>)</span><br><span class="line">p = <span class="built_in">open</span>(<span class="string">&quot;png.png&quot;</span>, <span class="string">&quot;wb&quot;</span>)</span><br><span class="line">j.write(b64decode((jpg.split(<span class="string">&quot;=&quot;</span>)[<span class="number">0</span>]+<span class="string">&quot;=&quot;</span>).encode()))</span><br><span class="line">p.write(b64decode(png.encode()))</span><br><span class="line">j.close()</span><br><span class="line">p.close()</span><br></pre></td></tr></table></figure>
+
+<p>得到flag</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;72f73bbe-9193-e59a-c593-1b1cb8f76714&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="where-can-find-code"><a href="#where-can-find-code" class="headerlink" title="where_can_find_code"></a>where_can_find_code</h1><p>拿到asc文件猜测为wbstego，提取出来隐写数据<code>20810842042108421</code>云影密码解密得到<code>BINGO</code>，根据<code>format(&quot;Translate the letter J into I&quot;);</code>可知为playfair密码，在线网站解密得到flag</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;d58af5d2-2a51-4dde-5e5d-33539364cdbf&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+]]></content>
+  </entry>
+  <entry>
+    <title>csictf2020 panda wp</title>
+    <url>/2021/05/14/csictf-misc-panda/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+
+
+<p>附件为zip压缩包 <a href="https://pan.baidu.com/s/1zkkhvzW4ORqCRsB-c7myGA">T0MR</a>（附件下载</p>
+<p>爆破压缩包–&gt;密码为 2611</p>
+<p>打开后得到两个有部分不一样jpg图片</p>
+<p>python解密脚本👇</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>.join([<span class="built_in">chr</span>(i) <span class="keyword">for</span> i, j <span class="keyword">in</span> <span class="built_in">zip</span>(<span class="built_in">open</span>(<span class="string">&#x27;panda1.jpg&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>).read(), <span class="built_in">open</span>(<span class="string">&#x27;panda.jpg&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>).read()) <span class="keyword">if</span> i!= j]))</span><br><span class="line"></span><br><span class="line"><span class="comment">#读取图片的单个字节进行比对，不同的话输出相应的字符</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#-----------------------------------------</span></span><br><span class="line"><span class="comment">#csictf&#123;kung_fu_p4nd4&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>有关知识👇</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">join() 方法用于将序列中的元素以指定的字符连接生成一个新的字符串</span><br><span class="line"><span class="built_in">zip</span>() 函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的列表</span><br><span class="line"><span class="built_in">open</span>(<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>)以二进制格式打开一个文件(一般为非文本)用于只读</span><br><span class="line">read() 方法默认参数为-<span class="number">1</span>，即读取整个文件</span><br><span class="line"></span><br><span class="line">脚本思路：分别打开panda1.jpg 和 panda.jpg 读取每个字节，并将这两个文件的字节数据依次打包为元组，用<span class="keyword">for</span>循环遍历元组，对比元组中每一组的两个数据是否相同，不相同的话就返回对应的panda1.jpg 中对应的字节转化为字符用join()方法连接成字符串输出.</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Misc</category>
+      </categories>
+  </entry>
+  <entry>
     <title>ctfhub 技能树 .git泄露</title>
     <url>/2021/05/15/ctfhub_.git/</url>
     <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
@@ -46,22 +104,47 @@
       </categories>
   </entry>
   <entry>
-    <title>csictf2020 panda wp</title>
-    <url>/2021/05/14/csictf-misc-panda/</url>
+    <title>ctfshow_misc入门  WP（未完）</title>
+    <url>/2021/05/11/ctfshow_misc_ru/</url>
     <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
 
 
 
-<p>附件为zip压缩包 <a href="https://pan.baidu.com/s/1zkkhvzW4ORqCRsB-c7myGA">T0MR</a>（附件下载</p>
-<p>爆破压缩包–&gt;密码为 2611</p>
-<p>打开后得到两个有部分不一样jpg图片</p>
-<p>python解密脚本👇</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>.join([<span class="built_in">chr</span>(i) <span class="keyword">for</span> i, j <span class="keyword">in</span> <span class="built_in">zip</span>(<span class="built_in">open</span>(<span class="string">&#x27;panda1.jpg&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>).read(), <span class="built_in">open</span>(<span class="string">&#x27;panda.jpg&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>).read()) <span class="keyword">if</span> i!= j]))</span><br><span class="line"></span><br><span class="line"><span class="comment">#读取图片的单个字节进行比对，不同的话输出相应的字符</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#-----------------------------------------</span></span><br><span class="line"><span class="comment">#csictf&#123;kung_fu_p4nd4&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="图片篇-基础操作"><a href="#图片篇-基础操作" class="headerlink" title="图片篇(基础操作)"></a>图片篇(基础操作)</h2><h3 id="misc1"><a href="#misc1" class="headerlink" title="misc1"></a>misc1</h3><p>没啥好说的，打开图片就是flag</p>
+<h3 id="misc2"><a href="#misc2" class="headerlink" title="misc2"></a>misc2</h3><p>附件是txt文本，用010editor打开，发现16进制对应的是png的文件头，修改后缀名misc2.txt–&gt;misc.png，打开图片就可以看到flag了</p>
+<h3 id="misc3"><a href="#misc3" class="headerlink" title="misc3"></a>misc3</h3><p>解压后是一个bpg文件，在<a href="https://bellard.org/bpg/">网站</a>下载bpg文件查看器，解压后，用bpgview.exe打开misc3.bpg即可看见flag</p>
+<h3 id="misc4"><a href="#misc4" class="headerlink" title="misc4"></a>misc4</h3><p>给了6个txt文件，分别用010editor打开，看开头的16进制，找对应图片格式的文件头，依次改为png、jpg、bmp、gif、tif、webp之后将图片中的字符串拼接一下就可以得到flag了</p>
+<p>成品：<a href="https://pan.baidu.com/s/1Iz-HL2t5me3EfiZ2auGOFg">T0MR</a></p>
+<h2 id="图片篇-信息附加"><a href="#图片篇-信息附加" class="headerlink" title="图片篇(信息附加)"></a>图片篇(信息附加)</h2><h3 id="misc5"><a href="#misc5" class="headerlink" title="misc5"></a>misc5</h3><p>打开附件，图片上写着<code>there_is_no_flag_here</code><del>而且图片为900x150像素，很明显图片的高度被缩小了</del>（当我修改完高度之后发现，我错了）用010editor打开之后滑到最下边即可看到flag</p>
+<h3 id="misc6"><a href="#misc6" class="headerlink" title="misc6"></a>misc6</h3><p>用010editor打开搜索文本ctfshow，即可发现flag（这题是藏到中间了</p>
+<h3 id="misc7"><a href="#misc7" class="headerlink" title="misc7"></a>misc7</h3><p>题目上给了提示<code>flag在图片文件信息中</code> <del>好嘛</del>，还是在010editor中搜索文本就完事。。</p>
+<h3 id="misc8"><a href="#misc8" class="headerlink" title="misc8"></a>misc8</h3><p>题目给提示<code>flag在图片文件中图片文件中</code> 那就是个套娃呗，用010editor打开可以发现有两个png文件的文件头，把后边的png文件分离出来就可以了</p>
+<p>方法：找到第二个png文件头<code>89 50 4E 47</code> 将从这儿开始一直到结尾的16进制文本复制到一个新建文本文档里边，之后在010中点左上角  文件–&gt;导入16进制文本–&gt;选中刚才导出的文本–&gt;保存为png文件–&gt;即可看到flag（复制16进制文本方法：选中之后找左上角的编辑–&gt;复制–&gt;复制为16进制文本）</p>
+<h3 id="misc9"><a href="#misc9" class="headerlink" title="misc9"></a>misc9</h3><p>题目给的hint<code>flag在图片块里</code> 直接010打开，搜索一下ctfshow就行。</p>
+<p>预期解应该是👇</p>
+<p><img src="https://img.vim-cn.com/a1/c461bd18824075954430e81821aa105703e7fd.png" alt="misc9"></p>
+<h3 id="misc10"><a href="#misc10" class="headerlink" title="misc10"></a>misc10</h3><p>题目hint<code>flag在图片数据里</code> 用kali的binwalk分离出数据👇</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">binwalk -e misc10.png</span><br></pre></td></tr></table></figure>
 
-<p>有关知识👇</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">join() 方法用于将序列中的元素以指定的字符连接生成一个新的字符串</span><br><span class="line"><span class="built_in">zip</span>() 函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的列表</span><br><span class="line"><span class="built_in">open</span>(<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>)以二进制格式打开一个文件(一般为非文本)用于只读</span><br><span class="line">read() 方法默认参数为-<span class="number">1</span>，即读取整个文件</span><br><span class="line"></span><br><span class="line">脚本思路：分别打开panda1.jpg 和 panda.jpg 读取每个字节，并将这两个文件的字节数据依次打包为元组，用<span class="keyword">for</span>循环遍历元组，对比元组中每一组的两个数据是否相同，不相同的话就返回对应的panda1.jpg 中对应的字节转化为字符用join()方法连接成字符串输出.</span><br></pre></td></tr></table></figure>
+<p>生成一个文件夹👇</p>
+<p><img src="https://img.vim-cn.com/32/0bb40622510cc79d4473bc01cc97ac033e36d5.png" alt="misc10"></p>
+<p>第一个文件打开就看到了flag</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">对于这题八神师傅说过：</span><br><span class="line">zlib是PNG IDAT块数据可选的压缩格式</span><br><span class="line">本题是师傅自己生成了一段zlib压缩数据，然后加上长度位、标识位和CRC校验位</span><br><span class="line">伪装成一个IDAT块，然后插入到图片文件里</span><br><span class="line">binwalk会找到zlib块的标记然后提取出来，同时因为这是个压缩数据，-e参数会自动把提取到的压缩包尝试进行解压，所以最后的提取结果里就有了原始的文本--&gt;flag</span><br></pre></td></tr></table></figure>
 
-]]></content>
+<p>也可以解压最后一个idat块得到flag</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s=<span class="built_in">bytes</span>.fromhex(<span class="string">&#x27;789C4B2E492BCEC82FAF363635363235323132494C36B34C4E3233493333313637B3B030354C4C36B734A8050009960BD1&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(zlib.decompress(s))</span><br><span class="line"></span><br><span class="line"><span class="comment">#--------------------------------------</span></span><br><span class="line"><span class="string">b&#x27;ctfshow&#123;353252424ac69cb64f643768851ac790&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="misc11"><a href="#misc11" class="headerlink" title="misc11"></a>misc11</h3><p>hint<code>flag在另一张图里</code> </p>
+<p>讲真，这个hint没看懂，后来问了一下八神👴👴</p>
+<p><img src="https://img.vim-cn.com/be/0560324992ad5c0a89854edd473ba53de933ea.png" alt="misc11.1"></p>
+<p>用010打开👇</p>
+<p><img src="https://img.vim-cn.com/8b/c96dec54ddad4bcf6d656f5aae09205d16234e.png" alt="misc11.2"></p>
+<p>把第一个IDAT对应的部分删除之后保存为另一张图片即可看到flag</p>
+<p>或者用tweakpng打开选中第二个idat块，右键点击delete删除，然后另存为一张图片即可</p>
+<p><img src="https://img.vim-cn.com/af/4b6d14360e50ee54755174587a61af4a51a314.png" alt="misc11.3"></p>
+<h3 id="misc12"><a href="#misc12" class="headerlink" title="misc12"></a>misc12</h3>]]></content>
       <categories>
         <category>Misc</category>
       </categories>
@@ -323,6 +406,151 @@
       </categories>
   </entry>
   <entry>
+    <title>escapeshellarg逃逸与参数注入</title>
+    <url>/2021/08/07/escapeshellarg/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+<h3 id="escapeshellarg"><a href="#escapeshellarg" class="headerlink" title="escapeshellarg()"></a>escapeshellarg()</h3><blockquote>
+<p>(PHP 4 &gt;= 4.0.3, PHP 5, PHP 7, PHP 8)</p>
+<p>escapeshellarg — 把字符串转码为可以在 shell 命令里使用的参数</p>
+<p>定义：escapeshellarg(string <code>$arg</code>): string</p>
+<p>作用：escapeshellarg() 将给字符串增加一个单引号并且能引用或者转码任何已经存在的单引号，这样以确保能够直接将一个字符串传入 shell 函数，并且还是确保安全的。对于用户输入的部分参数就应该使用这个函数。shell 函数包含 exec(), system() 执行运算符 。</p>
+</blockquote>
+<p>简单来说，如果输入的内容如果不包含单引号，就直接对输入的字符串添加一对单引号括起来；如果输入内容包含单引号，就先对单引号进行转义再对剩余的字符串添加相应对数的单引号括起来.</p>
+<p>test：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$a</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line">var_dump(escapeshellarg(<span class="variable">$a</span>));</span><br><span class="line"><span class="meta">?&gt;</span> <span class="keyword">string</span>(<span class="number">6</span>) <span class="string">&quot;&quot;</span>a<span class="string">b&#x27;c&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>结果表明：经过<code>escapeshellarg</code>函数处理过的参数被拼接成shell命令，并且被双引号包裹，这样就会造成漏洞</p>
+<blockquote>
+<p>原因：在bash中单双引号解析变量是有区别的。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">例如：</span></span><br><span class="line">└─# echo `date`</span><br><span class="line">Sat 07 Aug 2021 05:10:12 AM EDT</span><br><span class="line">└─# echo &#x27;`date`&#x27;</span><br><span class="line">`date`</span><br><span class="line">└─# echo &quot;&#x27;`date`&#x27;&quot;</span><br><span class="line">&#x27;Sat 07 Aug 2021 05:10:25 AM EDT&#x27;</span><br><span class="line">└─# echo &#x27;&quot;`date`&quot;&#x27; </span><br><span class="line">&quot;`date`&quot;</span><br></pre></td></tr></table></figure>
+
+<p>不难发现，在解析单引号时，被单引号包裹的内容中如果存在变量的话，这个变量名是不会被解析成值的，而双引号不一样，bash会将双引号包裹的变量名解析成变量的值再使用。</p>
+<p>由以上例子可知，即使参数使用了<code>escapeshellarg</code>函数过滤了单引号，但参数在拼接命令的时候使用了双引号的话还是会导致命令执行漏洞。</p>
+<h3 id="escapeshellcmd"><a href="#escapeshellcmd" class="headerlink" title="escapeshellcmd()"></a>escapeshellcmd()</h3><blockquote>
+<p><strong>escapeshellcmd</strong> — shell 元字符转义</p>
+<p>功能：<strong>escapeshellcmd()</strong> 对字符串中可能会欺骗 shell 命令执行任意命令的字符进行转义。 此函数保证用户输入的数据在传送到 <a href="http://php.net/manual/zh/function.exec.php">exec()</a> 或 <a href="http://php.net/manual/zh/function.system.php">system()</a> 函数，或者 <a href="http://php.net/manual/zh/language.operators.execution.php">执行操作符</a> 之前进行转义。</p>
+<p>反斜线（\）会在以下字符之前插入： <em>&amp;#;`|*?~&lt;&gt;^()[]{}$</em>, <em>\x0A</em> 和 <em>\xFF*。 *’</em> 和 <em>“</em> 仅在不配对儿的时候被转义。 在 Windows 平台上，所有这些字符以及 <em>%</em> 和 <em>!</em> 字符都会被空格代替。</p>
+<p><strong>定义</strong> ：<code>string escapeshellcmd ( string $command)</code></p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">例子：</span></span><br><span class="line">└─# cat test.php                </span><br><span class="line">&lt;?php</span><br><span class="line"><span class="meta">$</span><span class="bash">a = <span class="string">&quot;`whoami`&quot;</span>;</span></span><br><span class="line">echo escapeshellcmd($a);</span><br><span class="line">?&gt;%</span><br><span class="line"></span><br><span class="line">└─# php test.php</span><br><span class="line">\`whoami\`%</span><br></pre></td></tr></table></figure>
+
+<p>同时使用<code>escapeshellarg</code>和<code>escapeshellcmd</code>会试试</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">例子：</span></span><br><span class="line">└─# cat test.php</span><br><span class="line">&lt;?php</span><br><span class="line">echo escapeshellarg(&quot;who&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">echo escapeshellcmd(&quot;who&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">echo escapeshellarg(&quot;who&#x27;&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">echo escapeshellcmd(&quot;who&#x27;&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">└─# php test.php</span><br><span class="line">&#x27;who&#x27;\&#x27;&#x27;ami&#x27;</span><br><span class="line">who\&#x27;ami</span><br><span class="line">&#x27;who&#x27;\&#x27;&#x27;&#x27;\&#x27;&#x27;ami&#x27;</span><br><span class="line">who&#x27;&#x27;ami</span><br></pre></td></tr></table></figure>
+
+<p>可以发现这两个函数对于单引号的处理是有区别的，<code>escapeshellarg</code>函数转义后还会用单引号包裹，但<code>escapeshellcmd</code>函数是直接加一个转义符，对于成对的单引号，<code>escapeshellcmd</code>函数默认不转义，但<code>escapeshellarg</code>函数转义。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# cat test1.php</span><br><span class="line">&lt;?php</span><br><span class="line"><span class="meta">$</span><span class="bash">param=<span class="string">&quot;127.0.0.1&#x27; -v -d a=1&quot;</span>;</span></span><br><span class="line"><span class="meta">$</span><span class="bash">a=escapeshellarg(<span class="variable">$param</span>);</span></span><br><span class="line"><span class="meta">$</span><span class="bash">b=escapeshellcmd(<span class="variable">$a</span>);</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cmd=<span class="string">&quot;curl &quot;</span>.<span class="variable">$b</span>;</span></span><br><span class="line"><span class="meta">var_dump($</span><span class="bash">a).<span class="string">&quot;\n&quot;</span>;</span></span><br><span class="line"><span class="meta">var_dump($</span><span class="bash">b).<span class="string">&quot;\n&quot;</span>;</span></span><br><span class="line"><span class="meta">var_dump($</span><span class="bash">cmd).<span class="string">&quot;\n&quot;</span>;</span></span><br><span class="line"><span class="meta">system($</span><span class="bash">cmd);</span></span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">└─# php test1.php </span><br><span class="line">string(25) &quot;&#x27;127.0.0.1&#x27;\&#x27;&#x27; -v -d a=1&#x27;&quot;</span><br><span class="line">string(27) &quot;&#x27;127.0.0.1&#x27;\\&#x27;&#x27; -v -d a=1\&#x27;&quot;</span><br><span class="line">string(32) &quot;curl &#x27;127.0.0.1&#x27;\\&#x27;&#x27; -v -d a=1\&#x27;&quot;</span><br><span class="line"><span class="meta">  %</span><span class="bash"> Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span></span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Could not resolve host: 127.0.0.1\</span><br><span class="line">* Closing connection 0</span><br><span class="line">curl: (6) Could not resolve host: 127.0.0.1\</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>过程分析：</p>
+<ol>
+<li><p>传入的参数是</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">127.0.0.1&#39; -v -d a&#x3D;1</span><br></pre></td></tr></table></figure></li>
+<li><p><code>escapeshellarg</code>函数先对单引号转义，再用单引号将左右两部分括起来起连接作用。所以处理之后效果如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#39;127.0.0.1&#39;\&#39;&#39; -v -d a&#x3D;1&#39;</span><br></pre></td></tr></table></figure></li>
+<li><p>经过<code>escapeshellcmd</code>针对第二步处理之后的参数中的<code>\</code>以及<code>a=1&#39;</code>中的单引号进行处理转义之后的效果如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#39;127.0.0.1&#39;\\&#39;&#39; -v -d a&#x3D;1\&#39;</span><br></pre></td></tr></table></figure></li>
+<li><p>由于第三步处理之后的payload中的<code>\\</code>被解释成了<code>\</code>而不再是转义字符，所以单引号配对连接之后将payload分割为三个部分，具体如下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# curl &#x27;127.0.0.1&#x27;\\&#x27;&#x27; -v -d a=1\&#x27;</span><br><span class="line">* Could not resolve host: 127.0.0.1\</span><br><span class="line">* Closing connection 0</span><br><span class="line">curl: (6) Could not resolve host: 127.0.0.1\</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>web学习</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Linux命令 (未完)</title>
+    <url>/2021/04/29/linux%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+<p><font color=#999AAA >简单记录一些做题常用的Linux命令</font></p>
+<h3 id="cat-amp-tac"><a href="#cat-amp-tac" class="headerlink" title="cat &amp; tac"></a>cat &amp; tac</h3><p>cat (英文全拼：concatenate) 命令用于连接文件并打印到标准输出设备上。</p>
+<p>tac 从最后一行显示，作用类似cat。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210329175513222.png" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="more-amp-less"><a href="#more-amp-less" class="headerlink" title="more &amp; less"></a>more &amp; less</h3><p>more 命令类似于 cat ， 不过会以一页一页的形式显示，更方便使用者逐页阅读，按空格（space）键 显示下一页，按b键往回显示，并且还具有搜索字符串的功能。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210329175807115.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>less 操作和作用类似more。<br>具体操作方式 输入👇来查询</p>
+<pre><code>less --help
+</code></pre>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="head"><a href="#head" class="headerlink" title="head"></a>head</h3><p>head命令可用于查看文件的开头部分的内容，有一个常用的参数 -n 用于显示行数，默认为10，即显示10行。<br><img src="https://img-blog.csdnimg.cn/20210329180408810.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h3><p>tail命令可用于查看文件的内容，有个常用参数 -f 用来查阅正在改变的日志文件。<br>tail -f filename 会把filename 文件里的最尾部的内容显示在屏幕上，并且不断的刷新，只要filename 更新就可以看到最新的文件内容。<br>若是直接👇</p>
+<pre><code>tail filename
+</code></pre>
+<p>则只会显示最后10行内容<br><img src="https://img-blog.csdnimg.cn/20210329180834566.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="nl"><a href="#nl" class="headerlink" title="nl"></a>nl</h3><p>nl命令类似于cat，只不过nl会显示行号，是一个比较不常用的命令（cat被ban的话可以试试nl<br><img src="https://img-blog.csdnimg.cn/20210329180933924.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h3><p>sort命令可以用来将文本内容加以排序。sort可针对文本文件的内容，以行为单位来排序。<br><img src="https://img-blog.csdnimg.cn/20210329181057188.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="od"><a href="#od" class="headerlink" title="od"></a>od</h3><p>od 命令用于输出文件内容（以八进制形式</p>
+<p><img src="https://img-blog.csdnimg.cn/20210329181149574.png" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h3><p>awk 是一种处理文本文件的语言，是一个强大的文本分析工具。【详情请自行baidu，这里只举出简单例子】</p>
+<pre><code>awk -va=1 &#39;&#123;print $1,$1+a&#125;&#39; 123.txt
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210329181557589.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h3><p>cut命令用于显示每行从开头算起到n的文字</p>
+<pre><code>xxx | cut -b n
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210329182933895.png" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><p>grep 命令用于查找文件里复合条件的字符串</p>
+<pre><code>grep test *file
+</code></pre>
+<p>在当前目录中查找后缀有file的文件中的包含test字符串的文件并打印出该字符串所在的行数。</p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="uniq（未完）"><a href="#uniq（未完）" class="headerlink" title="uniq（未完）"></a>uniq（未完）</h3><p>uniq命令用于检查及删除文本文件中重复出现的行列，一般与sort结合使用。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">用法：uniq [选项]... [文件]</span><br><span class="line">Filter adjacent matching lines from INPUT (or standard input),</span><br><span class="line">writing to OUTPUT (or standard output).</span><br><span class="line"></span><br><span class="line">With no options, matching lines are merged to the first occurrence.</span><br><span class="line"></span><br><span class="line">必选参数对长短选项同时适用。</span><br><span class="line">  -c, --count           prefix lines by the number of occurrences</span><br><span class="line">  -d, --repeated        only print duplicate lines, one for each group</span><br><span class="line">  -D                    print all duplicate lines</span><br><span class="line">      --all-repeated[&#x3D;METHOD]  like -D, but allow separating groups</span><br><span class="line">                                 with an empty line;</span><br><span class="line">                                 METHOD&#x3D;&#123;none(default),prepend,separate&#125;</span><br><span class="line">  -f, --skip-fields&#x3D;N   avoid comparing the first N fields</span><br><span class="line">      --group[&#x3D;METHOD]  show all items, separating groups with an empty line;</span><br><span class="line">                          METHOD&#x3D;&#123;separate(default),prepend,append,both&#125;</span><br><span class="line">  -i, --ignore-case     ignore differences in case when comparing</span><br><span class="line">  -s, --skip-chars&#x3D;N    avoid comparing the first N characters</span><br><span class="line">  -u, --unique          only print unique lines</span><br><span class="line">  -z, --zero-terminated     line delimiter is NUL, not newline</span><br><span class="line">  -w, --check-chars&#x3D;N	对每行第N 个字符以后的内容不作对照</span><br><span class="line">      --help		显示此帮助信息并退出</span><br><span class="line">      --version		显示版本信息并退出</span><br><span class="line">若域中为先空字符(通常包括空格以及制表符)，然后非空字符，域中字符前的空字符将被跳过。</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://img-blog.csdnimg.cn/20210329223625475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="strings"><a href="#strings" class="headerlink" title="strings"></a>strings</h3><p>strings打印文件中可打印的字符，可以是文本文件(test.c)、可执行文件、动态链接库、静态链接库。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">用法：strings [选项] [文件]</span><br><span class="line"> 打印 [文件] (默认为标准输入) 中可打印的字符串</span><br><span class="line"> 选项为：</span><br><span class="line">  -a - --all                Scan the entire file, not just the data section [default]</span><br><span class="line">  -d --data                 Only scan the data sections in the file</span><br><span class="line">  -f --print-file-name      Print the name of the file before each string</span><br><span class="line">  -n --bytes&#x3D;[number]       Locate &amp; print any NUL-terminated sequence of at</span><br><span class="line">  -&lt;number&gt;                   least [number] characters (default 4).</span><br><span class="line">  -t --radix&#x3D;&#123;o,d,x&#125;        Print the location of the string in base 8, 10 or 16</span><br><span class="line">  -w --include-all-whitespace Include all whitespace as valid string characters</span><br><span class="line">  -o                        An alias for --radix&#x3D;o</span><br><span class="line">  -T --target&#x3D;&lt;BFDNAME&gt;     Specify the binary file format</span><br><span class="line">  -e --encoding&#x3D;&#123;s,S,b,l,B,L&#125; Select character size and endianness:</span><br><span class="line">                            s &#x3D; 7-bit, S &#x3D; 8-bit, &#123;b,l&#125; &#x3D; 16-bit, &#123;B,L&#125; &#x3D; 32-bit</span><br><span class="line">  -s --output-separator&#x3D;&lt;string&gt; String used to separate strings in output.</span><br><span class="line">  @&lt;file&gt;                   Read options from &lt;file&gt;</span><br><span class="line">  -h --help                 Display this information</span><br><span class="line">  -v -V --version           Print the program&#39;s version number</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">strings：支持的目标： elf64-x86-64 elf32-i386 elf32-iamcu elf32-x86-64 a.out-i386-linux pei-i386 pei-x86-64 elf64-l1om elf64-k1om elf64-little elf64-big elf32-little elf32-big pe-x86-64 pe-bigobj-x86-64 pe-i386 plugin srec symbolsrec verilog tekhex binary ihex</span><br></pre></td></tr></table></figure>
+
+
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="rev"><a href="#rev" class="headerlink" title="rev"></a>rev</h3><p>rev 命令将文件中的每行内容以字符为单位反序输出。<br><img src="https://img-blog.csdnimg.cn/20210329224438294.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<pre><code>用法：rev [选项] [文件 ...]
+
+对成行的内容逐字翻转。
+
+选项：
+-h, --help     display this help
+-V, --version  display version
+</code></pre>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h3><p>zip是个使用广泛的压缩程序，压缩后文件后缀为.zip<br><img src="https://img-blog.csdnimg.cn/20210329224829907.png" alt="在这里插入图片描述"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Copyright (c) 1990-2008 Info-ZIP - Type &#39;zip &quot;-L&quot;&#39; for software license.</span><br><span class="line">Zip 3.0 (July 5th 2008). Usage:</span><br><span class="line">zip [-options] [-b path] [-t mmddyyyy] [-n suffixes] [zipfile list] [-xi list]</span><br><span class="line">  The default action is to add or replace zipfile entries from list, which</span><br><span class="line">  can include the special name - to compress standard input.</span><br><span class="line">  If zipfile and list are omitted, zip compresses stdin to stdout.</span><br><span class="line">  -f   freshen: only changed files  -u   update: only changed or new files</span><br><span class="line">  -d   delete entries in zipfile    -m   move into zipfile (delete OS files)</span><br><span class="line">  -r   recurse into directories     -j   junk (don&#39;t record) directory names</span><br><span class="line">  -0   store only                   -l   convert LF to CR LF (-ll CR LF to LF)</span><br><span class="line">  -1   compress faster              -9   compress better</span><br><span class="line">  -q   quiet operation              -v   verbose operation&#x2F;print version info</span><br><span class="line">  -c   add one-line comments        -z   add zipfile comment</span><br><span class="line">  -@   read names from stdin        -o   make zipfile as old as latest entry</span><br><span class="line">  -x   exclude the following names  -i   include only the following names</span><br><span class="line">  -F   fix zipfile (-FF try harder) -D   do not add directory entries</span><br><span class="line">  -A   adjust self-extracting exe   -J   junk zipfile prefix (unzipsfx)</span><br><span class="line">  -T   test zipfile integrity       -X   eXclude eXtra file attributes</span><br><span class="line">  -y   store symbolic links as the link instead of the referenced file</span><br><span class="line">  -e   encrypt                      -n   don&#39;t compress these suffixes</span><br><span class="line">  -h2  show more help</span><br></pre></td></tr></table></figure>
+
+
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h3 id="ls-al"><a href="#ls-al" class="headerlink" title="ls -al"></a>ls -al</h3><p><img src="https://img-blog.csdnimg.cn/20210329224947182.png" alt="在这里插入图片描述"><br>Linux系统中分为三种用户：<br>用户组，其他组，root。root可以在任何地方访问任何数据。默认情况下，所有系统上的账号与一般身份用户，root的相关信息都记录在/etc/passwd这个文件中；个人密码则记录在/etc/shadow这个文件中，此外Linux所有组名都记录在/etc/group中。</p>
+<p>第一个字符表示的文件的种类：<br>1、d是目录<br>2、-是文件<br>3、|是链接文件<br>4、b设备文件里面可供储存的周边设备<br>5、c表示设备文件里边的串行端口设备<br>第一组rwx表示拥有者可具备的权限<br>第二组rwx表示用户组账号的权限<br>第三组rwx表示其他者的权限<br>//默认root用户都可以进行读写<br>第二栏 1表示有多少文件链接到此节点上<br>第三栏记录文件拥有者<br>第四栏记录文件拥有组<br>第五栏记录文件大小<br>第六栏记录时间<br>第七栏记录文件名，如果文件名之前多一个-，则表示这个文件是隐藏文件.</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+  </entry>
+  <entry>
     <title>picoctf forensics</title>
     <url>/2021/05/20/pico21/</url>
     <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
@@ -436,98 +664,6 @@
 ]]></content>
       <categories>
         <category>比赛复现</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Linux命令 (未完)</title>
-    <url>/2021/04/29/linux%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-<p><font color=#999AAA >简单记录一些做题常用的Linux命令</font></p>
-<h3 id="cat-amp-tac"><a href="#cat-amp-tac" class="headerlink" title="cat &amp; tac"></a>cat &amp; tac</h3><p>cat (英文全拼：concatenate) 命令用于连接文件并打印到标准输出设备上。</p>
-<p>tac 从最后一行显示，作用类似cat。</p>
-<p><img src="https://img-blog.csdnimg.cn/20210329175513222.png" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="more-amp-less"><a href="#more-amp-less" class="headerlink" title="more &amp; less"></a>more &amp; less</h3><p>more 命令类似于 cat ， 不过会以一页一页的形式显示，更方便使用者逐页阅读，按空格（space）键 显示下一页，按b键往回显示，并且还具有搜索字符串的功能。</p>
-<p><img src="https://img-blog.csdnimg.cn/20210329175807115.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>less 操作和作用类似more。<br>具体操作方式 输入👇来查询</p>
-<pre><code>less --help
-</code></pre>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="head"><a href="#head" class="headerlink" title="head"></a>head</h3><p>head命令可用于查看文件的开头部分的内容，有一个常用的参数 -n 用于显示行数，默认为10，即显示10行。<br><img src="https://img-blog.csdnimg.cn/20210329180408810.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h3><p>tail命令可用于查看文件的内容，有个常用参数 -f 用来查阅正在改变的日志文件。<br>tail -f filename 会把filename 文件里的最尾部的内容显示在屏幕上，并且不断的刷新，只要filename 更新就可以看到最新的文件内容。<br>若是直接👇</p>
-<pre><code>tail filename
-</code></pre>
-<p>则只会显示最后10行内容<br><img src="https://img-blog.csdnimg.cn/20210329180834566.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="nl"><a href="#nl" class="headerlink" title="nl"></a>nl</h3><p>nl命令类似于cat，只不过nl会显示行号，是一个比较不常用的命令（cat被ban的话可以试试nl<br><img src="https://img-blog.csdnimg.cn/20210329180933924.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h3><p>sort命令可以用来将文本内容加以排序。sort可针对文本文件的内容，以行为单位来排序。<br><img src="https://img-blog.csdnimg.cn/20210329181057188.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="od"><a href="#od" class="headerlink" title="od"></a>od</h3><p>od 命令用于输出文件内容（以八进制形式</p>
-<p><img src="https://img-blog.csdnimg.cn/20210329181149574.png" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h3><p>awk 是一种处理文本文件的语言，是一个强大的文本分析工具。【详情请自行baidu，这里只举出简单例子】</p>
-<pre><code>awk -va=1 &#39;&#123;print $1,$1+a&#125;&#39; 123.txt
-</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210329181557589.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h3><p>cut命令用于显示每行从开头算起到n的文字</p>
-<pre><code>xxx | cut -b n
-</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20210329182933895.png" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><p>grep 命令用于查找文件里复合条件的字符串</p>
-<pre><code>grep test *file
-</code></pre>
-<p>在当前目录中查找后缀有file的文件中的包含test字符串的文件并打印出该字符串所在的行数。</p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="uniq（未完）"><a href="#uniq（未完）" class="headerlink" title="uniq（未完）"></a>uniq（未完）</h3><p>uniq命令用于检查及删除文本文件中重复出现的行列，一般与sort结合使用。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">用法：uniq [选项]... [文件]</span><br><span class="line">Filter adjacent matching lines from INPUT (or standard input),</span><br><span class="line">writing to OUTPUT (or standard output).</span><br><span class="line"></span><br><span class="line">With no options, matching lines are merged to the first occurrence.</span><br><span class="line"></span><br><span class="line">必选参数对长短选项同时适用。</span><br><span class="line">  -c, --count           prefix lines by the number of occurrences</span><br><span class="line">  -d, --repeated        only print duplicate lines, one for each group</span><br><span class="line">  -D                    print all duplicate lines</span><br><span class="line">      --all-repeated[&#x3D;METHOD]  like -D, but allow separating groups</span><br><span class="line">                                 with an empty line;</span><br><span class="line">                                 METHOD&#x3D;&#123;none(default),prepend,separate&#125;</span><br><span class="line">  -f, --skip-fields&#x3D;N   avoid comparing the first N fields</span><br><span class="line">      --group[&#x3D;METHOD]  show all items, separating groups with an empty line;</span><br><span class="line">                          METHOD&#x3D;&#123;separate(default),prepend,append,both&#125;</span><br><span class="line">  -i, --ignore-case     ignore differences in case when comparing</span><br><span class="line">  -s, --skip-chars&#x3D;N    avoid comparing the first N characters</span><br><span class="line">  -u, --unique          only print unique lines</span><br><span class="line">  -z, --zero-terminated     line delimiter is NUL, not newline</span><br><span class="line">  -w, --check-chars&#x3D;N	对每行第N 个字符以后的内容不作对照</span><br><span class="line">      --help		显示此帮助信息并退出</span><br><span class="line">      --version		显示版本信息并退出</span><br><span class="line">若域中为先空字符(通常包括空格以及制表符)，然后非空字符，域中字符前的空字符将被跳过。</span><br></pre></td></tr></table></figure>
-
-
-
-<p><img src="https://img-blog.csdnimg.cn/20210329223625475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="strings"><a href="#strings" class="headerlink" title="strings"></a>strings</h3><p>strings打印文件中可打印的字符，可以是文本文件(test.c)、可执行文件、动态链接库、静态链接库。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">用法：strings [选项] [文件]</span><br><span class="line"> 打印 [文件] (默认为标准输入) 中可打印的字符串</span><br><span class="line"> 选项为：</span><br><span class="line">  -a - --all                Scan the entire file, not just the data section [default]</span><br><span class="line">  -d --data                 Only scan the data sections in the file</span><br><span class="line">  -f --print-file-name      Print the name of the file before each string</span><br><span class="line">  -n --bytes&#x3D;[number]       Locate &amp; print any NUL-terminated sequence of at</span><br><span class="line">  -&lt;number&gt;                   least [number] characters (default 4).</span><br><span class="line">  -t --radix&#x3D;&#123;o,d,x&#125;        Print the location of the string in base 8, 10 or 16</span><br><span class="line">  -w --include-all-whitespace Include all whitespace as valid string characters</span><br><span class="line">  -o                        An alias for --radix&#x3D;o</span><br><span class="line">  -T --target&#x3D;&lt;BFDNAME&gt;     Specify the binary file format</span><br><span class="line">  -e --encoding&#x3D;&#123;s,S,b,l,B,L&#125; Select character size and endianness:</span><br><span class="line">                            s &#x3D; 7-bit, S &#x3D; 8-bit, &#123;b,l&#125; &#x3D; 16-bit, &#123;B,L&#125; &#x3D; 32-bit</span><br><span class="line">  -s --output-separator&#x3D;&lt;string&gt; String used to separate strings in output.</span><br><span class="line">  @&lt;file&gt;                   Read options from &lt;file&gt;</span><br><span class="line">  -h --help                 Display this information</span><br><span class="line">  -v -V --version           Print the program&#39;s version number</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">strings：支持的目标： elf64-x86-64 elf32-i386 elf32-iamcu elf32-x86-64 a.out-i386-linux pei-i386 pei-x86-64 elf64-l1om elf64-k1om elf64-little elf64-big elf32-little elf32-big pe-x86-64 pe-bigobj-x86-64 pe-i386 plugin srec symbolsrec verilog tekhex binary ihex</span><br></pre></td></tr></table></figure>
-
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="rev"><a href="#rev" class="headerlink" title="rev"></a>rev</h3><p>rev 命令将文件中的每行内容以字符为单位反序输出。<br><img src="https://img-blog.csdnimg.cn/20210329224438294.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MDU5Nzk2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<pre><code>用法：rev [选项] [文件 ...]
-
-对成行的内容逐字翻转。
-
-选项：
--h, --help     display this help
--V, --version  display version
-</code></pre>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h3><p>zip是个使用广泛的压缩程序，压缩后文件后缀为.zip<br><img src="https://img-blog.csdnimg.cn/20210329224829907.png" alt="在这里插入图片描述"></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Copyright (c) 1990-2008 Info-ZIP - Type &#39;zip &quot;-L&quot;&#39; for software license.</span><br><span class="line">Zip 3.0 (July 5th 2008). Usage:</span><br><span class="line">zip [-options] [-b path] [-t mmddyyyy] [-n suffixes] [zipfile list] [-xi list]</span><br><span class="line">  The default action is to add or replace zipfile entries from list, which</span><br><span class="line">  can include the special name - to compress standard input.</span><br><span class="line">  If zipfile and list are omitted, zip compresses stdin to stdout.</span><br><span class="line">  -f   freshen: only changed files  -u   update: only changed or new files</span><br><span class="line">  -d   delete entries in zipfile    -m   move into zipfile (delete OS files)</span><br><span class="line">  -r   recurse into directories     -j   junk (don&#39;t record) directory names</span><br><span class="line">  -0   store only                   -l   convert LF to CR LF (-ll CR LF to LF)</span><br><span class="line">  -1   compress faster              -9   compress better</span><br><span class="line">  -q   quiet operation              -v   verbose operation&#x2F;print version info</span><br><span class="line">  -c   add one-line comments        -z   add zipfile comment</span><br><span class="line">  -@   read names from stdin        -o   make zipfile as old as latest entry</span><br><span class="line">  -x   exclude the following names  -i   include only the following names</span><br><span class="line">  -F   fix zipfile (-FF try harder) -D   do not add directory entries</span><br><span class="line">  -A   adjust self-extracting exe   -J   junk zipfile prefix (unzipsfx)</span><br><span class="line">  -T   test zipfile integrity       -X   eXclude eXtra file attributes</span><br><span class="line">  -y   store symbolic links as the link instead of the referenced file</span><br><span class="line">  -e   encrypt                      -n   don&#39;t compress these suffixes</span><br><span class="line">  -h2  show more help</span><br></pre></td></tr></table></figure>
-
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h3 id="ls-al"><a href="#ls-al" class="headerlink" title="ls -al"></a>ls -al</h3><p><img src="https://img-blog.csdnimg.cn/20210329224947182.png" alt="在这里插入图片描述"><br>Linux系统中分为三种用户：<br>用户组，其他组，root。root可以在任何地方访问任何数据。默认情况下，所有系统上的账号与一般身份用户，root的相关信息都记录在/etc/passwd这个文件中；个人密码则记录在/etc/shadow这个文件中，此外Linux所有组名都记录在/etc/group中。</p>
-<p>第一个字符表示的文件的种类：<br>1、d是目录<br>2、-是文件<br>3、|是链接文件<br>4、b设备文件里面可供储存的周边设备<br>5、c表示设备文件里边的串行端口设备<br>第一组rwx表示拥有者可具备的权限<br>第二组rwx表示用户组账号的权限<br>第三组rwx表示其他者的权限<br>//默认root用户都可以进行读写<br>第二栏 1表示有多少文件链接到此节点上<br>第三栏记录文件拥有者<br>第四栏记录文件拥有组<br>第五栏记录文件大小<br>第六栏记录时间<br>第七栏记录文件名，如果文件名之前多一个-，则表示这个文件是隐藏文件.</p>
-]]></content>
-      <categories>
-        <category>linux</category>
       </categories>
   </entry>
   <entry>
@@ -949,6 +1085,63 @@
       </categories>
   </entry>
   <entry>
+    <title>有关图片隐写的学习</title>
+    <url>/2021/07/22/%E5%85%B3%E4%BA%8E%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+<h3 id="一、附加式图片隐写"><a href="#一、附加式图片隐写" class="headerlink" title="一、附加式图片隐写"></a>一、附加式图片隐写</h3><p>这种隐写方式通常是使用某种方式在载体文件中直接附加上要被隐写的信息。</p>
+<p>在CTF中，这类图片隐写大概有两种经典方式：</p>
+<p>​        1、直接附加字符串</p>
+<p>​        2、图种形式的隐写</p>
+<h4 id="附加字符串"><a href="#附加字符串" class="headerlink" title="附加字符串"></a>附加字符串</h4><p>这种类型可以用strings命令来查找</p>
+<p>关于strings命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">strings命令在对象文件或二进制文件中查找可打印的字符串。字符串是4个或更多可打印字符的任意序列，以换行符或空字符结束。 strings命令对识别随机对象文件很有用。</span><br><span class="line"></span><br><span class="line">用法：strings [选项] [文件]</span><br><span class="line"> 打印 [文件] (默认为标准输入) 中可打印的字符串</span><br><span class="line"> 选项为：</span><br><span class="line">-a --all：扫描整个文件而不是只扫描目标文件初始化和装载段</span><br><span class="line">-f –print-file-name：在显示字符串前先显示文件名</span><br><span class="line">-t --radix&#x3D;&#123;o,d,x&#125; ：输出字符的位置，基于八进制，十进制或者十六进制</span><br><span class="line">-e --encoding&#x3D;&#123;s,S,b,l,B,L&#125; ：选择字符大小和排列顺序:s &#x3D; 7-bit, S &#x3D; 8-bit, &#123;b,l&#125; &#x3D; 16-bit, &#123;B,L&#125; &#x3D; 32-bit</span><br><span class="line"></span><br><span class="line">-d --data                 Only scan the data sections in the file</span><br><span class="line">-n --bytes&#x3D;[number]       Locate &amp; print any NUL-terminated sequence of at</span><br><span class="line">-&lt;number&gt;                   least [number] characters (default 4).</span><br><span class="line">-w --include-all-whitespace Include all whitespace as valid string characters</span><br><span class="line">-o                        An alias for --radix&#x3D;o</span><br><span class="line">-T --target&#x3D;&lt;BFDNAME&gt;     Specify the binary file format</span><br><span class="line">-s --output-separator&#x3D;&lt;string&gt; String used to separate strings in output.</span><br><span class="line">@&lt;file&gt;                   Read options from &lt;file&gt;</span><br><span class="line">-h --help                 Display this information</span><br><span class="line">-v -V --version           Print the program&#39;s version number</span><br><span class="line">strings：支持的目标： elf64-x86-64 elf32-i386 elf32-iamcu elf32-x86-64 pei-i386 pei-x86-64 elf64-l1om elf64-k1om elf64-little elf64-big elf32-little elf32-big pe-x86-64 pe-bigobj-x86-64 pe-i386 srec symbolsrec verilog tekhex binary ihex plugin</span><br></pre></td></tr></table></figure>
+
+<p>例如<code>strings 1.jpg |grep flag</code>查找1.jpg中可打印字符串中含有flag的字符串</p>
+<p>这种类型一般是将信息插到图片的尾部，少数是插到中间。</p>
+<h4 id="图种形式的隐写"><a href="#图种形式的隐写" class="headerlink" title="图种形式的隐写"></a>图种形式的隐写</h4><p>图种这是一种以图片文件为载体，通常为jpg格式的图片，然后将zip等压缩包文件附加在图片文件后面。因为操作系统识别的过程中是，从文件头标志，到文件的结束标志位，当系统识别到图片的结束标志位后，默认是不再继续识别的，所以我们在通常情况下只能看到它是只是一张图片。</p>
+<p>利用Linux中的binwalk命令即可识别此图片文件都包含了什么文件    查询命令<code>binwalk 1.jpg</code>分离命令<code>binwalk -e 1.jpg</code></p>
+<p>分离文件也可用foremost <code>foremost 1.jpg</code></p>
+<p>binwalk可以自动识别出图片中藏的zip文件以及显示出偏移，binwalk命令还可以解压zilb数据</p>
+<p>不想用命令的话可以用16进制编辑器打开图片文件，手动提取出压缩包，这就要求了要熟悉各种常见文件的文件头标识和结束标识（自行百度</p>
+<h3 id="二、基于文件结构的图片隐写"><a href="#二、基于文件结构的图片隐写" class="headerlink" title="二、基于文件结构的图片隐写"></a>二、基于文件结构的图片隐写</h3><p>主要介绍关于png图片的隐写，<a href="https://ctf-wiki.org/misc/picture/png/">关于png文件结构戳这里</a></p>
+<p>重点了解一下png图片文件头数据块以及png图片IDAT块，这次的隐写也是以这两个地方为基础的。</p>
+<p><strong>png图片文件头数据块（IHDR）</strong></p>
+<p>IHDR中，包括了图片的宽，高，图像深度，颜色类型，压缩方法等</p>
+<p><strong>IDAT数据块</strong></p>
+<p>它存储实际的数据，在数据流中可包含多个连续顺序的图像数据块。这是一个可以存在多个数据块类型的数据块。它的作用就是存储着图像真正的数据。因为它是可以存在多个的，所以即使我们写入一个多余的IDAT也不会多大影响肉眼对图片的观察</p>
+<h4 id="高度被修改导致的隐写"><a href="#高度被修改导致的隐写" class="headerlink" title="高度被修改导致的隐写"></a>高度被修改导致的隐写</h4><p>图片的高度，宽度的值存放于PNG图片的文件头数据块，那么我们就可以通过修改PNG图片的高度值，来对部分信息进行隐藏的。</p>
+<p>辨别：图片在Windows系统下能正常显示而Linux系统不能正常显示，这时候就要考虑图片高度是否被修改了</p>
+<p>推荐一手010editor（一个16进制编辑器），可以运行图片模板，运行模板后可以轻易的找到图片的各个数据块位置及内容</p>
+<p>知道高度被修改后可以直接改大高度也可以用脚本根据crc校验值爆破出来</p>
+<p>脚本如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long</span><br><span class="line"></span><br><span class="line">img = <span class="built_in">open</span>(<span class="string">&#x27;图片的绝对路径&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0xFFFF</span>):</span><br><span class="line">    stream = img[<span class="number">12</span>:<span class="number">20</span>] + struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>, i) + img[<span class="number">24</span>:<span class="number">29</span>]</span><br><span class="line">    crc = binascii.crc32(stream)</span><br><span class="line">    <span class="keyword">if</span> crc == bytes_to_long(img[<span class="number">29</span>:<span class="number">33</span>]):</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">hex</span>(i))<span class="comment">#输出高度的十六进制</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="隐写信息以IDAT块加入图片"><a href="#隐写信息以IDAT块加入图片" class="headerlink" title="隐写信息以IDAT块加入图片"></a>隐写信息以IDAT块加入图片</h4><p>图片的IDAT块是可以存在多个的，这导致了我们可以将隐写信息以IDAT块的形似加入图片。</p>
+<p>可以使用pngcheck对图片进行检测  <a href="https://xz.aliyun.com/t/1836">具体实例看这里</a></p>
+<p>这里不再赘述</p>
+<p>我自己出了一个题可以检验一下  <a href="https://pan.baidu.com/s/1xtG_UmazI6TV_WL1u41Gwg">附件 密码T0MR</a></p>
+<h3 id="三、LSB图片隐写"><a href="#三、LSB图片隐写" class="headerlink" title="三、LSB图片隐写"></a>三、LSB图片隐写</h3><p><a href="https://ctf-wiki.org/misc/picture/png/#lsb">lsb介绍戳这里</a></p>
+<p>在ctf中，最常用于检测lsb隐写的工具为stegsolve    （<a href="http://t0mrvvi1b3t.top/2021/05/03/%E5%B7%A5%E5%85%B7/">这里有</a></p>
+<p>提取rgb最低位脚本–<a href="https://xz.aliyun.com/t/1844">来自这里</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">im = Image.<span class="built_in">open</span>(<span class="string">&quot;extracted.bmp&quot;</span>)</span><br><span class="line">pix = im.load()</span><br><span class="line">width, height = im.size</span><br><span class="line"></span><br><span class="line">extracted_bits = []</span><br><span class="line"><span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(height):<span class="comment">#y，x代表的是图片的高以及宽度，进行一个循环提取</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(width):</span><br><span class="line">        r, g, b = pix[(x,y)]</span><br><span class="line">        extracted_bits.append(r &amp; <span class="number">1</span>)</span><br><span class="line">        extracted_bits.append(g &amp; <span class="number">1</span>)</span><br><span class="line">        extracted_bits.append(b &amp; <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">extracted_byte_bits = [extracted_bits[i:i+<span class="number">8</span>] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(extracted_bits), <span class="number">8</span>)]</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;extracted2.bmp&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> out:</span><br><span class="line">    <span class="keyword">for</span> byte_bits <span class="keyword">in</span> extracted_byte_bits:</span><br><span class="line">                byte_str = <span class="string">&#x27;&#x27;</span>.join(<span class="built_in">str</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> byte_bits)</span><br><span class="line">        byte = <span class="built_in">chr</span>(<span class="built_in">int</span>(byte_str, <span class="number">2</span>))</span><br><span class="line">        out.write(byte)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="四、基于DCT域的JPG图片隐写"><a href="#四、基于DCT域的JPG图片隐写" class="headerlink" title="四、基于DCT域的JPG图片隐写"></a>四、基于DCT域的JPG图片隐写</h3><p><a href="https://ctf-wiki.org/misc/picture/jpg/">关于JPG戳这里</a></p>
+<p>常见关于JPG的隐写方法有 JSteg、JPHide、Outguess、F5等 常用Stegdetect来检测是哪种隐写方式</p>
+<p><a href="https://ctf-wiki.org/misc/picture/jpg/#stegdetect">关于Stegdetect和JPHS戳这里</a>  <a href="https://www.codenong.com/cs106178858/">压缩原理及工具使用戳这里</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;Stegdetect</span><br><span class="line">如果检测结果显示该文件可能包含隐藏信息，那么Stegdetect会在检测结果后面使用1～3颗星来标识</span><br><span class="line">隐藏信息存在的可能性大小，3颗星表示隐藏信息存在的可能性最大。</span><br></pre></td></tr></table></figure>
+
+<h3 id="五、数字水印隐写"><a href="#五、数字水印隐写" class="headerlink" title="五、数字水印隐写"></a>五、数字水印隐写</h3><p><a href="https://www.jianshu.com/p/8a89b6ba5e39">LSB顺序替换嵌入与提取实现</a></p>
+<p><a href="https://github.com/li-xin-yi/graduation-project/tree/master">加强版</a></p>
+]]></content>
+      <categories>
+        <category>Misc</category>
+        <category>图片隐写</category>
+      </categories>
+  </entry>
+  <entry>
     <title>rarctf</title>
     <url>/2021/08/11/rarctf/</url>
     <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
@@ -1151,63 +1344,6 @@
       </tags>
   </entry>
   <entry>
-    <title>有关图片隐写的学习</title>
-    <url>/2021/07/22/%E5%85%B3%E4%BA%8E%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-<h3 id="一、附加式图片隐写"><a href="#一、附加式图片隐写" class="headerlink" title="一、附加式图片隐写"></a>一、附加式图片隐写</h3><p>这种隐写方式通常是使用某种方式在载体文件中直接附加上要被隐写的信息。</p>
-<p>在CTF中，这类图片隐写大概有两种经典方式：</p>
-<p>​        1、直接附加字符串</p>
-<p>​        2、图种形式的隐写</p>
-<h4 id="附加字符串"><a href="#附加字符串" class="headerlink" title="附加字符串"></a>附加字符串</h4><p>这种类型可以用strings命令来查找</p>
-<p>关于strings命令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">strings命令在对象文件或二进制文件中查找可打印的字符串。字符串是4个或更多可打印字符的任意序列，以换行符或空字符结束。 strings命令对识别随机对象文件很有用。</span><br><span class="line"></span><br><span class="line">用法：strings [选项] [文件]</span><br><span class="line"> 打印 [文件] (默认为标准输入) 中可打印的字符串</span><br><span class="line"> 选项为：</span><br><span class="line">-a --all：扫描整个文件而不是只扫描目标文件初始化和装载段</span><br><span class="line">-f –print-file-name：在显示字符串前先显示文件名</span><br><span class="line">-t --radix&#x3D;&#123;o,d,x&#125; ：输出字符的位置，基于八进制，十进制或者十六进制</span><br><span class="line">-e --encoding&#x3D;&#123;s,S,b,l,B,L&#125; ：选择字符大小和排列顺序:s &#x3D; 7-bit, S &#x3D; 8-bit, &#123;b,l&#125; &#x3D; 16-bit, &#123;B,L&#125; &#x3D; 32-bit</span><br><span class="line"></span><br><span class="line">-d --data                 Only scan the data sections in the file</span><br><span class="line">-n --bytes&#x3D;[number]       Locate &amp; print any NUL-terminated sequence of at</span><br><span class="line">-&lt;number&gt;                   least [number] characters (default 4).</span><br><span class="line">-w --include-all-whitespace Include all whitespace as valid string characters</span><br><span class="line">-o                        An alias for --radix&#x3D;o</span><br><span class="line">-T --target&#x3D;&lt;BFDNAME&gt;     Specify the binary file format</span><br><span class="line">-s --output-separator&#x3D;&lt;string&gt; String used to separate strings in output.</span><br><span class="line">@&lt;file&gt;                   Read options from &lt;file&gt;</span><br><span class="line">-h --help                 Display this information</span><br><span class="line">-v -V --version           Print the program&#39;s version number</span><br><span class="line">strings：支持的目标： elf64-x86-64 elf32-i386 elf32-iamcu elf32-x86-64 pei-i386 pei-x86-64 elf64-l1om elf64-k1om elf64-little elf64-big elf32-little elf32-big pe-x86-64 pe-bigobj-x86-64 pe-i386 srec symbolsrec verilog tekhex binary ihex plugin</span><br></pre></td></tr></table></figure>
-
-<p>例如<code>strings 1.jpg |grep flag</code>查找1.jpg中可打印字符串中含有flag的字符串</p>
-<p>这种类型一般是将信息插到图片的尾部，少数是插到中间。</p>
-<h4 id="图种形式的隐写"><a href="#图种形式的隐写" class="headerlink" title="图种形式的隐写"></a>图种形式的隐写</h4><p>图种这是一种以图片文件为载体，通常为jpg格式的图片，然后将zip等压缩包文件附加在图片文件后面。因为操作系统识别的过程中是，从文件头标志，到文件的结束标志位，当系统识别到图片的结束标志位后，默认是不再继续识别的，所以我们在通常情况下只能看到它是只是一张图片。</p>
-<p>利用Linux中的binwalk命令即可识别此图片文件都包含了什么文件    查询命令<code>binwalk 1.jpg</code>分离命令<code>binwalk -e 1.jpg</code></p>
-<p>分离文件也可用foremost <code>foremost 1.jpg</code></p>
-<p>binwalk可以自动识别出图片中藏的zip文件以及显示出偏移，binwalk命令还可以解压zilb数据</p>
-<p>不想用命令的话可以用16进制编辑器打开图片文件，手动提取出压缩包，这就要求了要熟悉各种常见文件的文件头标识和结束标识（自行百度</p>
-<h3 id="二、基于文件结构的图片隐写"><a href="#二、基于文件结构的图片隐写" class="headerlink" title="二、基于文件结构的图片隐写"></a>二、基于文件结构的图片隐写</h3><p>主要介绍关于png图片的隐写，<a href="https://ctf-wiki.org/misc/picture/png/">关于png文件结构戳这里</a></p>
-<p>重点了解一下png图片文件头数据块以及png图片IDAT块，这次的隐写也是以这两个地方为基础的。</p>
-<p><strong>png图片文件头数据块（IHDR）</strong></p>
-<p>IHDR中，包括了图片的宽，高，图像深度，颜色类型，压缩方法等</p>
-<p><strong>IDAT数据块</strong></p>
-<p>它存储实际的数据，在数据流中可包含多个连续顺序的图像数据块。这是一个可以存在多个数据块类型的数据块。它的作用就是存储着图像真正的数据。因为它是可以存在多个的，所以即使我们写入一个多余的IDAT也不会多大影响肉眼对图片的观察</p>
-<h4 id="高度被修改导致的隐写"><a href="#高度被修改导致的隐写" class="headerlink" title="高度被修改导致的隐写"></a>高度被修改导致的隐写</h4><p>图片的高度，宽度的值存放于PNG图片的文件头数据块，那么我们就可以通过修改PNG图片的高度值，来对部分信息进行隐藏的。</p>
-<p>辨别：图片在Windows系统下能正常显示而Linux系统不能正常显示，这时候就要考虑图片高度是否被修改了</p>
-<p>推荐一手010editor（一个16进制编辑器），可以运行图片模板，运行模板后可以轻易的找到图片的各个数据块位置及内容</p>
-<p>知道高度被修改后可以直接改大高度也可以用脚本根据crc校验值爆破出来</p>
-<p>脚本如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long</span><br><span class="line"></span><br><span class="line">img = <span class="built_in">open</span>(<span class="string">&#x27;图片的绝对路径&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0xFFFF</span>):</span><br><span class="line">    stream = img[<span class="number">12</span>:<span class="number">20</span>] + struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>, i) + img[<span class="number">24</span>:<span class="number">29</span>]</span><br><span class="line">    crc = binascii.crc32(stream)</span><br><span class="line">    <span class="keyword">if</span> crc == bytes_to_long(img[<span class="number">29</span>:<span class="number">33</span>]):</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">hex</span>(i))<span class="comment">#输出高度的十六进制</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="隐写信息以IDAT块加入图片"><a href="#隐写信息以IDAT块加入图片" class="headerlink" title="隐写信息以IDAT块加入图片"></a>隐写信息以IDAT块加入图片</h4><p>图片的IDAT块是可以存在多个的，这导致了我们可以将隐写信息以IDAT块的形似加入图片。</p>
-<p>可以使用pngcheck对图片进行检测  <a href="https://xz.aliyun.com/t/1836">具体实例看这里</a></p>
-<p>这里不再赘述</p>
-<p>我自己出了一个题可以检验一下  <a href="https://pan.baidu.com/s/1xtG_UmazI6TV_WL1u41Gwg">附件 密码T0MR</a></p>
-<h3 id="三、LSB图片隐写"><a href="#三、LSB图片隐写" class="headerlink" title="三、LSB图片隐写"></a>三、LSB图片隐写</h3><p><a href="https://ctf-wiki.org/misc/picture/png/#lsb">lsb介绍戳这里</a></p>
-<p>在ctf中，最常用于检测lsb隐写的工具为stegsolve    （<a href="http://t0mrvvi1b3t.top/2021/05/03/%E5%B7%A5%E5%85%B7/">这里有</a></p>
-<p>提取rgb最低位脚本–<a href="https://xz.aliyun.com/t/1844">来自这里</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">im = Image.<span class="built_in">open</span>(<span class="string">&quot;extracted.bmp&quot;</span>)</span><br><span class="line">pix = im.load()</span><br><span class="line">width, height = im.size</span><br><span class="line"></span><br><span class="line">extracted_bits = []</span><br><span class="line"><span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(height):<span class="comment">#y，x代表的是图片的高以及宽度，进行一个循环提取</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(width):</span><br><span class="line">        r, g, b = pix[(x,y)]</span><br><span class="line">        extracted_bits.append(r &amp; <span class="number">1</span>)</span><br><span class="line">        extracted_bits.append(g &amp; <span class="number">1</span>)</span><br><span class="line">        extracted_bits.append(b &amp; <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">extracted_byte_bits = [extracted_bits[i:i+<span class="number">8</span>] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(extracted_bits), <span class="number">8</span>)]</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;extracted2.bmp&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> out:</span><br><span class="line">    <span class="keyword">for</span> byte_bits <span class="keyword">in</span> extracted_byte_bits:</span><br><span class="line">                byte_str = <span class="string">&#x27;&#x27;</span>.join(<span class="built_in">str</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> byte_bits)</span><br><span class="line">        byte = <span class="built_in">chr</span>(<span class="built_in">int</span>(byte_str, <span class="number">2</span>))</span><br><span class="line">        out.write(byte)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="四、基于DCT域的JPG图片隐写"><a href="#四、基于DCT域的JPG图片隐写" class="headerlink" title="四、基于DCT域的JPG图片隐写"></a>四、基于DCT域的JPG图片隐写</h3><p><a href="https://ctf-wiki.org/misc/picture/jpg/">关于JPG戳这里</a></p>
-<p>常见关于JPG的隐写方法有 JSteg、JPHide、Outguess、F5等 常用Stegdetect来检测是哪种隐写方式</p>
-<p><a href="https://ctf-wiki.org/misc/picture/jpg/#stegdetect">关于Stegdetect和JPHS戳这里</a>  <a href="https://www.codenong.com/cs106178858/">压缩原理及工具使用戳这里</a></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;Stegdetect</span><br><span class="line">如果检测结果显示该文件可能包含隐藏信息，那么Stegdetect会在检测结果后面使用1～3颗星来标识</span><br><span class="line">隐藏信息存在的可能性大小，3颗星表示隐藏信息存在的可能性最大。</span><br></pre></td></tr></table></figure>
-
-<h3 id="五、数字水印隐写"><a href="#五、数字水印隐写" class="headerlink" title="五、数字水印隐写"></a>五、数字水印隐写</h3><p><a href="https://www.jianshu.com/p/8a89b6ba5e39">LSB顺序替换嵌入与提取实现</a></p>
-<p><a href="https://github.com/li-xin-yi/graduation-project/tree/master">加强版</a></p>
-]]></content>
-      <categories>
-        <category>Misc</category>
-        <category>图片隐写</category>
-      </categories>
-  </entry>
-  <entry>
     <title>工具下载</title>
     <url>/2021/05/03/%E5%B7%A5%E5%85%B7/</url>
     <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
@@ -1275,105 +1411,6 @@
       <categories>
         <category>Misc</category>
         <category>流量分析</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>escapeshellarg逃逸与参数注入</title>
-    <url>/2021/08/07/escapeshellarg/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-<h3 id="escapeshellarg"><a href="#escapeshellarg" class="headerlink" title="escapeshellarg()"></a>escapeshellarg()</h3><blockquote>
-<p>(PHP 4 &gt;= 4.0.3, PHP 5, PHP 7, PHP 8)</p>
-<p>escapeshellarg — 把字符串转码为可以在 shell 命令里使用的参数</p>
-<p>定义：escapeshellarg(string <code>$arg</code>): string</p>
-<p>作用：escapeshellarg() 将给字符串增加一个单引号并且能引用或者转码任何已经存在的单引号，这样以确保能够直接将一个字符串传入 shell 函数，并且还是确保安全的。对于用户输入的部分参数就应该使用这个函数。shell 函数包含 exec(), system() 执行运算符 。</p>
-</blockquote>
-<p>简单来说，如果输入的内容如果不包含单引号，就直接对输入的字符串添加一对单引号括起来；如果输入内容包含单引号，就先对单引号进行转义再对剩余的字符串添加相应对数的单引号括起来.</p>
-<p>test：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$a</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line">var_dump(escapeshellarg(<span class="variable">$a</span>));</span><br><span class="line"><span class="meta">?&gt;</span> <span class="keyword">string</span>(<span class="number">6</span>) <span class="string">&quot;&quot;</span>a<span class="string">b&#x27;c&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>结果表明：经过<code>escapeshellarg</code>函数处理过的参数被拼接成shell命令，并且被双引号包裹，这样就会造成漏洞</p>
-<blockquote>
-<p>原因：在bash中单双引号解析变量是有区别的。</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">例如：</span></span><br><span class="line">└─# echo `date`</span><br><span class="line">Sat 07 Aug 2021 05:10:12 AM EDT</span><br><span class="line">└─# echo &#x27;`date`&#x27;</span><br><span class="line">`date`</span><br><span class="line">└─# echo &quot;&#x27;`date`&#x27;&quot;</span><br><span class="line">&#x27;Sat 07 Aug 2021 05:10:25 AM EDT&#x27;</span><br><span class="line">└─# echo &#x27;&quot;`date`&quot;&#x27; </span><br><span class="line">&quot;`date`&quot;</span><br></pre></td></tr></table></figure>
-
-<p>不难发现，在解析单引号时，被单引号包裹的内容中如果存在变量的话，这个变量名是不会被解析成值的，而双引号不一样，bash会将双引号包裹的变量名解析成变量的值再使用。</p>
-<p>由以上例子可知，即使参数使用了<code>escapeshellarg</code>函数过滤了单引号，但参数在拼接命令的时候使用了双引号的话还是会导致命令执行漏洞。</p>
-<h3 id="escapeshellcmd"><a href="#escapeshellcmd" class="headerlink" title="escapeshellcmd()"></a>escapeshellcmd()</h3><blockquote>
-<p><strong>escapeshellcmd</strong> — shell 元字符转义</p>
-<p>功能：<strong>escapeshellcmd()</strong> 对字符串中可能会欺骗 shell 命令执行任意命令的字符进行转义。 此函数保证用户输入的数据在传送到 <a href="http://php.net/manual/zh/function.exec.php">exec()</a> 或 <a href="http://php.net/manual/zh/function.system.php">system()</a> 函数，或者 <a href="http://php.net/manual/zh/language.operators.execution.php">执行操作符</a> 之前进行转义。</p>
-<p>反斜线（\）会在以下字符之前插入： <em>&amp;#;`|*?~&lt;&gt;^()[]{}$</em>, <em>\x0A</em> 和 <em>\xFF*。 *’</em> 和 <em>“</em> 仅在不配对儿的时候被转义。 在 Windows 平台上，所有这些字符以及 <em>%</em> 和 <em>!</em> 字符都会被空格代替。</p>
-<p><strong>定义</strong> ：<code>string escapeshellcmd ( string $command)</code></p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">例子：</span></span><br><span class="line">└─# cat test.php                </span><br><span class="line">&lt;?php</span><br><span class="line"><span class="meta">$</span><span class="bash">a = <span class="string">&quot;`whoami`&quot;</span>;</span></span><br><span class="line">echo escapeshellcmd($a);</span><br><span class="line">?&gt;%</span><br><span class="line"></span><br><span class="line">└─# php test.php</span><br><span class="line">\`whoami\`%</span><br></pre></td></tr></table></figure>
-
-<p>同时使用<code>escapeshellarg</code>和<code>escapeshellcmd</code>会试试</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">例子：</span></span><br><span class="line">└─# cat test.php</span><br><span class="line">&lt;?php</span><br><span class="line">echo escapeshellarg(&quot;who&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">echo escapeshellcmd(&quot;who&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">echo escapeshellarg(&quot;who&#x27;&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">echo escapeshellcmd(&quot;who&#x27;&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">└─# php test.php</span><br><span class="line">&#x27;who&#x27;\&#x27;&#x27;ami&#x27;</span><br><span class="line">who\&#x27;ami</span><br><span class="line">&#x27;who&#x27;\&#x27;&#x27;&#x27;\&#x27;&#x27;ami&#x27;</span><br><span class="line">who&#x27;&#x27;ami</span><br></pre></td></tr></table></figure>
-
-<p>可以发现这两个函数对于单引号的处理是有区别的，<code>escapeshellarg</code>函数转义后还会用单引号包裹，但<code>escapeshellcmd</code>函数是直接加一个转义符，对于成对的单引号，<code>escapeshellcmd</code>函数默认不转义，但<code>escapeshellarg</code>函数转义。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# cat test1.php</span><br><span class="line">&lt;?php</span><br><span class="line"><span class="meta">$</span><span class="bash">param=<span class="string">&quot;127.0.0.1&#x27; -v -d a=1&quot;</span>;</span></span><br><span class="line"><span class="meta">$</span><span class="bash">a=escapeshellarg(<span class="variable">$param</span>);</span></span><br><span class="line"><span class="meta">$</span><span class="bash">b=escapeshellcmd(<span class="variable">$a</span>);</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cmd=<span class="string">&quot;curl &quot;</span>.<span class="variable">$b</span>;</span></span><br><span class="line"><span class="meta">var_dump($</span><span class="bash">a).<span class="string">&quot;\n&quot;</span>;</span></span><br><span class="line"><span class="meta">var_dump($</span><span class="bash">b).<span class="string">&quot;\n&quot;</span>;</span></span><br><span class="line"><span class="meta">var_dump($</span><span class="bash">cmd).<span class="string">&quot;\n&quot;</span>;</span></span><br><span class="line"><span class="meta">system($</span><span class="bash">cmd);</span></span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">└─# php test1.php </span><br><span class="line">string(25) &quot;&#x27;127.0.0.1&#x27;\&#x27;&#x27; -v -d a=1&#x27;&quot;</span><br><span class="line">string(27) &quot;&#x27;127.0.0.1&#x27;\\&#x27;&#x27; -v -d a=1\&#x27;&quot;</span><br><span class="line">string(32) &quot;curl &#x27;127.0.0.1&#x27;\\&#x27;&#x27; -v -d a=1\&#x27;&quot;</span><br><span class="line"><span class="meta">  %</span><span class="bash"> Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span></span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Could not resolve host: 127.0.0.1\</span><br><span class="line">* Closing connection 0</span><br><span class="line">curl: (6) Could not resolve host: 127.0.0.1\</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>过程分析：</p>
-<ol>
-<li><p>传入的参数是</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">127.0.0.1&#39; -v -d a&#x3D;1</span><br></pre></td></tr></table></figure></li>
-<li><p><code>escapeshellarg</code>函数先对单引号转义，再用单引号将左右两部分括起来起连接作用。所以处理之后效果如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#39;127.0.0.1&#39;\&#39;&#39; -v -d a&#x3D;1&#39;</span><br></pre></td></tr></table></figure></li>
-<li><p>经过<code>escapeshellcmd</code>针对第二步处理之后的参数中的<code>\</code>以及<code>a=1&#39;</code>中的单引号进行处理转义之后的效果如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#39;127.0.0.1&#39;\\&#39;&#39; -v -d a&#x3D;1\&#39;</span><br></pre></td></tr></table></figure></li>
-<li><p>由于第三步处理之后的payload中的<code>\\</code>被解释成了<code>\</code>而不再是转义字符，所以单引号配对连接之后将payload分割为三个部分，具体如下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# curl &#x27;127.0.0.1&#x27;\\&#x27;&#x27; -v -d a=1\&#x27;</span><br><span class="line">* Could not resolve host: 127.0.0.1\</span><br><span class="line">* Closing connection 0</span><br><span class="line">curl: (6) Could not resolve host: 127.0.0.1\</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>web学习</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>ctfshow_misc入门  WP（未完）</title>
-    <url>/2021/05/11/ctfshow_misc_ru/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-
-
-<h2 id="图片篇-基础操作"><a href="#图片篇-基础操作" class="headerlink" title="图片篇(基础操作)"></a>图片篇(基础操作)</h2><h3 id="misc1"><a href="#misc1" class="headerlink" title="misc1"></a>misc1</h3><p>没啥好说的，打开图片就是flag</p>
-<h3 id="misc2"><a href="#misc2" class="headerlink" title="misc2"></a>misc2</h3><p>附件是txt文本，用010editor打开，发现16进制对应的是png的文件头，修改后缀名misc2.txt–&gt;misc.png，打开图片就可以看到flag了</p>
-<h3 id="misc3"><a href="#misc3" class="headerlink" title="misc3"></a>misc3</h3><p>解压后是一个bpg文件，在<a href="https://bellard.org/bpg/">网站</a>下载bpg文件查看器，解压后，用bpgview.exe打开misc3.bpg即可看见flag</p>
-<h3 id="misc4"><a href="#misc4" class="headerlink" title="misc4"></a>misc4</h3><p>给了6个txt文件，分别用010editor打开，看开头的16进制，找对应图片格式的文件头，依次改为png、jpg、bmp、gif、tif、webp之后将图片中的字符串拼接一下就可以得到flag了</p>
-<p>成品：<a href="https://pan.baidu.com/s/1Iz-HL2t5me3EfiZ2auGOFg">T0MR</a></p>
-<h2 id="图片篇-信息附加"><a href="#图片篇-信息附加" class="headerlink" title="图片篇(信息附加)"></a>图片篇(信息附加)</h2><h3 id="misc5"><a href="#misc5" class="headerlink" title="misc5"></a>misc5</h3><p>打开附件，图片上写着<code>there_is_no_flag_here</code><del>而且图片为900x150像素，很明显图片的高度被缩小了</del>（当我修改完高度之后发现，我错了）用010editor打开之后滑到最下边即可看到flag</p>
-<h3 id="misc6"><a href="#misc6" class="headerlink" title="misc6"></a>misc6</h3><p>用010editor打开搜索文本ctfshow，即可发现flag（这题是藏到中间了</p>
-<h3 id="misc7"><a href="#misc7" class="headerlink" title="misc7"></a>misc7</h3><p>题目上给了提示<code>flag在图片文件信息中</code> <del>好嘛</del>，还是在010editor中搜索文本就完事。。</p>
-<h3 id="misc8"><a href="#misc8" class="headerlink" title="misc8"></a>misc8</h3><p>题目给提示<code>flag在图片文件中图片文件中</code> 那就是个套娃呗，用010editor打开可以发现有两个png文件的文件头，把后边的png文件分离出来就可以了</p>
-<p>方法：找到第二个png文件头<code>89 50 4E 47</code> 将从这儿开始一直到结尾的16进制文本复制到一个新建文本文档里边，之后在010中点左上角  文件–&gt;导入16进制文本–&gt;选中刚才导出的文本–&gt;保存为png文件–&gt;即可看到flag（复制16进制文本方法：选中之后找左上角的编辑–&gt;复制–&gt;复制为16进制文本）</p>
-<h3 id="misc9"><a href="#misc9" class="headerlink" title="misc9"></a>misc9</h3><p>题目给的hint<code>flag在图片块里</code> 直接010打开，搜索一下ctfshow就行。</p>
-<p>预期解应该是👇</p>
-<p><img src="https://img.vim-cn.com/a1/c461bd18824075954430e81821aa105703e7fd.png" alt="misc9"></p>
-<h3 id="misc10"><a href="#misc10" class="headerlink" title="misc10"></a>misc10</h3><p>题目hint<code>flag在图片数据里</code> 用kali的binwalk分离出数据👇</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">binwalk -e misc10.png</span><br></pre></td></tr></table></figure>
-
-<p>生成一个文件夹👇</p>
-<p><img src="https://img.vim-cn.com/32/0bb40622510cc79d4473bc01cc97ac033e36d5.png" alt="misc10"></p>
-<p>第一个文件打开就看到了flag</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">对于这题八神师傅说过：</span><br><span class="line">zlib是PNG IDAT块数据可选的压缩格式</span><br><span class="line">本题是师傅自己生成了一段zlib压缩数据，然后加上长度位、标识位和CRC校验位</span><br><span class="line">伪装成一个IDAT块，然后插入到图片文件里</span><br><span class="line">binwalk会找到zlib块的标记然后提取出来，同时因为这是个压缩数据，-e参数会自动把提取到的压缩包尝试进行解压，所以最后的提取结果里就有了原始的文本--&gt;flag</span><br></pre></td></tr></table></figure>
-
-<p>也可以解压最后一个idat块得到flag</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s=<span class="built_in">bytes</span>.fromhex(<span class="string">&#x27;789C4B2E492BCEC82FAF363635363235323132494C36B34C4E3233493333313637B3B030354C4C36B734A8050009960BD1&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(zlib.decompress(s))</span><br><span class="line"></span><br><span class="line"><span class="comment">#--------------------------------------</span></span><br><span class="line"><span class="string">b&#x27;ctfshow&#123;353252424ac69cb64f643768851ac790&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="misc11"><a href="#misc11" class="headerlink" title="misc11"></a>misc11</h3><p>hint<code>flag在另一张图里</code> </p>
-<p>讲真，这个hint没看懂，后来问了一下八神👴👴</p>
-<p><img src="https://img.vim-cn.com/be/0560324992ad5c0a89854edd473ba53de933ea.png" alt="misc11.1"></p>
-<p>用010打开👇</p>
-<p><img src="https://img.vim-cn.com/8b/c96dec54ddad4bcf6d656f5aae09205d16234e.png" alt="misc11.2"></p>
-<p>把第一个IDAT对应的部分删除之后保存为另一张图片即可看到flag</p>
-<p>或者用tweakpng打开选中第二个idat块，右键点击delete删除，然后另存为一张图片即可</p>
-<p><img src="https://img.vim-cn.com/af/4b6d14360e50ee54755174587a61af4a51a314.png" alt="misc11.3"></p>
-<h3 id="misc12"><a href="#misc12" class="headerlink" title="misc12"></a>misc12</h3>]]></content>
-      <categories>
-        <category>Misc</category>
       </categories>
   </entry>
   <entry>
