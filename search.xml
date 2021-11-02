@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
+    <title>rarctf</title>
     <url>/2021/11/02/2021-dhb-misc-wp/</url>
-    <content><![CDATA[<h1 id="Check-in"><a href="#Check-in" class="headerlink" title="Check in"></a>Check in</h1><p>简简单单的签到题，一个utf-7</p>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+<h1 id="Check-in"><a href="#Check-in" class="headerlink" title="Check in"></a>Check in</h1><p>简简单单的签到题，一个utf-7</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">+AGYAbABhAGcAewBkAGgAYgBfADcAdABoAH0-</span><br></pre></td></tr></table></figure>
 
 <p>解码得</p>
@@ -20,8 +22,6 @@
 <p>后边还有一个jpg图片的base64编码，用oursecret解密得到flag</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;f3a5dc36-ad43-d4fa-e75f-ef79e2e28ef3&#125;</span><br></pre></td></tr></table></figure>
 
-
-
 <h1 id="JumpJumpTiger"><a href="#JumpJumpTiger" class="headerlink" title="JumpJumpTiger"></a>JumpJumpTiger</h1><p>用ida打开看到hint，猜测把数据分组处理了，strings提取出base64编码数据奇数位（第一位第三位…）为jpg文件的base64数据，偶数位（第二位第四位…）为png的base64数据，分别得到两张图片，python的盲水印，解一下就ok</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> base64 <span class="keyword">import</span> b64decode</span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&quot;1-1.txt&quot;</span>, <span class="string">&quot;r&quot;</span>)</span><br><span class="line">a = f.readlines()[<span class="number">0</span>]</span><br><span class="line">jpg = <span class="string">&quot;&quot;</span></span><br><span class="line">png = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(a), <span class="number">2</span>):</span><br><span class="line">    jpg += a[x]</span><br><span class="line">    png += a[x+<span class="number">1</span>]</span><br><span class="line">j = <span class="built_in">open</span>(<span class="string">&quot;jpg.jpg&quot;</span>, <span class="string">&quot;wb&quot;</span>)</span><br><span class="line">p = <span class="built_in">open</span>(<span class="string">&quot;png.png&quot;</span>, <span class="string">&quot;wb&quot;</span>)</span><br><span class="line">j.write(b64decode((jpg.split(<span class="string">&quot;=&quot;</span>)[<span class="number">0</span>]+<span class="string">&quot;=&quot;</span>).encode()))</span><br><span class="line">p.write(b64decode(png.encode()))</span><br><span class="line">j.close()</span><br><span class="line">p.close()</span><br></pre></td></tr></table></figure>
 
@@ -36,6 +36,9 @@
 
 
 ]]></content>
+      <categories>
+        <category>Misc</category>
+      </categories>
   </entry>
   <entry>
     <title>csictf2020 panda wp</title>
@@ -805,6 +808,41 @@
       </tags>
   </entry>
   <entry>
+    <title>rarctf</title>
+    <url>/2021/08/11/rarctf/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+<p>比赛链接：<a href="https://ctf.rars.win/campaign/web">https://ctf.rars.win/campaign/web</a></p>
+<h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="Fancy-Button-Generator-100-points"><a href="#Fancy-Button-Generator-100-points" class="headerlink" title="Fancy Button Generator(100 points)"></a>Fancy Button Generator(100 points)</h2><p>题目描述：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Check out this cool new fancy button generator! The buttons even glow!</span><br><span class="line"></span><br><span class="line">https:&#x2F;&#x2F;fbg.rars.win&#x2F;</span><br><span class="line"></span><br><span class="line">Make sure to test your payloads using the full environment provided.</span><br></pre></td></tr></table></figure>
+
+<p>附件：<a href="https://files-ctf.rars.win/challenge-files/54/804f28ea10c248e205e2112893c4ddea/fbg.zip">1</a>、<a href="https://files-ctf.rars.win/challenge-files/54/9d802a7157f03097a8c4e706d69a519e/template-solve.py">2</a></p>
+<h2 id="lemonthinker-100-points"><a href="#lemonthinker-100-points" class="headerlink" title="lemonthinker (100 points)"></a>lemonthinker (100 points)</h2><ul>
+<li>we can command injection app.py line:24</li>
+</ul>
+<blockquote>
+<p>os.system(f”python3 generate.py {filename} “{text}””)</p>
+</blockquote>
+<ul>
+<li>we can input command in {text}</li>
+</ul>
+<h3 id="input"><a href="#input" class="headerlink" title="input"></a>input</h3><blockquote>
+<p>test $(cp ../flag.txt static/images/test.txt)</p>
+</blockquote>
+<h3 id="access"><a href="#access" class="headerlink" title="access"></a>access</h3><blockquote>
+<p><a href="http://193.57.159.27:51768/static/images/test.txt">http://193.57.159.27:51768/static/images/test.txt</a></p>
+<p>you can get flag here</p>
+</blockquote>
+<h1 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h1><h2 id="Coherence-Check-10-points"><a href="#Coherence-Check-10-points" class="headerlink" title="Coherence Check (10 points)"></a>Coherence Check (10 points)</h2><p>签到题</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hotzzzzy/img@main/1629196929308-1629196929297.png"></p>
+<h2 id="Discord-10-points"><a href="#Discord-10-points" class="headerlink" title="Discord (10 points)"></a>Discord (10 points)</h2><p>签到题<del>（话说为啥要出俩签到题</del></p>
+<p><img src="https://cdn.jsdelivr.net/gh/hotzzzzy/img@main/1629197017305-1629197017299.png"></p>
+]]></content>
+      <categories>
+        <category>比赛复现</category>
+      </categories>
+  </entry>
+  <entry>
     <title>xss-haizi-me通关记录</title>
     <url>/2021/04/29/xss-haizi-me/</url>
     <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
@@ -1139,41 +1177,6 @@
       <categories>
         <category>Misc</category>
         <category>图片隐写</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>rarctf</title>
-    <url>/2021/08/11/rarctf/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-<p>比赛链接：<a href="https://ctf.rars.win/campaign/web">https://ctf.rars.win/campaign/web</a></p>
-<h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="Fancy-Button-Generator-100-points"><a href="#Fancy-Button-Generator-100-points" class="headerlink" title="Fancy Button Generator(100 points)"></a>Fancy Button Generator(100 points)</h2><p>题目描述：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Check out this cool new fancy button generator! The buttons even glow!</span><br><span class="line"></span><br><span class="line">https:&#x2F;&#x2F;fbg.rars.win&#x2F;</span><br><span class="line"></span><br><span class="line">Make sure to test your payloads using the full environment provided.</span><br></pre></td></tr></table></figure>
-
-<p>附件：<a href="https://files-ctf.rars.win/challenge-files/54/804f28ea10c248e205e2112893c4ddea/fbg.zip">1</a>、<a href="https://files-ctf.rars.win/challenge-files/54/9d802a7157f03097a8c4e706d69a519e/template-solve.py">2</a></p>
-<h2 id="lemonthinker-100-points"><a href="#lemonthinker-100-points" class="headerlink" title="lemonthinker (100 points)"></a>lemonthinker (100 points)</h2><ul>
-<li>we can command injection app.py line:24</li>
-</ul>
-<blockquote>
-<p>os.system(f”python3 generate.py {filename} “{text}””)</p>
-</blockquote>
-<ul>
-<li>we can input command in {text}</li>
-</ul>
-<h3 id="input"><a href="#input" class="headerlink" title="input"></a>input</h3><blockquote>
-<p>test $(cp ../flag.txt static/images/test.txt)</p>
-</blockquote>
-<h3 id="access"><a href="#access" class="headerlink" title="access"></a>access</h3><blockquote>
-<p><a href="http://193.57.159.27:51768/static/images/test.txt">http://193.57.159.27:51768/static/images/test.txt</a></p>
-<p>you can get flag here</p>
-</blockquote>
-<h1 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h1><h2 id="Coherence-Check-10-points"><a href="#Coherence-Check-10-points" class="headerlink" title="Coherence Check (10 points)"></a>Coherence Check (10 points)</h2><p>签到题</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hotzzzzy/img@main/1629196929308-1629196929297.png"></p>
-<h2 id="Discord-10-points"><a href="#Discord-10-points" class="headerlink" title="Discord (10 points)"></a>Discord (10 points)</h2><p>签到题<del>（话说为啥要出俩签到题</del></p>
-<p><img src="https://cdn.jsdelivr.net/gh/hotzzzzy/img@main/1629197017305-1629197017299.png"></p>
-]]></content>
-      <categories>
-        <category>比赛复现</category>
       </categories>
   </entry>
   <entry>
