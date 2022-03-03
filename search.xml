@@ -44,6 +44,28 @@
       </categories>
   </entry>
   <entry>
+    <title>2022 SUSCTF 部分misc复现</title>
+    <url>/2022/03/03/SUSCTF-MISC/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+
+
+<h1 id="AUDIO"><a href="#AUDIO" class="headerlink" title="AUDIO"></a>AUDIO</h1><p>给了两个音频文件用<code>Adobe Audition</code>打开，新建多轨会话，将两段音频导入</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hotzzzzy/img@main/16462989247571646298924135.png"></p>
+<p>将两端音轨对齐之后调整第一个音频文件（也就是非源音频的文件），对此文件进行反相</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hotzzzzy/img@main/16462990287601646299027967.png"></p>
+<p>反相之后回到混音项目里边，通过调整音量来使伴奏声音变小（直到声音变得清晰为止），使人声更加清晰（6左右都可以）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hotzzzzy/img@main/16462990737611646299073038.png"></p>
+<p>之后导出混音文件，查看频谱就ok了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hotzzzzy/img@main/16462991857881646299185729.png"></p>
+<p>明显的莫斯密码。</p>
+<p>具体操作可以参考b站视频–&gt;<a href="https://www.bilibili.com/video/av65584436/">here</a></p>
+]]></content>
+      <categories>
+        <category>Misc</category>
+      </categories>
+  </entry>
+  <entry>
     <title>csictf2020 panda wp</title>
     <url>/2021/05/14/csictf-misc-panda/</url>
     <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
@@ -153,6 +175,59 @@
 <h3 id="misc12"><a href="#misc12" class="headerlink" title="misc12"></a>misc12</h3>]]></content>
       <categories>
         <category>Misc</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>escapeshellarg逃逸与参数注入</title>
+    <url>/2021/08/07/escapeshellarg/</url>
+    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
+
+<h3 id="escapeshellarg"><a href="#escapeshellarg" class="headerlink" title="escapeshellarg()"></a>escapeshellarg()</h3><blockquote>
+<p>(PHP 4 &gt;= 4.0.3, PHP 5, PHP 7, PHP 8)</p>
+<p>escapeshellarg — 把字符串转码为可以在 shell 命令里使用的参数</p>
+<p>定义：escapeshellarg(string <code>$arg</code>): string</p>
+<p>作用：escapeshellarg() 将给字符串增加一个单引号并且能引用或者转码任何已经存在的单引号，这样以确保能够直接将一个字符串传入 shell 函数，并且还是确保安全的。对于用户输入的部分参数就应该使用这个函数。shell 函数包含 exec(), system() 执行运算符 。</p>
+</blockquote>
+<p>简单来说，如果输入的内容如果不包含单引号，就直接对输入的字符串添加一对单引号括起来；如果输入内容包含单引号，就先对单引号进行转义再对剩余的字符串添加相应对数的单引号括起来.</p>
+<p>test：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$a</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line">var_dump(escapeshellarg(<span class="variable">$a</span>));</span><br><span class="line"><span class="meta">?&gt;</span> <span class="keyword">string</span>(<span class="number">6</span>) <span class="string">&quot;&quot;</span>a<span class="string">b&#x27;c&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>结果表明：经过<code>escapeshellarg</code>函数处理过的参数被拼接成shell命令，并且被双引号包裹，这样就会造成漏洞</p>
+<blockquote>
+<p>原因：在bash中单双引号解析变量是有区别的。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">例如：</span></span><br><span class="line">└─# echo `date`</span><br><span class="line">Sat 07 Aug 2021 05:10:12 AM EDT</span><br><span class="line">└─# echo &#x27;`date`&#x27;</span><br><span class="line">`date`</span><br><span class="line">└─# echo &quot;&#x27;`date`&#x27;&quot;</span><br><span class="line">&#x27;Sat 07 Aug 2021 05:10:25 AM EDT&#x27;</span><br><span class="line">└─# echo &#x27;&quot;`date`&quot;&#x27; </span><br><span class="line">&quot;`date`&quot;</span><br></pre></td></tr></table></figure>
+
+<p>不难发现，在解析单引号时，被单引号包裹的内容中如果存在变量的话，这个变量名是不会被解析成值的，而双引号不一样，bash会将双引号包裹的变量名解析成变量的值再使用。</p>
+<p>由以上例子可知，即使参数使用了<code>escapeshellarg</code>函数过滤了单引号，但参数在拼接命令的时候使用了双引号的话还是会导致命令执行漏洞。</p>
+<h3 id="escapeshellcmd"><a href="#escapeshellcmd" class="headerlink" title="escapeshellcmd()"></a>escapeshellcmd()</h3><blockquote>
+<p><strong>escapeshellcmd</strong> — shell 元字符转义</p>
+<p>功能：<strong>escapeshellcmd()</strong> 对字符串中可能会欺骗 shell 命令执行任意命令的字符进行转义。 此函数保证用户输入的数据在传送到 <a href="http://php.net/manual/zh/function.exec.php">exec()</a> 或 <a href="http://php.net/manual/zh/function.system.php">system()</a> 函数，或者 <a href="http://php.net/manual/zh/language.operators.execution.php">执行操作符</a> 之前进行转义。</p>
+<p>反斜线（\）会在以下字符之前插入： <em>&amp;#;`|*?~&lt;&gt;^()[]{}$</em>, <em>\x0A</em> 和 <em>\xFF*。 *’</em> 和 <em>“</em> 仅在不配对儿的时候被转义。 在 Windows 平台上，所有这些字符以及 <em>%</em> 和 <em>!</em> 字符都会被空格代替。</p>
+<p><strong>定义</strong> ：<code>string escapeshellcmd ( string $command)</code></p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">例子：</span></span><br><span class="line">└─# cat test.php                </span><br><span class="line">&lt;?php</span><br><span class="line"><span class="meta">$</span><span class="bash">a = <span class="string">&quot;`whoami`&quot;</span>;</span></span><br><span class="line">echo escapeshellcmd($a);</span><br><span class="line">?&gt;%</span><br><span class="line"></span><br><span class="line">└─# php test.php</span><br><span class="line">\`whoami\`%</span><br></pre></td></tr></table></figure>
+
+<p>同时使用<code>escapeshellarg</code>和<code>escapeshellcmd</code>会试试</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">例子：</span></span><br><span class="line">└─# cat test.php</span><br><span class="line">&lt;?php</span><br><span class="line">echo escapeshellarg(&quot;who&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">echo escapeshellcmd(&quot;who&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">echo escapeshellarg(&quot;who&#x27;&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">echo escapeshellcmd(&quot;who&#x27;&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">└─# php test.php</span><br><span class="line">&#x27;who&#x27;\&#x27;&#x27;ami&#x27;</span><br><span class="line">who\&#x27;ami</span><br><span class="line">&#x27;who&#x27;\&#x27;&#x27;&#x27;\&#x27;&#x27;ami&#x27;</span><br><span class="line">who&#x27;&#x27;ami</span><br></pre></td></tr></table></figure>
+
+<p>可以发现这两个函数对于单引号的处理是有区别的，<code>escapeshellarg</code>函数转义后还会用单引号包裹，但<code>escapeshellcmd</code>函数是直接加一个转义符，对于成对的单引号，<code>escapeshellcmd</code>函数默认不转义，但<code>escapeshellarg</code>函数转义。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# cat test1.php</span><br><span class="line">&lt;?php</span><br><span class="line"><span class="meta">$</span><span class="bash">param=<span class="string">&quot;127.0.0.1&#x27; -v -d a=1&quot;</span>;</span></span><br><span class="line"><span class="meta">$</span><span class="bash">a=escapeshellarg(<span class="variable">$param</span>);</span></span><br><span class="line"><span class="meta">$</span><span class="bash">b=escapeshellcmd(<span class="variable">$a</span>);</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cmd=<span class="string">&quot;curl &quot;</span>.<span class="variable">$b</span>;</span></span><br><span class="line"><span class="meta">var_dump($</span><span class="bash">a).<span class="string">&quot;\n&quot;</span>;</span></span><br><span class="line"><span class="meta">var_dump($</span><span class="bash">b).<span class="string">&quot;\n&quot;</span>;</span></span><br><span class="line"><span class="meta">var_dump($</span><span class="bash">cmd).<span class="string">&quot;\n&quot;</span>;</span></span><br><span class="line"><span class="meta">system($</span><span class="bash">cmd);</span></span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">└─# php test1.php </span><br><span class="line">string(25) &quot;&#x27;127.0.0.1&#x27;\&#x27;&#x27; -v -d a=1&#x27;&quot;</span><br><span class="line">string(27) &quot;&#x27;127.0.0.1&#x27;\\&#x27;&#x27; -v -d a=1\&#x27;&quot;</span><br><span class="line">string(32) &quot;curl &#x27;127.0.0.1&#x27;\\&#x27;&#x27; -v -d a=1\&#x27;&quot;</span><br><span class="line"><span class="meta">  %</span><span class="bash"> Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span></span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Could not resolve host: 127.0.0.1\</span><br><span class="line">* Closing connection 0</span><br><span class="line">curl: (6) Could not resolve host: 127.0.0.1\</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>过程分析：</p>
+<ol>
+<li><p>传入的参数是</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">127.0.0.1&#39; -v -d a&#x3D;1</span><br></pre></td></tr></table></figure></li>
+<li><p><code>escapeshellarg</code>函数先对单引号转义，再用单引号将左右两部分括起来起连接作用。所以处理之后效果如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#39;127.0.0.1&#39;\&#39;&#39; -v -d a&#x3D;1&#39;</span><br></pre></td></tr></table></figure></li>
+<li><p>经过<code>escapeshellcmd</code>针对第二步处理之后的参数中的<code>\</code>以及<code>a=1&#39;</code>中的单引号进行处理转义之后的效果如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#39;127.0.0.1&#39;\\&#39;&#39; -v -d a&#x3D;1\&#39;</span><br></pre></td></tr></table></figure></li>
+<li><p>由于第三步处理之后的payload中的<code>\\</code>被解释成了<code>\</code>而不再是转义字符，所以单引号配对连接之后将payload分割为三个部分，具体如下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# curl &#x27;127.0.0.1&#x27;\\&#x27;&#x27; -v -d a=1\&#x27;</span><br><span class="line">* Could not resolve host: 127.0.0.1\</span><br><span class="line">* Closing connection 0</span><br><span class="line">curl: (6) Could not resolve host: 127.0.0.1\</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>web学习</category>
       </categories>
   </entry>
   <entry>
@@ -409,59 +484,6 @@
 ]]></content>
       <categories>
         <category>web刷题记录</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>escapeshellarg逃逸与参数注入</title>
-    <url>/2021/08/07/escapeshellarg/</url>
-    <content><![CDATA[<script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script>
-
-<h3 id="escapeshellarg"><a href="#escapeshellarg" class="headerlink" title="escapeshellarg()"></a>escapeshellarg()</h3><blockquote>
-<p>(PHP 4 &gt;= 4.0.3, PHP 5, PHP 7, PHP 8)</p>
-<p>escapeshellarg — 把字符串转码为可以在 shell 命令里使用的参数</p>
-<p>定义：escapeshellarg(string <code>$arg</code>): string</p>
-<p>作用：escapeshellarg() 将给字符串增加一个单引号并且能引用或者转码任何已经存在的单引号，这样以确保能够直接将一个字符串传入 shell 函数，并且还是确保安全的。对于用户输入的部分参数就应该使用这个函数。shell 函数包含 exec(), system() 执行运算符 。</p>
-</blockquote>
-<p>简单来说，如果输入的内容如果不包含单引号，就直接对输入的字符串添加一对单引号括起来；如果输入内容包含单引号，就先对单引号进行转义再对剩余的字符串添加相应对数的单引号括起来.</p>
-<p>test：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$a</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line">var_dump(escapeshellarg(<span class="variable">$a</span>));</span><br><span class="line"><span class="meta">?&gt;</span> <span class="keyword">string</span>(<span class="number">6</span>) <span class="string">&quot;&quot;</span>a<span class="string">b&#x27;c&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>结果表明：经过<code>escapeshellarg</code>函数处理过的参数被拼接成shell命令，并且被双引号包裹，这样就会造成漏洞</p>
-<blockquote>
-<p>原因：在bash中单双引号解析变量是有区别的。</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">例如：</span></span><br><span class="line">└─# echo `date`</span><br><span class="line">Sat 07 Aug 2021 05:10:12 AM EDT</span><br><span class="line">└─# echo &#x27;`date`&#x27;</span><br><span class="line">`date`</span><br><span class="line">└─# echo &quot;&#x27;`date`&#x27;&quot;</span><br><span class="line">&#x27;Sat 07 Aug 2021 05:10:25 AM EDT&#x27;</span><br><span class="line">└─# echo &#x27;&quot;`date`&quot;&#x27; </span><br><span class="line">&quot;`date`&quot;</span><br></pre></td></tr></table></figure>
-
-<p>不难发现，在解析单引号时，被单引号包裹的内容中如果存在变量的话，这个变量名是不会被解析成值的，而双引号不一样，bash会将双引号包裹的变量名解析成变量的值再使用。</p>
-<p>由以上例子可知，即使参数使用了<code>escapeshellarg</code>函数过滤了单引号，但参数在拼接命令的时候使用了双引号的话还是会导致命令执行漏洞。</p>
-<h3 id="escapeshellcmd"><a href="#escapeshellcmd" class="headerlink" title="escapeshellcmd()"></a>escapeshellcmd()</h3><blockquote>
-<p><strong>escapeshellcmd</strong> — shell 元字符转义</p>
-<p>功能：<strong>escapeshellcmd()</strong> 对字符串中可能会欺骗 shell 命令执行任意命令的字符进行转义。 此函数保证用户输入的数据在传送到 <a href="http://php.net/manual/zh/function.exec.php">exec()</a> 或 <a href="http://php.net/manual/zh/function.system.php">system()</a> 函数，或者 <a href="http://php.net/manual/zh/language.operators.execution.php">执行操作符</a> 之前进行转义。</p>
-<p>反斜线（\）会在以下字符之前插入： <em>&amp;#;`|*?~&lt;&gt;^()[]{}$</em>, <em>\x0A</em> 和 <em>\xFF*。 *’</em> 和 <em>“</em> 仅在不配对儿的时候被转义。 在 Windows 平台上，所有这些字符以及 <em>%</em> 和 <em>!</em> 字符都会被空格代替。</p>
-<p><strong>定义</strong> ：<code>string escapeshellcmd ( string $command)</code></p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">例子：</span></span><br><span class="line">└─# cat test.php                </span><br><span class="line">&lt;?php</span><br><span class="line"><span class="meta">$</span><span class="bash">a = <span class="string">&quot;`whoami`&quot;</span>;</span></span><br><span class="line">echo escapeshellcmd($a);</span><br><span class="line">?&gt;%</span><br><span class="line"></span><br><span class="line">└─# php test.php</span><br><span class="line">\`whoami\`%</span><br></pre></td></tr></table></figure>
-
-<p>同时使用<code>escapeshellarg</code>和<code>escapeshellcmd</code>会试试</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">例子：</span></span><br><span class="line">└─# cat test.php</span><br><span class="line">&lt;?php</span><br><span class="line">echo escapeshellarg(&quot;who&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">echo escapeshellcmd(&quot;who&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">echo escapeshellarg(&quot;who&#x27;&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">echo escapeshellcmd(&quot;who&#x27;&#x27;ami&quot;).&quot;\n&quot;;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">└─# php test.php</span><br><span class="line">&#x27;who&#x27;\&#x27;&#x27;ami&#x27;</span><br><span class="line">who\&#x27;ami</span><br><span class="line">&#x27;who&#x27;\&#x27;&#x27;&#x27;\&#x27;&#x27;ami&#x27;</span><br><span class="line">who&#x27;&#x27;ami</span><br></pre></td></tr></table></figure>
-
-<p>可以发现这两个函数对于单引号的处理是有区别的，<code>escapeshellarg</code>函数转义后还会用单引号包裹，但<code>escapeshellcmd</code>函数是直接加一个转义符，对于成对的单引号，<code>escapeshellcmd</code>函数默认不转义，但<code>escapeshellarg</code>函数转义。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# cat test1.php</span><br><span class="line">&lt;?php</span><br><span class="line"><span class="meta">$</span><span class="bash">param=<span class="string">&quot;127.0.0.1&#x27; -v -d a=1&quot;</span>;</span></span><br><span class="line"><span class="meta">$</span><span class="bash">a=escapeshellarg(<span class="variable">$param</span>);</span></span><br><span class="line"><span class="meta">$</span><span class="bash">b=escapeshellcmd(<span class="variable">$a</span>);</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cmd=<span class="string">&quot;curl &quot;</span>.<span class="variable">$b</span>;</span></span><br><span class="line"><span class="meta">var_dump($</span><span class="bash">a).<span class="string">&quot;\n&quot;</span>;</span></span><br><span class="line"><span class="meta">var_dump($</span><span class="bash">b).<span class="string">&quot;\n&quot;</span>;</span></span><br><span class="line"><span class="meta">var_dump($</span><span class="bash">cmd).<span class="string">&quot;\n&quot;</span>;</span></span><br><span class="line"><span class="meta">system($</span><span class="bash">cmd);</span></span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">└─# php test1.php </span><br><span class="line">string(25) &quot;&#x27;127.0.0.1&#x27;\&#x27;&#x27; -v -d a=1&#x27;&quot;</span><br><span class="line">string(27) &quot;&#x27;127.0.0.1&#x27;\\&#x27;&#x27; -v -d a=1\&#x27;&quot;</span><br><span class="line">string(32) &quot;curl &#x27;127.0.0.1&#x27;\\&#x27;&#x27; -v -d a=1\&#x27;&quot;</span><br><span class="line"><span class="meta">  %</span><span class="bash"> Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span></span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Could not resolve host: 127.0.0.1\</span><br><span class="line">* Closing connection 0</span><br><span class="line">curl: (6) Could not resolve host: 127.0.0.1\</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>过程分析：</p>
-<ol>
-<li><p>传入的参数是</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">127.0.0.1&#39; -v -d a&#x3D;1</span><br></pre></td></tr></table></figure></li>
-<li><p><code>escapeshellarg</code>函数先对单引号转义，再用单引号将左右两部分括起来起连接作用。所以处理之后效果如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#39;127.0.0.1&#39;\&#39;&#39; -v -d a&#x3D;1&#39;</span><br></pre></td></tr></table></figure></li>
-<li><p>经过<code>escapeshellcmd</code>针对第二步处理之后的参数中的<code>\</code>以及<code>a=1&#39;</code>中的单引号进行处理转义之后的效果如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#39;127.0.0.1&#39;\\&#39;&#39; -v -d a&#x3D;1\&#39;</span><br></pre></td></tr></table></figure></li>
-<li><p>由于第三步处理之后的payload中的<code>\\</code>被解释成了<code>\</code>而不再是转义字符，所以单引号配对连接之后将payload分割为三个部分，具体如下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">└─# curl &#x27;127.0.0.1&#x27;\\&#x27;&#x27; -v -d a=1\&#x27;</span><br><span class="line">* Could not resolve host: 127.0.0.1\</span><br><span class="line">* Closing connection 0</span><br><span class="line">curl: (6) Could not resolve host: 127.0.0.1\</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>web学习</category>
       </categories>
   </entry>
   <entry>
